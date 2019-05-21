@@ -15,7 +15,8 @@ namespace QLTV_MVVM.ViewModel
     {
 
         public ICommand LoadDBCommand { get; set; }
-        public ICommand SelectedItemCommand { get; set; }
+        public ICommand SelectedCellsChangedCommand { get; set; }
+        public ICommand DisplayAddingReeaderCommand { get; set; }
 
         public ReadersViewModel()
         {
@@ -23,15 +24,20 @@ namespace QLTV_MVVM.ViewModel
                 if (p == null)
                     return;
                 var db = DataProvider.Ins.DB.DocGias.ToList();
-                p.ItemsSource= db;
+                p.ItemsSource = db;
             });
 
-            SelectedItemCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
+            SelectedCellsChangedCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
                 if (p == null)
                     return;
                 DocGia dg = (DocGia)p.SelectedItem as DocGia;
             });
 
+            DisplayAddingReeaderCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
+                AddingReaderWindow window = new AddingReaderWindow();
+                window.ShowDialog();
+                p.ItemsSource = DataProvider.Ins.DB.DocGias.ToList();
+            });
         }
     }
 }
