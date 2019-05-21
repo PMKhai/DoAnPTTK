@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace QLTV_MVVM.ViewModel
 {
-    class LoginViewModel: BaseViewModel
+    public class LoginViewModel: BaseViewModel
     {
         public bool IsLogin { get; set; }
 
