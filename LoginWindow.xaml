@@ -1,0 +1,73 @@
+﻿<Window x:Class="QLTV_MVVM.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLTV_MVVM"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="450" Width="300"
+        xmlns:uc="clr-namespace:QLTV_MVVM.UserControll_QLTV"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" 
+        WindowStyle="None" DataContext="{StaticResource LoginVM}"
+        Name="loginWindow">
+    <Grid Background="AliceBlue" >
+        <Grid Height="40" VerticalAlignment="Top">
+            <uc:ControllBarUC></uc:ControllBarUC>
+        </Grid>
+        <Grid VerticalAlignment="Center" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox Width="250" Grid.Column="1"
+                  materialDesign:HintAssist.Hint="Tên đăng nhập" Text="{Binding UserName}"
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" CaretBrush="#FF3A9BB7" />
+            </Grid>
+            <Grid Grid.Row="1" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <PasswordBox Width="250" Grid.Column="1"
+                 x:Name="FloatingPasswordBox"
+                materialDesign:HintAssist.Hint="Mật khẩu"
+                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" CaretBrush="#FF3AACB7" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PasswordChanged">
+                            <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" 
+                                   CommandParameter="{Binding ElementName=FloatingPasswordBox}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </PasswordBox>
+            </Grid>
+
+            <Button Grid.Row="2" Width="250" VerticalAlignment="Bottom" Background="#FF3A95B7"
+                    BorderBrush="#FF3A95B7" Command="{Binding LoginCommand}"
+                    CommandParameter="{Binding ElementName=loginWindow}">Đăng nhập</Button>
+            <Grid Grid.Row="3" Margin="0 10 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" HorizontalAlignment="Right" Background="#FF3AB7B7"></CheckBox>
+                <Label Grid.Column="1" Height="25">Nhớ mật khẩu</Label>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
