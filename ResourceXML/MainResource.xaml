@@ -4,4 +4,5 @@
                     xmlns:local="clr-namespace:QLTV_MVVM.ResourceXML">
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
     <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
+    <viewmodel:ReadersViewModel x:Key="ReaderVM"></viewmodel:ReadersViewModel>
 </ResourceDictionary>

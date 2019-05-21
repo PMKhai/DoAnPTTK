@@ -58,7 +58,7 @@
             </Grid>
 
             <Button Grid.Row="2" Width="250" VerticalAlignment="Bottom" Background="#FF3A95B7"
-                    BorderBrush="#FF3A95B7" Command="{Binding LoginCommand}"
+                    BorderBrush="#FF3A95B7" IsDefault="True" Command="{Binding LoginCommand}"
                     CommandParameter="{Binding ElementName=loginWindow}">Đăng nhập</Button>
             <Grid Grid.Row="3" Margin="0 10 0 0">
                 <Grid.ColumnDefinitions>

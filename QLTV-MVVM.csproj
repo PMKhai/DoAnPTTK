@@ -156,7 +156,7 @@
     <Compile Include="ViewModel\ControllBarViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\UserControlReaders.cs" />
+    <Compile Include="ViewModel\ReadersViewModel.cs" />
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
