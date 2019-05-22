@@ -39,14 +39,14 @@
         <Grid Width="900" Height="490" VerticalAlignment="Bottom"
                   Margin="0 0 0 15">
             <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" 
-                      CanUserAddRows="False">
+                      CanUserAddRows="False" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Loaded">
                         <i:InvokeCommandAction Command="{Binding LoadDBCommand}" 
                                    CommandParameter="{Binding ElementName=userDatagrid}"/>
                     </i:EventTrigger>
-                    <i:EventTrigger EventName="SelectedCellsChanged">
-                        <i:InvokeCommandAction Command="{Binding SelectedCellsChangedCommand}" 
+                    <i:EventTrigger EventName="LostFocus">
+                        <i:InvokeCommandAction Command="{Binding LostFocusCommand}" 
                                    CommandParameter="{Binding ElementName=userDatagrid}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>

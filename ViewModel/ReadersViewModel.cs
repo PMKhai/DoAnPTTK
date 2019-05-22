@@ -15,7 +15,7 @@ namespace QLTV_MVVM.ViewModel
     {
 
         public ICommand LoadDBCommand { get; set; }
-        public ICommand SelectedCellsChangedCommand { get; set; }
+        public ICommand LostFocusCommand { get; set; }
         public ICommand DisplayAddingReeaderCommand { get; set; }
 
         public ReadersViewModel()
@@ -27,10 +27,20 @@ namespace QLTV_MVVM.ViewModel
                 p.ItemsSource = db;
             });
 
-            SelectedCellsChangedCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
+            LostFocusCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
                 if (p == null)
                     return;
                 DocGia dg = (DocGia)p.SelectedItem as DocGia;
+
+                var reader = DataProvider.Ins.DB.DocGias.Find(dg.IDDg);
+
+                reader.HoTen = dg.HoTen;
+                reader.NgaySinh = dg.NgaySinh;
+                reader.DiaChi = dg.DiaChi;
+                reader.NgayTaoThe = dg.NgayTaoThe;
+
+                DataProvider.Ins.DB.SaveChanges();
+
             });
 
             DisplayAddingReeaderCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
