@@ -1,6 +1,8 @@
-﻿using System;
+﻿using QLTV_MVVM.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +26,9 @@ namespace QLTV_MVVM.ViewModel
 
         public LoginViewModel()
         {
+            Password = "";
+            UserName = "";
+            IsLogin = false;
             LoginCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Login(p); });
 
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; }, (p) => { Password = p.Password; });
@@ -32,14 +37,42 @@ namespace QLTV_MVVM.ViewModel
 
         void Login(Window p)
         {
-            string us = UserName;
-            string pw = Password;
-
-            
+        
             if (p == null)
+            {
                 return;
-            IsLogin = true;
-            p.Close();
+            }
+            string passEncode = MD5Hash(Base64Encode(Password));
+            var count = DataProvider.Ins.DB.TaiKhoans.Where(x => x.UserName == UserName && x.MatKhau == passEncode).Count();
+            if(count > 0 )
+            {
+                IsLogin = true;
+                p.Close();
+            }
+            else
+            {
+                IsLogin = false;
+                MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu !");           }
+        }
+        public static string Base64Encode(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
+
+
+
+        public static string MD5Hash(string input)
+        {
+            StringBuilder hash = new StringBuilder();
+            MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
+            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(input));
+
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                hash.Append(bytes[i].ToString("x2"));
+            }
+            return hash.ToString();
         }
     }
 }

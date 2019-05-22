@@ -42,12 +42,13 @@
             <Grid Grid.Row="1" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="auto"></ColumnDefinition>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="33.802"></ColumnDefinition>
+                    <ColumnDefinition Width="215.798"/>
                 </Grid.ColumnDefinitions>
                 <PasswordBox Width="250" Grid.Column="1"
                  x:Name="FloatingPasswordBox"
                 materialDesign:HintAssist.Hint="Mật khẩu"
-                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" CaretBrush="#FF3AACB7" >
+                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" CaretBrush="#FF3AACB7" Grid.ColumnSpan="2" Margin="0,0,-0.4,-0.4" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PasswordChanged">
                             <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" 
