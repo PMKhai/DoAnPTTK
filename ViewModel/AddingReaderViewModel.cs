@@ -41,6 +41,7 @@ namespace QLTV_MVVM.ViewModel
                 docGia.HoTen = name;
                 docGia.DiaChi = address;
                 docGia.NgaySinh = dayOfBirth;
+                docGia.NgayTaoThe = redistrationDate;
                 DataProvider.Ins.DB.DocGias.Add(docGia);
                 if (DataProvider.Ins.DB.SaveChanges() == 1)
                 {
