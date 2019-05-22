@@ -20,10 +20,11 @@
     <Grid Background="AliceBlue">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
                     VerticalAlignment="Top" Margin="15 10 0 0">
-            <TextBox x:Name="searchTextBox" materialDesign:HintAssist.Hint="Tìm kiếm"  
+            <TextBox x:Name="searchTextBox" materialDesign:HintAssist.Hint="Tìm kiếm" Text="{Binding InfoSearch}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" Height="40"/>
-            <Button x:Name="searchButton" Height="40"
-                    Background="{x:Null}" BorderBrush="{x:Null}">
+            <Button x:Name="searchButton" Height="40" IsDefault="True"
+                    Background="{x:Null}" BorderBrush="{x:Null}" Command="{Binding SearchCommand}"
+                    CommandParameter="{Binding ElementName=userDatagrid}">
                 <materialDesign:PackIcon Kind="Search" Foreground="Gray" 
                                          Height="30" Width="30"></materialDesign:PackIcon>
             </Button>
