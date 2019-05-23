@@ -6,4 +6,5 @@
     <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
     <viewmodel:ReadersViewModel x:Key="ReaderVM"></viewmodel:ReadersViewModel>
     <viewmodel:AddingReaderViewModel x:Key="AddingReaderVM"></viewmodel:AddingReaderViewModel>
+    <viewmodel:BooksViewModel x:Key="BookVM"></viewmodel:BooksViewModel>
 </ResourceDictionary>

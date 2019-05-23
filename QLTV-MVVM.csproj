@@ -164,6 +164,7 @@
     </Compile>
     <Compile Include="ViewModel\AddingReaderViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\BooksViewModel.cs" />
     <Compile Include="ViewModel\ControllBarViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

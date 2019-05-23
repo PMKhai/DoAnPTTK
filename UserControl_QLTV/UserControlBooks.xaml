@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:QLTV_MVVM.UserControl_QLTV"
              mc:Ignorable="d" 
              d:DesignHeight="570" d:DesignWidth="930"
@@ -13,10 +14,58 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="{DynamicResource MaterialDesignFont}">
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             DataContext="{StaticResource BookVM}">
     <Grid Background="AliceBlue">
-        <materialDesign:Card Padding="32" Margin="16">
-            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Books...</TextBlock>
-        </materialDesign:Card>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
+                    VerticalAlignment="Top" Margin="15 10 0 0">
+            <ComboBox materialDesign:HintAssist.Hint="Loại sách" Width="150"
+                      Height="40" VerticalContentAlignment="Center" DisplayMemberPath="TenLoai">
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                    VerticalAlignment="Top" Margin="200 10 0 0">
+            <TextBox x:Name="searchTextBox" materialDesign:HintAssist.Hint="Tìm kiếm" Text="{Binding InfoSearch}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" Height="40"/>
+            <Button x:Name="searchButton" Height="40" IsDefault="True"
+                    Background="{x:Null}" BorderBrush="{x:Null}" Command="{Binding SearchCommand}"
+                    CommandParameter="{Binding ElementName=userDatagrid}">
+                <materialDesign:PackIcon Kind="Search" Foreground="Gray" 
+                                         Height="30" Width="30"></materialDesign:PackIcon>
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                    VerticalAlignment="Top" Margin="0 10 15 0">
+            <Button x:Name="addReaderButton" Background="#FF9ACDF5" 
+                    BorderBrush="#FF9ACDF5" Command="{Binding DisplayAddingReeaderCommand}"
+                    CommandParameter="{Binding ElementName=userDatagrid}">
+                <materialDesign:PackIcon Kind="Add"/>
+            </Button>
+        </StackPanel>
+        <Grid Width="900" Height="490" VerticalAlignment="Bottom"
+                  Margin="0 0 0 15">
+            <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" 
+                      CanUserAddRows="False" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Loaded">
+                        <i:InvokeCommandAction Command="{Binding LoadDBCommand}" 
+                                   CommandParameter="{Binding ElementName=userDatagrid}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="LostFocus">
+                        <i:InvokeCommandAction Command="{Binding LostFocusCommand}" 
+                                   CommandParameter="{Binding ElementName=userDatagrid}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã sách" Width="100" Binding="{ Binding IDSach}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Loại sách" Width="150" Binding="{Binding IDLoai}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tên sách" Width="150" Binding="{Binding TenSach}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tác giả" Width="150" Binding="{Binding TacGia}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Năm XB" Width="*" Binding="{Binding NamXB, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Nhà XB" Width="*" Binding="{Binding NhaXB}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 </UserControl>
