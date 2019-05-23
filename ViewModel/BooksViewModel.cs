@@ -22,6 +22,20 @@ namespace QLTV_MVVM.ViewModel
                 if (p == null)
                     return;
                 var db = DataProvider.Ins.DB.Saches.ToList();
+
+                foreach(Sach s in db)
+                {
+                    var ls = DataProvider.Ins.DB.LoaiSaches.Find(s.IDLoai);
+                    if (ls == null)
+                        return;
+                    s.TenLoaiSach = ls.TenLoai;
+                }
+
+                if (db == null)
+                {
+                    MessageBox.Show("Không thể hiển thị danh sách sách!", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 p.ItemsSource = db;
             });
         }
