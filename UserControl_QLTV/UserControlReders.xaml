@@ -40,7 +40,7 @@
         <Grid Width="900" Height="490" VerticalAlignment="Bottom"
                   Margin="0 0 0 15">
             <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" 
-                      CanUserAddRows="False" >
+                      CanUserAddRows="True" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Loaded">
                         <i:InvokeCommandAction Command="{Binding LoadDBCommand}" 
@@ -53,7 +53,7 @@
                 </i:Interaction.Triggers>
                 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Mã ĐG" Width="70" Binding="{ Binding IDDg}"></DataGridTextColumn>
+                    <DataGridTextColumn  Header="Mã ĐG" Width="70" Binding="{ Binding IDDg}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Họ tên" Width="200" Binding="{Binding HoTen}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Ngày sinh" Width="100" Binding="{Binding NgaySinh, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Ngày tạo thẻ" Width="100" Binding="{Binding NgayTaoThe, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>

@@ -18,9 +18,9 @@ namespace QLTV_MVVM.UserControl_QLTV
     /// <summary>
     /// Interaction logic for UserControlSupport.xaml
     /// </summary>
-    public partial class UserControlSupport : UserControl
+    public partial class UserControlLendingBook : UserControl
     {
-        public UserControlSupport()
+        public UserControlLendingBook()
         {
             InitializeComponent();
         }

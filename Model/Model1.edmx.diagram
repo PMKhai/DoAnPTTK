@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="QLTVModel.LoaiSach" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTVModel.NhaPhanPhoi" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTVModel.PhieuMuon" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLTVModel.PhieuTra" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTVModel.PhieuTra" Width="1.5" PointX="6.75" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTVModel.Sach" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTVModel.sysdiagram" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTVModel.TaiKhoan" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
