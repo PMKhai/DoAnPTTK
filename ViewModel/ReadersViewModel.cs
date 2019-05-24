@@ -28,6 +28,13 @@ namespace QLTV_MVVM.ViewModel
                 if (p == null)
                     return;
                 var db = DataProvider.Ins.DB.DocGias.ToList();
+
+                if (db == null)
+                {
+                    MessageBox.Show("Không thể hiển thị danh đọc giả!", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 p.ItemsSource = db;
             });
 
@@ -37,6 +44,12 @@ namespace QLTV_MVVM.ViewModel
                 DocGia dg = (DocGia)p.SelectedItem as DocGia;
 
                 var reader = DataProvider.Ins.DB.DocGias.Find(dg.IDDg);
+
+                if (reader == null)
+                {
+                    MessageBox.Show("Không thể chỉnh sửa đọc giả!", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
                 reader.HoTen = dg.HoTen;
                 reader.NgaySinh = dg.NgaySinh;
