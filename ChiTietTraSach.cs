@@ -7,16 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QLTV_MVVM.Model
+namespace QLTV_MVVM
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class ChiTietTraSach
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public int IDPt { get; set; }
+        public int IDSach { get; set; }
+        public int SoLuong { get; set; }
+        public string GhiChu { get; set; }
+    
+        public virtual PhieuTra PhieuTra { get; set; }
+        public virtual Sach Sach { get; set; }
     }
 }

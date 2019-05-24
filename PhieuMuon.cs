@@ -7,35 +7,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QLTV_MVVM.Model
+namespace QLTV_MVVM
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Sach
+    public partial class PhieuMuon
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sach()
+        public PhieuMuon()
         {
-            this.ChiTietNhapSaches = new HashSet<ChiTietNhapSach>();
             this.ChiTietPhieuMuons = new HashSet<ChiTietPhieuMuon>();
-            this.ChiTietTraSaches = new HashSet<ChiTietTraSach>();
+            this.PhieuTras = new HashSet<PhieuTra>();
         }
     
-        public int IDSach { get; set; }
-        public int IDLoai { get; set; }
-        public string TenSach { get; set; }
-        public string TacGia { get; set; }
-        public System.DateTime NamXB { get; set; }
-        public string NhaXB { get; set; }
+        public int IDPm { get; set; }
+        public string UserName { get; set; }
+        public int IDDg { get; set; }
+        public System.DateTime NgayMuon { get; set; }
+        public System.DateTime KyHanTra { get; set; }
+        public Nullable<int> TinhTrang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietNhapSach> ChiTietNhapSaches { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietPhieuMuon> ChiTietPhieuMuons { get; set; }
+        public virtual DocGia DocGia { get; set; }
+        public virtual TaiKhoan TaiKhoan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietTraSach> ChiTietTraSaches { get; set; }
-        public virtual LoaiSach LoaiSach { get; set; }
-        public string TenLoaiSach { get; internal set; }
+        public virtual ICollection<PhieuTra> PhieuTras { get; set; }
     }
 }

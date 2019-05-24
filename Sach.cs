@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QLTV_MVVM.Model
+namespace QLTV_MVVM
 {
     using System;
     using System.Collections.Generic;

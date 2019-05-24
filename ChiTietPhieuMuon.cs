@@ -7,13 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QLTV_MVVM.Model
+namespace QLTV_MVVM
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class ChiTietPhieuMuon
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int IDPm { get; set; }
+        public int IDSach { get; set; }
+        public int SoLuong { get; set; }
+    
+        public virtual PhieuMuon PhieuMuon { get; set; }
+        public virtual Sach Sach { get; set; }
     }
 }

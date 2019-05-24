@@ -14,6 +14,8 @@ namespace QLTV_MVVM.ViewModel
     {
         private ObservableCollection<Model.DocGia> _DocGia;
         public ObservableCollection<Model.DocGia> DocGia { get => _DocGia; set { _DocGia = value; OnPropertyChanged(); } }
+        private ObservableCollection<Model.PhieuMuon> _PhieuMuon;
+        public ObservableCollection<Model.PhieuMuon> PhieuMuon { get => _PhieuMuon; set { _PhieuMuon = value; OnPropertyChanged(); } }
         private string _Name;
         public string Name { get => _Name; set { _Name = value; OnPropertyChanged(); } }
         private string _Phone;
@@ -52,6 +54,7 @@ namespace QLTV_MVVM.ViewModel
         public LendingBookViewModel()
         {
             DocGia = new ObservableCollection<Model.DocGia>(DataProvider.Ins.DB.DocGias);
+            PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons);
             LoadDBCommand = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
             {
                 if (p == null)

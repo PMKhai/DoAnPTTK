@@ -118,18 +118,12 @@
                 </Grid.RowDefinitions>
                 <materialDesign:Card Grid.Row="0"  Margin="5" VerticalAlignment="Stretch">
                     <DataGrid x:Name="Datagrid" AutoGenerateColumns="False" 
-                      CanUserAddRows="True" ItemsSource="{Binding DocGia}" >
-                        <i:Interaction.Triggers>
-
-                            <i:EventTrigger EventName="LostFocus">
-                                <i:InvokeCommandAction Command="{Binding LostFocusCommand}" 
-                                   CommandParameter="{Binding ElementName=userDatagrid}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                      CanUserAddRows="False" ItemsSource="{Binding PhieuMuon}" >
+                       
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã số" Width="3*" Binding="{Binding IDDg}" IsReadOnly="True"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Tên độc giả" Width="7*" Binding="{Binding DiaChi}" ></DataGridTextColumn>
+                            <DataGridTextColumn Header="Mã số" Width="3*" Binding="{Binding IDPm}" IsReadOnly="True"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Tên độc giả" Width="7*" Binding="{Binding DocGia.HoTen}" ></DataGridTextColumn>
 
                         </DataGrid.Columns>
                     </DataGrid>

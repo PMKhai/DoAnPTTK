@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QLTV_MVVM.Model
+namespace QLTV_MVVM
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class ThamSo
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int IDTs { get; set; }
+        public string TenThamSo { get; set; }
+        public string KieuDuLieu { get; set; }
+        public string GiaTri { get; set; }
+        public string TinhTrang { get; set; }
     }
 }
