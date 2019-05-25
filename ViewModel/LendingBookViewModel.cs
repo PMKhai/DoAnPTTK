@@ -14,6 +14,10 @@ namespace QLTV_MVVM.ViewModel
     {
         private ObservableCollection<Model.DocGia> _DocGia;
         public ObservableCollection<Model.DocGia> DocGia { get => _DocGia; set { _DocGia = value; OnPropertyChanged(); } }
+        private ObservableCollection<Model.LoaiSach> _LoaiSach;
+        public ObservableCollection<Model.LoaiSach> LoaiSach { get => _LoaiSach; set { _LoaiSach = value; OnPropertyChanged(); } }
+        private ObservableCollection<Model.Sach> _Sach;
+        public ObservableCollection<Model.Sach> Sach { get => _Sach; set { _Sach = value; OnPropertyChanged(); } }
         private ObservableCollection<Model.PhieuMuon> _PhieuMuon;
         public ObservableCollection<Model.PhieuMuon> PhieuMuon { get => _PhieuMuon; set { _PhieuMuon = value; OnPropertyChanged(); } }
         private string _Name;
@@ -29,22 +33,84 @@ namespace QLTV_MVVM.ViewModel
 
         private DateTime? _RegistrationDate;
         public DateTime? RegistrationDate { get => _RegistrationDate; set { _RegistrationDate = value; OnPropertyChanged(); } }
-        private Model.DocGia _SelectedItem;
-        public Model.DocGia SelectedItem
+        private Model.DocGia _SelectedDocGia;
+        public Model.DocGia SelectedDocGia
         {
-            get => _SelectedItem;
+            get => _SelectedDocGia;
             set
             {
-                _SelectedItem = value;
+                _SelectedDocGia = value;
                 OnPropertyChanged();
-                if (SelectedItem != null)
+                if (SelectedDocGia != null)
                 {
-                   Name = SelectedItem.HoTen;
+                   Name = SelectedDocGia.HoTen;
                    // _Phone
-                    Address = SelectedItem.DiaChi;
-                    DayOfbirth = SelectedItem.NgaySinh;
-                    RegistrationDate = SelectedItem.NgayTaoThe;
+                    Address = SelectedDocGia.DiaChi;
+                    DayOfbirth = SelectedDocGia.NgaySinh;
+                    RegistrationDate = SelectedDocGia.NgayTaoThe;
                    
+                }
+            }
+        }
+        private string _MaPhieu;
+        public string MaPhieu { get => _MaPhieu; set { _MaPhieu = value; OnPropertyChanged(); } }
+        private DateTime? _LendingDay;
+        public DateTime? LendingDay { get => _LendingDay; set { _LendingDay = value; OnPropertyChanged(); } }
+        private DateTime? _ReturnDay;
+        public DateTime? ReturnDay { get => _ReturnDay; set { _ReturnDay = value; OnPropertyChanged(); } }
+        private Model.PhieuMuon _SelectedPhieuMuon;
+        public Model.PhieuMuon SelectedPhieuMuon
+        {
+            get => _SelectedPhieuMuon;
+            set
+            {
+                _SelectedPhieuMuon = value;
+                OnPropertyChanged();
+                if (SelectedPhieuMuon != null)
+                {
+                    SelectedDocGia = SelectedPhieuMuon.DocGia;
+                    MaPhieu = SelectedPhieuMuon.IDPm.ToString();
+                    // _Phone
+                    LendingDay = SelectedPhieuMuon.NgayMuon;
+                    ReturnDay = SelectedPhieuMuon.KyHanTra;
+
+                }
+            }
+        }
+        private string _TacGia;
+        public string TacGia { get => _TacGia; set { _TacGia = value; OnPropertyChanged(); } }
+        private string _NhaXB;
+        public string NhaXB { get => _NhaXB; set { _NhaXB = value; OnPropertyChanged(); } }
+
+        private DateTime? _NamXB;
+        public DateTime? NamXB { get => _NamXB; set { _NamXB = value; OnPropertyChanged(); } }
+        private Model.Sach _SelectedSach;
+        public Model.Sach SelectedSach
+        {
+            get => _SelectedSach;
+            set
+            {
+                _SelectedSach = value;
+                OnPropertyChanged();
+                if (SelectedSach != null)
+                {
+                    TacGia = SelectedSach.TacGia;
+                    NhaXB = SelectedSach.NhaXB;
+                    NamXB = SelectedSach.NamXB;
+                }
+            }
+        }
+        private Model.LoaiSach _SelectedLoaiSach;
+        public Model.LoaiSach SelectedLoaiSach
+        {
+            get => _SelectedLoaiSach;
+            set
+            {
+                _SelectedLoaiSach = value;
+                OnPropertyChanged();
+                if (SelectedLoaiSach != null)
+                {
+                    Sach = new ObservableCollection<Model.Sach>(SelectedLoaiSach.Saches);
                 }
             }
         }
@@ -55,6 +121,8 @@ namespace QLTV_MVVM.ViewModel
         {
             DocGia = new ObservableCollection<Model.DocGia>(DataProvider.Ins.DB.DocGias);
             PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons);
+            
+            LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches);
             LoadDBCommand = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
             {
                 if (p == null)
