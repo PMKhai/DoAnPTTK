@@ -8,8 +8,9 @@ namespace QLTV_MVVM.Model
 {
     public class LentBook
     {
-        public Object Object { get; set; }
+        public Sach Sach { get; set; }
         public int STT { get; set; }
+        public string DonVi { get; set; }
         public int SoLuong { get; set; }
     }
 }

@@ -20,6 +20,8 @@ namespace QLTV_MVVM.ViewModel
         public ObservableCollection<Model.Sach> Sach { get => _Sach; set { _Sach = value; OnPropertyChanged(); } }
         private ObservableCollection<Model.PhieuMuon> _PhieuMuon;
         public ObservableCollection<Model.PhieuMuon> PhieuMuon { get => _PhieuMuon; set { _PhieuMuon = value; OnPropertyChanged(); } }
+        private ObservableCollection<Model.LentBook> _SachDcThue;
+        public ObservableCollection<Model.LentBook> SachDcThue { get => _SachDcThue; set { _SachDcThue = value; OnPropertyChanged(); } }
         private string _Name;
         public string Name { get => _Name; set { _Name = value; OnPropertyChanged(); } }
         private string _Phone;
@@ -68,12 +70,34 @@ namespace QLTV_MVVM.ViewModel
                 OnPropertyChanged();
                 if (SelectedPhieuMuon != null)
                 {
+           
                     SelectedDocGia = SelectedPhieuMuon.DocGia;
                     MaPhieu = SelectedPhieuMuon.IDPm.ToString();
                     // _Phone
                     LendingDay = SelectedPhieuMuon.NgayMuon;
                     ReturnDay = SelectedPhieuMuon.KyHanTra;
 
+
+                    //////
+                    var bookList = SelectedPhieuMuon.ChiTietPhieuMuons;
+
+                    SachDcThue = new ObservableCollection<LentBook>();
+
+
+
+                    int i = 1;
+                    foreach (var item in bookList)
+                    {
+                        
+
+                        LentBook a = new LentBook();
+                        a.STT = i;
+                        a.DonVi = "Quyển";
+                        a.SoLuong = item.SoLuong;
+                        a.Sach = item.Sach;
+                        SachDcThue.Add(a);
+                        i++;
+                    }
                 }
             }
         }
@@ -114,6 +138,21 @@ namespace QLTV_MVVM.ViewModel
                 }
             }
         }
+        private Model.LentBook _SelectedSachDcThue;
+        public Model.LentBook SelectedSachDcThue
+        {
+            get => _SelectedSachDcThue;
+            set
+            {
+                _SelectedSachDcThue = value;
+                OnPropertyChanged();
+                if (SelectedSachDcThue != null)
+                {
+                    SelectedLoaiSach = SelectedSachDcThue.Sach.LoaiSach;
+                    SelectedSach = SelectedSachDcThue.Sach;
+                }
+            }
+        }
         public ICommand LoadDBCommand { get; set; }
        
         
@@ -130,6 +169,11 @@ namespace QLTV_MVVM.ViewModel
                 var db = DataProvider.Ins.DB.DocGias.ToList();
                 p.ItemsSource = db;
             });
+        }
+        void LoadChiTietPM()
+        {
+           
+
         }
     }
 }

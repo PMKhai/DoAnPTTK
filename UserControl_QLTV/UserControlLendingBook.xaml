@@ -80,7 +80,7 @@
             </Grid.ColumnDefinitions>
             <materialDesign:Card Grid.Column="0" Margin="5" VerticalAlignment="Stretch">
                 <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" 
-                      CanUserAddRows="True" ItemsSource="{Binding ChiTietPhieuMuon}" >
+                      CanUserAddRows="False" ItemsSource="{Binding SachDcThue}" SelectedItem="{Binding SelectedSachDcThue, Mode=OneWayToSource}">
                     <i:Interaction.Triggers>
                       
                         <i:EventTrigger EventName="LostFocus">
@@ -102,10 +102,10 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>-->
-                        <DataGridTextColumn Header="STT" Width="*" Binding="{Binding IDDg}" IsReadOnly="True"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Tên sách" Width="3*" Binding="{Binding HoTen}" IsReadOnly="True"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Đơn vị" Width="*" Binding="{Binding HoTen}" IsReadOnly="True"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Số lượng" Width="*" Binding="{Binding DiaChi}" ></DataGridTextColumn>
+                        <DataGridTextColumn Header="STT" Width="*" Binding="{Binding STT}" IsReadOnly="True"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Tên sách" Width="3*" Binding="{Binding Sach.TenSach}" IsReadOnly="True"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Đơn vị" Width="*" Binding="{Binding DonVi}" IsReadOnly="True"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Số lượng" Width="*" Binding="{Binding SoLuong}" ></DataGridTextColumn>
                         
                     </DataGrid.Columns>
                 </DataGrid>
