@@ -48,7 +48,7 @@ namespace QLTV_MVVM
 
                 case 0:
                     GridWorking.Children.Clear();
-                    GridWorking.Children.Add(new UserControlProcessOfBook());
+                    GridWorking.Children.Add(new UserControlLendingBook());
                     break;
                 case 1:
                     GridWorking.Children.Clear();
@@ -68,7 +68,7 @@ namespace QLTV_MVVM
                     break;
                 case 5:
                     GridWorking.Children.Clear();
-                    GridWorking.Children.Add(new UserControlLendingBook());
+                    GridWorking.Children.Add(new UserControlStatistical());
                     break;
                 default:
                     break;
