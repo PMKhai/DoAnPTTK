@@ -22,36 +22,37 @@
         <Grid Height="40" VerticalAlignment="Top">
             <uc:ControllBarUC></uc:ControllBarUC>
         </Grid>
-        <Grid Margin="0 40 0 0">
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <TextBox x:Name="fullNameTextBox" materialDesign:HintAssist.Hint="Họ tên" Grid.Row="0" Text="{Binding Name, Mode=TwoWay}"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" Height="40"/>
-            
-            <TextBox x:Name="searchingTextBox" materialDesign:HintAssist.Hint="Địa chỉ" Grid.Row="1" Text="{Binding Address, Mode=TwoWay}"
+        <materialDesign:Card Margin="5 40 5 5" Height="410">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBox x:Name="fullNameTextBox" materialDesign:HintAssist.Hint="Họ tên" Grid.Row="0" Text="{Binding Name, Mode=TwoWay}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" Height="40"/>
 
-            <DatePicker x:Name="dayOfBirthDatePicker" materialDesign:HintAssist.Hint="Ngày sinh" Grid.Row="2" 
+                <TextBox x:Name="searchingTextBox" materialDesign:HintAssist.Hint="Địa chỉ" Grid.Row="1" Text="{Binding Address, Mode=TwoWay}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" Height="40"/>
+
+                <DatePicker x:Name="dayOfBirthDatePicker" materialDesign:HintAssist.Hint="Ngày sinh" Grid.Row="2" 
                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="250" Height="40" 
                         SelectedDate="{Binding DayOfbirth}"/>
 
-            <DatePicker x:Name="dayOfSignUpDatePicker" materialDesign:HintAssist.Hint="Ngày đăng ký" Grid.Row="3"
+                <DatePicker x:Name="dayOfSignUpDatePicker" materialDesign:HintAssist.Hint="Ngày đăng ký" Grid.Row="3"
                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="250" Height="40"
                         SelectedDate="{Binding RegistrationDate}"/>
-           
-            <Button Width="250" Height="40" Grid.Row="4" Background="#FF9ACDF5" 
-                    BorderBrush="#FF9ACDF5" Command="{Binding AddReader}" CommandParameter="{Binding ElementName=AddingReader}">
-                <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="Add" Foreground="White" Height="30" Width="30"/>
-                    <TextBlock Foreground="White" FontSize="20" Margin="0 4 0 0"> Thêm</TextBlock>
-                </StackPanel>
-            </Button>
-        </Grid>
 
+                <Button Width="250" Height="40" Grid.Row="4" Background="#FF9ACDF5" 
+                    BorderBrush="#FF9ACDF5" Command="{Binding AddReader}" CommandParameter="{Binding ElementName=AddingReader}">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Add" Foreground="White" Height="30" Width="30"/>
+                        <TextBlock Foreground="White" FontSize="20" Margin="0 4 0 0"> Thêm</TextBlock>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </materialDesign:Card>
     </Grid>
 </Window>

@@ -18,48 +18,54 @@
              FontFamily="{DynamicResource MaterialDesignFont}">
     
     <Grid Background="AliceBlue">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
-                    VerticalAlignment="Top" Margin="15 10 0 0">
-            <TextBox x:Name="searchTextBox" materialDesign:HintAssist.Hint="Tìm kiếm" Text="{Binding InfoSearch}"
+        <materialDesign:Card Margin=" 5 0 5 0" Height="50">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
+                    VerticalAlignment="Top" Margin="15 0 0 0">
+                    <TextBox x:Name="searchTextBox" materialDesign:HintAssist.Hint="Tìm kiếm" Text="{Binding InfoSearch}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" Height="40"/>
-            <Button x:Name="searchButton" Height="40" IsDefault="True"
+                    <Button x:Name="searchButton" Height="40" IsDefault="True"
                     Background="{x:Null}" BorderBrush="{x:Null}" Command="{Binding SearchCommand}"
                     CommandParameter="{Binding ElementName=userDatagrid}">
-                <materialDesign:PackIcon Kind="Search" Foreground="Gray" 
+                        <materialDesign:PackIcon Kind="Search" Foreground="Gray" 
                                          Height="30" Width="30"></materialDesign:PackIcon>
-            </Button>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
-                    VerticalAlignment="Top" Margin="0 10 15 0">
-            <Button x:Name="addReaderButton" Background="#FF9ACDF5" 
-                    BorderBrush="#FF9ACDF5" Command="{Binding DisplayAddingReeaderCommand}"
-                    CommandParameter="{Binding ElementName=userDatagrid}">
-                <materialDesign:PackIcon Kind="Add"/>
-            </Button>
-        </StackPanel>
-        <Grid Width="900" Height="490" VerticalAlignment="Bottom"
-                  Margin="0 0 0 15">
-            <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" 
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" 
+                     Margin="490 0 15 0">
+                    <Button x:Name="addReaderButton" Command="{Binding DisplayAddingReeaderCommand}"
+                    CommandParameter="{Binding ElementName=userDatagrid}"
+                            BorderThickness="15" Width="90" Content="Thêm">
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:Card>
+
+        <materialDesign:Card Width="920" Height="490" VerticalAlignment="Bottom"
+                  Margin="0 0 0 5">
+            <Grid>
+                <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" 
                       CanUserAddRows="True" >
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Loaded">
-                        <i:InvokeCommandAction Command="{Binding LoadDBCommand}" 
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Loaded">
+                            <i:InvokeCommandAction Command="{Binding LoadDBCommand}" 
                                    CommandParameter="{Binding ElementName=userDatagrid}"/>
-                    </i:EventTrigger>
-                    <i:EventTrigger EventName="LostFocus">
-                        <i:InvokeCommandAction Command="{Binding LostFocusCommand}" 
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="LostFocus">
+                            <i:InvokeCommandAction Command="{Binding LostFocusCommand}" 
                                    CommandParameter="{Binding ElementName=userDatagrid}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                
-                <DataGrid.Columns>
-                    <DataGridTextColumn  Header="Mã ĐG" Width="70" Binding="{ Binding IDDg}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Họ tên" Width="200" Binding="{Binding HoTen}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Ngày sinh" Width="100" Binding="{Binding NgaySinh, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Ngày tạo thẻ" Width="100" Binding="{Binding NgayTaoThe, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Địa chỉ" Width="*" Binding="{Binding DiaChi}"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn  Header="Mã ĐG" Width="70" Binding="{ Binding IDDg}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Họ tên" Width="200" Binding="{Binding HoTen}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Ngày sinh" Width="100" Binding="{Binding NgaySinh, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Ngày tạo thẻ" Width="100" Binding="{Binding NgayTaoThe, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Địa chỉ" Width="*" Binding="{Binding DiaChi}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </materialDesign:Card>
     </Grid>
 </UserControl>

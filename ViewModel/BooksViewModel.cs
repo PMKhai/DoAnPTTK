@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +14,16 @@ namespace QLTV_MVVM.ViewModel
 {
     public class BooksViewModel: BaseViewModel
     {
+
+        private ObservableCollection<Model.LoaiSach> _LoaiSach;
+        public ObservableCollection<Model.LoaiSach> LoaiSach { get => _LoaiSach; set { _LoaiSach = value; OnPropertyChanged(); } }
+
         public ICommand LoadDBCommand { get; set; }
 
         public BooksViewModel()
         {
+            LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches);
+
 
             LoadDBCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
                 if (p == null)
