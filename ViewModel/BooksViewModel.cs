@@ -19,6 +19,7 @@ namespace QLTV_MVVM.ViewModel
         public ObservableCollection<Model.LoaiSach> LoaiSach { get => _LoaiSach; set { _LoaiSach = value; OnPropertyChanged(); } }
 
         public ICommand LoadDBCommand { get; set; }
+        public ICommand DisplayAddingBookCommand { get; set; }
 
         public BooksViewModel()
         {
@@ -45,6 +46,13 @@ namespace QLTV_MVVM.ViewModel
                 }
                 p.ItemsSource = db;
             });
+
+            DisplayAddingBookCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
+                AddingBookWindow wd = new AddingBookWindow();
+                wd.ShowDialog();
+                p.ItemsSource = DataProvider.Ins.DB.Saches.ToList();
+            });
+
         }
 
     }

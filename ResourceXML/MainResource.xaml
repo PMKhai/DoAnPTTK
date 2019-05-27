@@ -10,5 +10,6 @@
     <viewmodel:LendingBookViewModel x:Key="LendingBookVM"></viewmodel:LendingBookViewModel>
 
     <viewmodel:BooksViewModel x:Key="BookVM"></viewmodel:BooksViewModel>
+    <viewmodel:AddingBookViewModel x:Key="AddingBookVM"></viewmodel:AddingBookViewModel>
 
 </ResourceDictionary>

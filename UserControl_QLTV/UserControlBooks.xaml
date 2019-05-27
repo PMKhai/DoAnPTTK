@@ -38,7 +38,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
                             Margin="340 10 0 0">
-                    <Button x:Name="addReaderButton" Command="{Binding DisplayAddingReeaderCommand}"
+                    <Button x:Name="addReaderButton" Command="{Binding DisplayAddingBookCommand}"
                     CommandParameter="{Binding ElementName=userDatagrid}" 
                             Width="90" Content="Thêm" BorderThickness="15">
                     </Button>

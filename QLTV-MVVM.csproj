@@ -77,6 +77,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddingBookWindow.xaml.cs">
+      <DependentUpon>AddingBookWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddingReaderWindow.xaml.cs">
       <DependentUpon>AddingReaderWindow.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,7 @@
     <Compile Include="UserControl_QLTV\UserControlLendingBook.xaml.cs">
       <DependentUpon>UserControlLendingBook.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AddingBookViewModel.cs" />
     <Compile Include="ViewModel\AddingReaderViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BooksViewModel.cs" />
@@ -162,6 +166,10 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ReadersViewModel.cs" />
+    <Page Include="AddingBookWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddingReaderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
