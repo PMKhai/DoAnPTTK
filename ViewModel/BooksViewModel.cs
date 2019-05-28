@@ -52,7 +52,21 @@ namespace QLTV_MVVM.ViewModel
             DisplayAddingBookCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
                 AddingBookWindow wd = new AddingBookWindow();
                 wd.ShowDialog();
-                p.ItemsSource = DataProvider.Ins.DB.Saches.ToList();
+                Sach = new ObservableCollection<Sach>(DataProvider.Ins.DB.Saches);
+                foreach (Sach s in Sach)
+                {
+                    var ls = DataProvider.Ins.DB.LoaiSaches.Find(s.IDLoai);
+                    if (ls == null)
+                        return;
+                    s.TenLoaiSach = ls.TenLoai;
+                }
+
+                if (Sach == null)
+                {
+                    MessageBox.Show("Không thể hiển thị danh sách sách!", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                p.ItemsSource = Sach;
             });
             DeleteCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) =>
             {

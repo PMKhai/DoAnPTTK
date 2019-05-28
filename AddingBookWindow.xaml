@@ -16,7 +16,8 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}">
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        x:Name="AddingBook">
     <Grid Background="AliceBlue">
         <Grid Height="40" VerticalAlignment="Top">
             <uc:ControllBarUC></uc:ControllBarUC>
@@ -35,7 +36,7 @@
                 </Grid.RowDefinitions>
                 <ComboBox materialDesign:HintAssist.Hint="Loại sách" Width="250" Grid.Row="0"
                       Height="40" VerticalContentAlignment="Center" DisplayMemberPath="TenLoai"
-                              ItemsSource="{Binding LoaiSach}"></ComboBox>
+                              ItemsSource="{Binding LoaiSach}" SelectedValue="{Binding LS}"></ComboBox>
 
                 <TextBox x:Name="bookNameTextBox" materialDesign:HintAssist.Hint="Tên sách" Grid.Row="1" Text="{Binding TenSach, Mode=TwoWay}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" Height="40"/>
@@ -50,12 +51,12 @@
                 <TextBox x:Name="publishingHouseTextBox" materialDesign:HintAssist.Hint="Nhà xuất bản" Grid.Row="4" Text="{Binding NhaXuatBan, Mode=TwoWay}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" Height="40"/>
 
-                <DatePicker materialDesign:HintAssist.Hint="Năm xuất bản" Grid.Row="5"
+                <DatePicker materialDesign:HintAssist.Hint="Ngày nhập" Grid.Row="5"
                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="250" Height="40"
                         SelectedDate="{Binding NgayNhap}"/>
                 
                 <Button Width="250" Height="40" Grid.Row="6" Background="#FF9ACDF5" 
-                    BorderBrush="#FF9ACDF5" Command="{Binding AddReader}" CommandParameter="{Binding ElementName=AddingReader}">
+                    BorderBrush="#FF9ACDF5" Command="{Binding AddBookCommand}" CommandParameter="{Binding ElementName=AddingBook}">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Add" Foreground="White" Height="30" Width="30"/>
                         <TextBlock Foreground="White" FontSize="20" Margin="0 4 0 0"> Thêm</TextBlock>

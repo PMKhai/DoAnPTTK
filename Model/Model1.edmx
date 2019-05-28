@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLTVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QLTVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChiTietNhapSach">
           <Key>
             <PropertyRef Name="ID" />
@@ -20,7 +20,7 @@
             <PropertyRef Name="IDPm" />
             <PropertyRef Name="IDSach" />
           </Key>
-          <Property Name="IDPm" Type="int" Nullable="false" />
+          <Property Name="IDPm" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDSach" Type="int" Nullable="false" />
           <Property Name="SoLuong" Type="int" Nullable="false" />
         </EntityType>
@@ -89,6 +89,7 @@
           <Property Name="TacGia" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NamXB" Type="datetime" Nullable="false" />
           <Property Name="NhaXB" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NgayNhap" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
@@ -314,8 +315,7 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
             <End Role="Sach" EntitySet="Sach" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLTVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -423,6 +423,7 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
           <NavigationProperty Name="ChiTietPhieuMuons" Relationship="Self.fk_ctphieumuon_sach" FromRole="Sach" ToRole="ChiTietPhieuMuon" />
           <NavigationProperty Name="ChiTietTraSaches" Relationship="Self.fk_cttrasach_sach" FromRole="Sach" ToRole="ChiTietTraSach" />
           <NavigationProperty Name="LoaiSach" Relationship="Self.fk_sach_loaisach" FromRole="Sach" ToRole="LoaiSach" />
+          <Property Name="NgayNhap" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
@@ -729,6 +730,7 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
           <EntitySetMapping Name="Saches">
             <EntityTypeMapping TypeName="QLTVModel.Sach">
               <MappingFragment StoreEntitySet="Sach">
+                <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
                 <ScalarProperty Name="IDSach" ColumnName="IDSach" />
                 <ScalarProperty Name="IDLoai" ColumnName="IDLoai" />
                 <ScalarProperty Name="TenSach" ColumnName="TenSach" />
