@@ -45,7 +45,7 @@
                   Margin="0 0 0 5">
             <Grid>
                 <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" 
-                      CanUserAddRows="True" >
+                      CanUserAddRows="False" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding LoadDBCommand}" 
@@ -55,8 +55,9 @@
                             <i:InvokeCommandAction Command="{Binding LostFocusCommand}" 
                                    CommandParameter="{Binding ElementName=userDatagrid}"/>
                         </i:EventTrigger>
+                  
                     </i:Interaction.Triggers>
-
+                    
                     <DataGrid.Columns>
                         <DataGridTextColumn  Header="Mã ĐG" Width="70" Binding="{ Binding IDDg}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Họ tên" Width="200" Binding="{Binding HoTen}"></DataGridTextColumn>

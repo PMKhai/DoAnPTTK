@@ -21,7 +21,7 @@ namespace QLTV_MVVM.ViewModel
         public ICommand LostFocusCommand { get; set; }
         public ICommand DisplayAddingReeaderCommand { get; set; }
         public ICommand SearchCommand { get; set; }
-
+        public ICommand DeleteCommand { get; set; }
         public ReadersViewModel()
         {
             LoadDBCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
@@ -42,7 +42,7 @@ namespace QLTV_MVVM.ViewModel
                 if (p == null)
                     return;
                 DocGia dg = (DocGia)p.SelectedItem as DocGia;
-
+               
                 var reader = DataProvider.Ins.DB.DocGias.Find(dg.IDDg);
 
                 if (reader == null)
@@ -59,6 +59,27 @@ namespace QLTV_MVVM.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
 
             });
+            //DeleteCommand = new RelayCommand<KeyEventArgs>((p) => { return true; }, (p) => {
+            //    if (p == null)
+            //        return;
+            //    DocGia dg = (DocGia)p.SelectedItem as DocGia;
+
+            //    var reader = DataProvider.Ins.DB.DocGias.Find(dg.IDDg);
+
+            //    if (reader == null)
+            //    {
+            //        MessageBox.Show("Không thể chỉnh sửa đọc giả!", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            //        return;
+            //    }
+
+            //    reader.HoTen = dg.HoTen;
+            //    reader.NgaySinh = dg.NgaySinh;
+            //    reader.DiaChi = dg.DiaChi;
+            //    reader.NgayTaoThe = dg.NgayTaoThe;
+
+            //    DataProvider.Ins.DB.SaveChanges();
+
+            //});
 
             DisplayAddingReeaderCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
                 AddingReaderWindow window = new AddingReaderWindow();
