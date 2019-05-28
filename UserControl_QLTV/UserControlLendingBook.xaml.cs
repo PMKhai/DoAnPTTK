@@ -24,5 +24,7 @@ namespace QLTV_MVVM.UserControl_QLTV
         {
             InitializeComponent();
         }
+
+      
     }
 }

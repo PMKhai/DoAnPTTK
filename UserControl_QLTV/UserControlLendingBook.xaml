@@ -80,7 +80,7 @@
             </Grid.ColumnDefinitions>
             <materialDesign:Card Grid.Column="0" Margin="5" VerticalAlignment="Stretch">
                 <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" 
-                      CanUserAddRows="False" ItemsSource="{Binding SachDcThue}" SelectedItem="{Binding SelectedSachDcThue, Mode=OneWayToSource}">
+                      CanUserAddRows="True" CanUserDeleteRows="True"  ItemsSource="{Binding SachDcThue}" SelectedItem="{Binding SelectedSachDcThue, Mode=OneWayToSource}">
                     <i:Interaction.Triggers>
                       
                         <i:EventTrigger EventName="LostFocus">
@@ -88,7 +88,9 @@
                                    CommandParameter="{Binding ElementName=userDatagrid}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-
+                    <DataGrid.InputBindings>
+                        <KeyBinding Key="Delete" Command="{Binding DeleteSachCommand}" CommandParameter="{Binding ElementName=userDatagrid}"/>
+                    </DataGrid.InputBindings>
                     <DataGrid.Columns>
                         <!--<DataGridTemplateColumn Header="queo" Width="2*">
                             <DataGridTemplateColumn.CellTemplate>

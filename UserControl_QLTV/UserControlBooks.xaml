@@ -50,7 +50,7 @@
                   Margin="0 0 0 5">
             <Grid >
                 <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" 
-                      CanUserAddRows="False" >
+                      CanUserAddRows="True" CanUserDeleteRows="False"  >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding LoadDBCommand}" 
@@ -61,7 +61,9 @@
                                    CommandParameter="{Binding ElementName=userDatagrid}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-
+                    <DataGrid.InputBindings>
+                        <KeyBinding Key="Delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=userDatagrid}"/>
+                    </DataGrid.InputBindings>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Mã sách" Width="100" Binding="{ Binding IDSach}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Loại sách" Width="150" Binding="{Binding TenLoaiSach}"></DataGridTextColumn>

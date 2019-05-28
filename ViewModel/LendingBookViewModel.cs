@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -153,27 +154,41 @@ namespace QLTV_MVVM.ViewModel
                 }
             }
         }
-        public ICommand LoadDBCommand { get; set; }
-       
-        
+        public ICommand DeleteCommand { get; set; }
+
         public LendingBookViewModel()
         {
             DocGia = new ObservableCollection<Model.DocGia>(DataProvider.Ins.DB.DocGias);
             PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons);
             
             LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches);
-            LoadDBCommand = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
-            {
-                if (p == null)
-                    return;
-                var db = DataProvider.Ins.DB.DocGias.ToList();
-                p.ItemsSource = db;
-            });
-        }
-        void LoadChiTietPM()
-        {
-           
+            //DeleteCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) =>
+            //{
+            //    if (p == null)
+            //        return;
+            //    DataGridRow dgr = (DataGridRow)(p.ItemContainerGenerator.ContainerFromIndex(p.SelectedIndex));
+            //    if (!dgr.IsEditing)
+            //    {
+            //        // User is attempting to delete the row
+            //        var result = MessageBox.Show(
+            //            "Bạn chắc chắn muốn xóa dữ liệu dòng.\n\nTiếp Tục ?",
+            //            "Xóa Dữ Liệu",
+            //            MessageBoxButton.YesNo,
+            //            MessageBoxImage.Question,
+            //            MessageBoxResult.No);
+            //        if (result == MessageBoxResult.Yes)
+            //        {
+            //            ChiTietPhieuMuon rd = (ChiTietPhieuMuon)p.SelectedItem as ChiTietPhieuMuon;
+
+            //            var chitietBook = DataProvider.Ins.DB.ChiTietPhieuMuons.Find(rd.IDSach);
+            //            DataProvider.Ins.DB.Saches.Remove(chitietBook);
+            //            DataProvider.Ins.DB.SaveChanges();
+
+            //        }
+            //    }
+            //});
 
         }
+        
     }
 }
