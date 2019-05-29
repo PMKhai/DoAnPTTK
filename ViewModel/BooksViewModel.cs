@@ -19,9 +19,12 @@ namespace QLTV_MVVM.ViewModel
         public ObservableCollection<Model.LoaiSach> LoaiSach { get => _LoaiSach; set { _LoaiSach = value; OnPropertyChanged(); } }
         private ObservableCollection<Model.Sach> _Sach;
         public ObservableCollection<Model.Sach> Sach { get => _Sach; set { _Sach = value; OnPropertyChanged(); } }
+        private LoaiSach _LS;
+        public LoaiSach LS { get => _LS; set { _LS = value; OnPropertyChanged(); } }
         public ICommand LoadDBCommand { get; set; }
         public ICommand DisplayAddingBookCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand FilterCommand { get; set; }
 
         public BooksViewModel()
         {
@@ -104,6 +107,25 @@ namespace QLTV_MVVM.ViewModel
                
 
             });
+            FilterCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) =>
+            {
+                if (p == null)
+                    return;
+                if (LS == null)
+                    return;
+
+                var query = (from k in DataProvider.Ins.DB.Saches.ToList() where k.IDLoai == LS.IdLoai select k).ToList();
+                foreach (Sach s in query)
+                {
+                    var ls = DataProvider.Ins.DB.LoaiSaches.Find(s.IDLoai);
+                    if (ls == null)
+                        return;
+                    s.TenLoaiSach = ls.TenLoai;
+                }
+
+                p.ItemsSource = query;
+            });
+
 
         }
 

@@ -23,7 +23,13 @@
                      Margin="5 0 0 0">
                     <ComboBox materialDesign:HintAssist.Hint="Loại sách" Width="150"
                       Height="40" VerticalContentAlignment="Center" DisplayMemberPath="TenLoai"
-                              ItemsSource="{Binding LoaiSach}">
+                              ItemsSource="{Binding LoaiSach}" SelectedValue="{Binding LS}" >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="DropDownClosed">
+                                <i:InvokeCommandAction Command="{Binding FilterCommand}" 
+                                   CommandParameter="{Binding ElementName=userDatagrid}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10 0 0 0">
