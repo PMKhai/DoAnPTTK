@@ -95,7 +95,10 @@ namespace QLTV_MVVM.ViewModel
                         a.STT = i;
                         a.DonVi = "Quyển";
                         a.SoLuong = item.SoLuong;
-                        a.Sach = item.Sach;
+                        a.LoaiSach = LoaiSach;
+                        a.SelectedLoaiSach = item.Sach.LoaiSach;
+                        a.Sach = Sach;
+                        a.SelectedSach = item.Sach;
                         SachDcThue.Add(a);
                         i++;
                     }
@@ -149,8 +152,8 @@ namespace QLTV_MVVM.ViewModel
                 OnPropertyChanged();
                 if (SelectedSachDcThue != null)
                 {
-                    SelectedLoaiSach = SelectedSachDcThue.Sach.LoaiSach;
-                    SelectedSach = SelectedSachDcThue.Sach;
+                   /* SelectedLoaiSach = SelectedSachDcThue.Sach.LoaiSach;
+                    SelectedSach = SelectedSachDcThue.Sach;*/
                 }
             }
         }
@@ -162,6 +165,7 @@ namespace QLTV_MVVM.ViewModel
             PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons);
             
             LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches);
+            Sach = new ObservableCollection<Model.Sach>(DataProvider.Ins.DB.Saches);
             //DeleteCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) =>
             //{
             //    if (p == null)

@@ -29,7 +29,6 @@ namespace QLTV_MVVM.Model
         public System.DateTime NamXB { get; set; }
         public string NhaXB { get; set; }
         public System.DateTime NgayNhap { get; set; }
-        public string TenLoaiSach { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietNhapSach> ChiTietNhapSaches { get; set; }
