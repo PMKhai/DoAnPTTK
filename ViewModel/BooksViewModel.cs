@@ -21,10 +21,15 @@ namespace QLTV_MVVM.ViewModel
         public ObservableCollection<Model.Sach> Sach { get => _Sach; set { _Sach = value; OnPropertyChanged(); } }
         private LoaiSach _LS;
         public LoaiSach LS { get => _LS; set { _LS = value; OnPropertyChanged(); } }
+        private string _Searching;
+        public string Searching { get => _Searching; set { _Searching = value; OnPropertyChanged(); } }
         public ICommand LoadDBCommand { get; set; }
         public ICommand DisplayAddingBookCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand FilterCommand { get; set; }
+        public ICommand SearchCommand { get; set; }
+        public ICommand TextChangedCommand { get; set; }
+
 
         public BooksViewModel()
         {
@@ -125,8 +130,40 @@ namespace QLTV_MVVM.ViewModel
 
                 p.ItemsSource = query;
             });
+            TextChangedCommand = new RelayCommand<TextBox>((p) => { return true; }, (p) =>{Searching = p.Text; });
+            SearchCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) =>
+            {
+                if (p == null)
+                    return;
+                if (Searching == null)
+                    return;
 
+                var query = (from k in DataProvider.Ins.DB.Saches.ToList() where k.TenSach.Contains(Searching.ToLower()) select k).ToList();
 
+                if (LS != null)
+                {
+                    var result = (from k in query where k.IDLoai == LS.IdLoai select k).ToList();
+                    foreach (Sach s in result)
+                    {
+                        var ls = DataProvider.Ins.DB.LoaiSaches.Find(s.IDLoai);
+                        if (ls == null)
+                            return;
+                        s.TenLoaiSach = ls.TenLoai;
+                    }
+                    p.ItemsSource = result;
+                }
+                else
+                {
+                    foreach (Sach s in query)
+                    {
+                        var ls = DataProvider.Ins.DB.LoaiSaches.Find(s.IDLoai);
+                        if (ls == null)
+                            return;
+                        s.TenLoaiSach = ls.TenLoai;
+                    }
+                    p.ItemsSource = query;
+                }
+            });
         }
 
     }

@@ -23,7 +23,14 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
                     VerticalAlignment="Top" Margin="15 0 0 0">
                     <TextBox x:Name="searchTextBox" materialDesign:HintAssist.Hint="Tìm kiếm" Text="{Binding InfoSearch}"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" Height="40"/>
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" Height="40">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TextChanged">
+                                <i:InvokeCommandAction Command="{Binding TextChangedCommand}" 
+                                   CommandParameter="{Binding ElementName=searchTextBox}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
                     <Button x:Name="searchButton" Height="40" IsDefault="True"
                     Background="{x:Null}" BorderBrush="{x:Null}" Command="{Binding SearchCommand}"
                     CommandParameter="{Binding ElementName=userDatagrid}">
