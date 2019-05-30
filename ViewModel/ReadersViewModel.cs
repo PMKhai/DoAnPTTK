@@ -22,6 +22,7 @@ namespace QLTV_MVVM.ViewModel
         public ICommand DisplayAddingReeaderCommand { get; set; }
         public ICommand SearchCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand TextChangedCommand { get; set; }
         public ReadersViewModel()
         {
             LoadDBCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
@@ -86,6 +87,7 @@ namespace QLTV_MVVM.ViewModel
                 window.ShowDialog();
                 p.ItemsSource = DataProvider.Ins.DB.DocGias.ToList();
             });
+            TextChangedCommand = new RelayCommand<TextBox>((p) => { return true; }, (p) => { InfoSearch = p.Text; });
 
             SearchCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
                 var stringSearch = InfoSearch;
