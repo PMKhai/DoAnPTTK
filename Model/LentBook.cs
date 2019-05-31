@@ -10,6 +10,7 @@ namespace QLTV_MVVM.Model
 {
     public class LentBook : BaseViewModel
     {
+        public int IdPm { get; set; }
         public int STT { get; set; }
         public string DonVi { get; set; }
         public int SoLuong { get; set; }

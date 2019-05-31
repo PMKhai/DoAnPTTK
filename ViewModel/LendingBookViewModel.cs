@@ -92,6 +92,7 @@ namespace QLTV_MVVM.ViewModel
                         
 
                         LentBook a = new LentBook();
+                        a.IdPm = item.IDPm;
                         a.STT = i;
                         a.DonVi = "Quyển";
                         a.SoLuong = item.SoLuong;
@@ -157,7 +158,8 @@ namespace QLTV_MVVM.ViewModel
                 }
             }
         }
-        public ICommand DeleteCommand { get; set; }
+        public ICommand DeleteSachCommand { get; set; }
+        public ICommand UpdateSachCommand { get; set; }
 
         public LendingBookViewModel()
         {
@@ -166,32 +168,53 @@ namespace QLTV_MVVM.ViewModel
             
             LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches);
             Sach = new ObservableCollection<Model.Sach>(DataProvider.Ins.DB.Saches);
-            //DeleteCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) =>
-            //{
-            //    if (p == null)
-            //        return;
-            //    DataGridRow dgr = (DataGridRow)(p.ItemContainerGenerator.ContainerFromIndex(p.SelectedIndex));
-            //    if (!dgr.IsEditing)
-            //    {
-            //        // User is attempting to delete the row
-            //        var result = MessageBox.Show(
-            //            "Bạn chắc chắn muốn xóa dữ liệu dòng.\n\nTiếp Tục ?",
-            //            "Xóa Dữ Liệu",
-            //            MessageBoxButton.YesNo,
-            //            MessageBoxImage.Question,
-            //            MessageBoxResult.No);
-            //        if (result == MessageBoxResult.Yes)
-            //        {
-            //            ChiTietPhieuMuon rd = (ChiTietPhieuMuon)p.SelectedItem as ChiTietPhieuMuon;
+          
+            DeleteSachCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) =>
+            {
+                if (p == null)
+                    return;
+                DataGridRow dgr = (DataGridRow)(p.ItemContainerGenerator.ContainerFromIndex(p.SelectedIndex));
+                if (!dgr.IsEditing)
+                {
+                    // User is attempting to delete the row
+                    var result = MessageBox.Show(
+                        "Bạn chắc chắn muốn xóa dữ liệu dòng.\n\nTiếp Tục ?",
+                        "Xóa Dữ Liệu",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Question,
+                        MessageBoxResult.No);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        LentBook lb = (LentBook)p.SelectedItem as LentBook;
 
-            //            var chitietBook = DataProvider.Ins.DB.ChiTietPhieuMuons.Find(rd.IDSach);
-            //            DataProvider.Ins.DB.Saches.Remove(chitietBook);
-            //            DataProvider.Ins.DB.SaveChanges();
+                        var chTietSach = DataProvider.Ins.DB.ChiTietPhieuMuons.Find(lb.IdPm, lb.SelectedSach.IDSach);
+                        DataProvider.Ins.DB.ChiTietPhieuMuons.Remove(chTietSach);
+                        DataProvider.Ins.DB.SaveChanges();
+                        SachDcThue.Remove(lb);
+                    }
+                }
+            });
+            UpdateSachCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
+                if (p == null)
+                    return;
+                LentBook lb = (LentBook)p.SelectedItem as LentBook;
 
-            //        }
-            //    }
-            //});
+                var chTietSach = DataProvider.Ins.DB.ChiTietPhieuMuons.Find(lb.IdPm, lb.SelectedSach.IDSach);
 
+                if (chTietSach == null)
+                {
+                    MessageBox.Show("Không thể chỉnh sửa đọc giả!", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+    
+                chTietSach.IDSach = lb.SelectedSach.IDSach;
+                chTietSach.SoLuong = lb.SoLuong;
+              
+
+                DataProvider.Ins.DB.SaveChanges();
+
+            });
         }
         
     }

@@ -79,17 +79,17 @@
                 <ColumnDefinition Width="0.25*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <materialDesign:Card Grid.Column="0" Margin="5" VerticalAlignment="Stretch">
-                <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" CanUserAddRows="False"
-                      ItemsSource="{Binding SachDcThue}" >
+                <DataGrid x:Name="lentBookDatagrid" AutoGenerateColumns="False" CanUserAddRows="False"
+                      ItemsSource="{Binding SachDcThue}" CanUserDeleteRows="False">
                     <i:Interaction.Triggers>
                       
                         <i:EventTrigger EventName="LostFocus">
-                            <i:InvokeCommandAction Command="{Binding LostFocusCommand}" 
-                                   CommandParameter="{Binding ElementName=userDatagrid}"/>
+                            <i:InvokeCommandAction Command="{Binding UpdateSachCommand}" 
+                                   CommandParameter="{Binding ElementName=lentBookDatagrid}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <DataGrid.InputBindings>
-                        <KeyBinding Key="Delete" Command="{Binding DeleteSachCommand}" CommandParameter="{Binding ElementName=userDatagrid}"/>
+                        <KeyBinding Key="Delete" Command="{Binding DeleteSachCommand}" CommandParameter="{Binding ElementName=lentBookDatagrid}"/>
                     </DataGrid.InputBindings>
                     <DataGrid.Columns>
                        
@@ -111,7 +111,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <!--<DataGridTextColumn Header="Tên sách" Width="3*" Binding="{Binding Sach.TenSach}" IsReadOnly="True"></DataGridTextColumn>-->
-                        <DataGridTextColumn Header="Đơn vị" Width="*" Binding="{Binding DonVi}" IsReadOnly="True"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Đơn vị" Width="*" Binding="{Binding DonVi}" IsReadOnly="True" ></DataGridTextColumn>
                         <DataGridTextColumn Header="Số lượng" Width="*" Binding="{Binding SoLuong}" ></DataGridTextColumn>
                         
                     </DataGrid.Columns>
@@ -124,7 +124,7 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <materialDesign:Card Grid.Row="0"  Margin="5" VerticalAlignment="Stretch">
-                    <DataGrid x:Name="Datagrid" AutoGenerateColumns="False" 
+                    <DataGrid x:Name="Datagrid" AutoGenerateColumns="False" CanUserDeleteRows="False"
                       CanUserAddRows="False" ItemsSource="{Binding PhieuMuon}" SelectedItem="{Binding SelectedPhieuMuon, Mode=OneWayToSource}" >
                        
 
