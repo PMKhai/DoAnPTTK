@@ -64,7 +64,7 @@
                   Margin="0 0 0 5">
             <Grid >
                 <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" 
-                      CanUserAddRows="True" CanUserDeleteRows="False"  >
+                      CanUserAddRows="False" CanUserDeleteRows="False"  >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding LoadDBCommand}" 
@@ -80,7 +80,7 @@
                     </DataGrid.InputBindings>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Mã sách" Width="100" Binding="{ Binding IDSach}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Loại sách" Width="150" Binding="{Binding TenLoaiSach}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Loại sách" Width="150" Binding="{Binding LoaiSach.TenLoai}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Tên sách" Width="150" Binding="{Binding TenSach}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Tác giả" Width="150" Binding="{Binding TacGia}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Năm XB" Width="*" Binding="{Binding NamXB, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>

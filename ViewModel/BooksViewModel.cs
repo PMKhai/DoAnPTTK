@@ -41,13 +41,7 @@ namespace QLTV_MVVM.ViewModel
                     return;
                // var db = DataProvider.Ins.DB.Saches.ToList();
                 Sach = new ObservableCollection<Sach>(DataProvider.Ins.DB.Saches);
-                foreach (Sach s in Sach)
-                {
-                    var ls = DataProvider.Ins.DB.LoaiSaches.Find(s.IDLoai);
-                    if (ls == null)
-                        return;
-                   // s.TenLoaiSach = ls.TenLoai;
-                }
+                
 
                 if (Sach == null)
                 {
@@ -61,13 +55,7 @@ namespace QLTV_MVVM.ViewModel
                 AddingBookWindow wd = new AddingBookWindow();
                 wd.ShowDialog();
                 Sach = new ObservableCollection<Sach>(DataProvider.Ins.DB.Saches);
-                foreach (Sach s in Sach)
-                {
-                    var ls = DataProvider.Ins.DB.LoaiSaches.Find(s.IDLoai);
-                    if (ls == null)
-                        return;
-                    //s.TenLoaiSach = ls.TenLoai;
-                }
+                
 
                 if (Sach == null)
                 {
@@ -120,13 +108,7 @@ namespace QLTV_MVVM.ViewModel
                     return;
 
                 var query = (from k in DataProvider.Ins.DB.Saches.ToList() where k.IDLoai == LS.IdLoai select k).ToList();
-                foreach (Sach s in query)
-                {
-                    var ls = DataProvider.Ins.DB.LoaiSaches.Find(s.IDLoai);
-                    if (ls == null)
-                        return;
-                   // s.TenLoaiSach = ls.TenLoai;
-                }
+                
 
                 p.ItemsSource = query;
             });
@@ -143,24 +125,12 @@ namespace QLTV_MVVM.ViewModel
                 if (LS != null)
                 {
                     var result = (from k in query where k.IDLoai == LS.IdLoai select k).ToList();
-                    foreach (Sach s in result)
-                    {
-                        var ls = DataProvider.Ins.DB.LoaiSaches.Find(s.IDLoai);
-                        if (ls == null)
-                            return;
-                       // s.TenLoaiSach = ls.TenLoai;
-                    }
+                    
                     p.ItemsSource = result;
                 }
                 else
                 {
-                    foreach (Sach s in query)
-                    {
-                        var ls = DataProvider.Ins.DB.LoaiSaches.Find(s.IDLoai);
-                        if (ls == null)
-                            return;
-                       // s.TenLoaiSach = ls.TenLoai;
-                    }
+                    
                     p.ItemsSource = query;
                 }
             });
