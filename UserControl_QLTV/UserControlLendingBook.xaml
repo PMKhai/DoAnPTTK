@@ -105,10 +105,6 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <ComboBox Name="sachCbb"  DisplayMemberPath="TenSach"  ItemsSource="{Binding Sach}"  SelectedItem="{Binding SelectedSach, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                                        <!--<i:EventTrigger EventName="MouseDoubleClick">
-                                            <i:InvokeCommandAction Command="{Binding TurnEditableCbbCommand}" 
-                                         CommandParameter="{Binding ElementName=sachCbb}"/>
-                                        </i:EventTrigger>-->
                                     </ComboBox>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

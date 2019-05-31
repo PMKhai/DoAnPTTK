@@ -55,8 +55,8 @@ namespace QLTV_MVVM.ViewModel
                 }
             }
         }
-        private string _MaPhieu;
-        public string MaPhieu { get => _MaPhieu; set { _MaPhieu = value; OnPropertyChanged(); } }
+        private int _MaPhieu;
+        public int MaPhieu { get => _MaPhieu; set { _MaPhieu = value; OnPropertyChanged(); } }
         private DateTime? _LendingDay;
         public DateTime? LendingDay { get => _LendingDay; set { _LendingDay = value; OnPropertyChanged(); } }
         private DateTime? _ReturnDay;
@@ -73,7 +73,7 @@ namespace QLTV_MVVM.ViewModel
                 {
            
                     SelectedDocGia = SelectedPhieuMuon.DocGia;
-                    MaPhieu = SelectedPhieuMuon.IDPm.ToString();
+                    MaPhieu = SelectedPhieuMuon.IDPm;
                     // _Phone
                     LendingDay = SelectedPhieuMuon.NgayMuon;
                     ReturnDay = SelectedPhieuMuon.KyHanTra;
@@ -100,7 +100,7 @@ namespace QLTV_MVVM.ViewModel
                         // a.LoaiSach = LoaiSach;
                         SelectedSach = a.SelectedSach;
                         a.SelectedLoaiSach = item.Sach.LoaiSach;
-                        a.Sach = Sach;
+                         a.Sach = Sach;
                         a.SelectedSach = item.Sach;
                         SachDcThue.Add(a);
                         i++;
@@ -164,7 +164,7 @@ namespace QLTV_MVVM.ViewModel
         }
         public ICommand DeleteSachCommand { get; set; }
         public ICommand UpdateSachCommand { get; set; }
-        public ICommand TurnEditableCbbCommand { get; set; }
+        //public ICommand TurnEditableCbbCommand { get; set; }
 
         public LendingBookViewModel()
         {
@@ -202,7 +202,19 @@ namespace QLTV_MVVM.ViewModel
                 if (p == null)
                     return;
                 LentBook lb = (LentBook)p.SelectedItem as LentBook;
-
+                if(p.SelectedItem == null)
+                {
+                    //var chTSach = new ChiTietPhieuMuon()
+                    //{
+                    //    IDPm = MaPhieu,
+                    //    IDSach = 2,
+                    //    SoLuong = 0,
+                         
+                    //};
+                    //DataProvider.Ins.DB.ChiTietPhieuMuons.Add(chTSach);
+                    //DataProvider.Ins.DB.SaveChanges();
+                    return;
+                }
                 var chTietSach = DataProvider.Ins.DB.ChiTietPhieuMuons.Find(lb.Id);
 
                 if (chTietSach == null)
@@ -220,9 +232,11 @@ namespace QLTV_MVVM.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
 
             });
-            //TurnEditableCbbCommand = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
-            //{
-            //    p.IsEditable = true;
+            //TurnEditableCbbCommand = new RelayCommand<DataGridComboBoxColumn>((p) => { return true; }, (p) => {
+            //    if (p == null)
+            //        return;
+            //   // p.IsEditable = true;
+            //    MessageBox.Show("queo");
             //});
         }
        
