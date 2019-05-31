@@ -34,10 +34,10 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <materialDesign:Card Margin="5" Grid.Row="1" VerticalAlignment="Stretch">
+                <materialDesign:Card Margin="5" Grid.Row="0" VerticalAlignment="Stretch">
 
-                    <WrapPanel Margin="0 0 0 15">
-                        <materialDesign:PackIcon Kind="AccountCardDetails" RenderTransformOrigin="3.388,0.525" />
+                    <WrapPanel>
+                        <materialDesign:PackIcon Kind="AccountCardDetails"  />
                         <ComboBox Margin="5 5 15 5" DisplayMemberPath="HoTen" ItemsSource="{Binding DocGia}" SelectedItem="{Binding SelectedDocGia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên độc giả" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
                         <TextBox Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Địa chỉ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
                         <TextBox Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Điện thoại" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"/>
@@ -45,18 +45,17 @@
                         <DatePicker  SelectedDate="{Binding RegistrationDate, StringFormat='dd/MM/yyyy'}" Width="100" Margin="5 5 15 0" materialDesign:HintAssist.Hint="Ngày hợp tác" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" IsEnabled="False" />
                     </WrapPanel>
                 </materialDesign:Card>
-                <!--<materialDesign:Card Grid.Row="1" Margin="5" VerticalAlignment="Stretch">
+                <materialDesign:Card Grid.Row="1" Margin="5" VerticalAlignment="Stretch">
                     <WrapPanel>
                         <materialDesign:PackIcon Kind="BookOpenPageVariant" />
-                        <ComboBox  Margin="5 15 15 5" DisplayMemberPath="TenLoai" ItemsSource="{Binding LoaiSach}" SelectedItem="{Binding SelectedLoaiSach, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Loại sách" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
-                        <ComboBox Margin="5 15 15 5" DisplayMemberPath="TenSach" ItemsSource="{Binding Sach}" SelectedItem="{Binding SelectedSach, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên sách" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
+               
+                        <TextBox Text="{Binding TenLoai, UpdateSourceTrigger=PropertyChanged}" Margin="5 15 15 5" materialDesign:HintAssist.Hint="Loại Sách" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
                         <TextBox Text="{Binding TacGia, UpdateSourceTrigger=PropertyChanged}" Margin="5 15 15 5" materialDesign:HintAssist.Hint="Tác giả" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
                         <TextBox Text="{Binding NhaXB, UpdateSourceTrigger=PropertyChanged}" Margin="5 15 15 5" materialDesign:HintAssist.Hint="Nhà xuất bản" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"/>
-                        <DatePicker  SelectedDate="{Binding NamXB, StringFormat='dd/MM/yyyy'}" Width="100" Margin="5 15 15 0" materialDesign:HintAssist.Hint="Năm xuất bản" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" IsEnabled="False" />
-                        <Button Command="{Binding AddCommand}" Content="Thêm" Margin="10 25 5 0" Width="90" BorderThickness="15"></Button>
-                        <Button Command="{Binding DeleteCommand}" Content="Xóa" Margin="5 25 5 0" Width="90" BorderThickness="15"></Button>
+                        <DatePicker  SelectedDate="{Binding NamXB, StringFormat='dd/MM/yyyy'}" Width="100" Margin="5 5 15 0" materialDesign:HintAssist.Hint="Năm xuất bản" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" IsEnabled="False" />
+                      
                     </WrapPanel>
-                </materialDesign:Card>-->
+                </materialDesign:Card>
             </Grid>
             <Grid Grid.Column="1">
                 <materialDesign:Card Margin="5" Grid.Row="0" VerticalAlignment="Stretch">
@@ -80,7 +79,7 @@
             </Grid.ColumnDefinitions>
             <materialDesign:Card Grid.Column="0" Margin="5" VerticalAlignment="Stretch">
                 <DataGrid x:Name="lentBookDatagrid" AutoGenerateColumns="False" CanUserAddRows="False"
-                      ItemsSource="{Binding SachDcThue}" CanUserDeleteRows="False">
+                      ItemsSource="{Binding SachDcThue}" SelectedItem="{Binding SelectedSachDcThue , Mode=OneWay}" CanUserDeleteRows="False">
                     <i:Interaction.Triggers>
                       
                         <i:EventTrigger EventName="LostFocus">
@@ -94,25 +93,29 @@
                     <DataGrid.Columns>
                        
                         <DataGridTextColumn Header="STT" Width="*" Binding="{Binding STT}" IsReadOnly="True"></DataGridTextColumn>
-                        <DataGridTemplateColumn Header="Loại sách" Width="*">
+                        <!--<DataGridTemplateColumn Header="Loại sách" Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <ComboBox  DisplayMemberPath="TenLoai"  ItemsSource="{Binding LoaiSach}"  SelectedItem="{Binding SelectedLoaiSach, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên loại sách" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                     </ComboBox>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Tên Sách" Width="*">
+                        </DataGridTemplateColumn>-->
+                        <DataGridTemplateColumn Header="Tên Sách" Width="5*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <ComboBox  DisplayMemberPath="TenSach"  ItemsSource="{Binding Sach}"  SelectedItem="{Binding SelectedSach, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên loại sách" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    <ComboBox Name="sachCbb"  DisplayMemberPath="TenSach"  ItemsSource="{Binding Sach}"  SelectedItem="{Binding SelectedSach, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                        <!--<i:EventTrigger EventName="MouseDoubleClick">
+                                            <i:InvokeCommandAction Command="{Binding TurnEditableCbbCommand}" 
+                                         CommandParameter="{Binding ElementName=sachCbb}"/>
+                                        </i:EventTrigger>-->
                                     </ComboBox>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <!--<DataGridTextColumn Header="Tên sách" Width="3*" Binding="{Binding Sach.TenSach}" IsReadOnly="True"></DataGridTextColumn>-->
-                        <DataGridTextColumn Header="Đơn vị" Width="*" Binding="{Binding DonVi}" IsReadOnly="True" ></DataGridTextColumn>
-                        <DataGridTextColumn Header="Số lượng" Width="*" Binding="{Binding SoLuong}" ></DataGridTextColumn>
+                        <DataGridTextColumn Header="Đơn vị" Width="2*" Binding="{Binding DonVi}" IsReadOnly="True" ></DataGridTextColumn>
+                        <DataGridTextColumn Header="Số lượng" Width="2*" Binding="{Binding SoLuong}" ></DataGridTextColumn>
                         
                     </DataGrid.Columns>
                 </DataGrid>
@@ -121,7 +124,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="8*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                   
                 </Grid.RowDefinitions>
                 <materialDesign:Card Grid.Row="0"  Margin="5" VerticalAlignment="Stretch">
                     <DataGrid x:Name="Datagrid" AutoGenerateColumns="False" CanUserDeleteRows="False"

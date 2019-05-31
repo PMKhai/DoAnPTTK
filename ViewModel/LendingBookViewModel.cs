@@ -83,7 +83,8 @@ namespace QLTV_MVVM.ViewModel
                     var bookList = SelectedPhieuMuon.ChiTietPhieuMuons;
 
                     SachDcThue = new ObservableCollection<LentBook>();
-
+                  //  LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches);
+                    Sach = new ObservableCollection<Model.Sach>(DataProvider.Ins.DB.Saches);
 
 
                     int i = 1;
@@ -92,11 +93,12 @@ namespace QLTV_MVVM.ViewModel
                         
 
                         LentBook a = new LentBook();
-                        a.IdPm = item.IDPm;
+                        a.Id = item.IDCht;
                         a.STT = i;
                         a.DonVi = "Quyển";
                         a.SoLuong = item.SoLuong;
-                        a.LoaiSach = LoaiSach;
+                        // a.LoaiSach = LoaiSach;
+                        SelectedSach = a.SelectedSach;
                         a.SelectedLoaiSach = item.Sach.LoaiSach;
                         a.Sach = Sach;
                         a.SelectedSach = item.Sach;
@@ -106,6 +108,8 @@ namespace QLTV_MVVM.ViewModel
                 }
             }
         }
+        private string _TenLoai;
+        public string TenLoai { get => _TenLoai; set { _TenLoai = value; OnPropertyChanged(); } }
         private string _TacGia;
         public string TacGia { get => _TacGia; set { _TacGia = value; OnPropertyChanged(); } }
         private string _NhaXB;
@@ -123,6 +127,7 @@ namespace QLTV_MVVM.ViewModel
                 OnPropertyChanged();
                 if (SelectedSach != null)
                 {
+                    TenLoai = SelectedSach.LoaiSach.TenLoai;
                     TacGia = SelectedSach.TacGia;
                     NhaXB = SelectedSach.NhaXB;
                     NamXB = SelectedSach.NamXB;
@@ -153,22 +158,21 @@ namespace QLTV_MVVM.ViewModel
                 OnPropertyChanged();
                 if (SelectedSachDcThue != null)
                 {
-                   /* SelectedLoaiSach = SelectedSachDcThue.Sach.LoaiSach;
-                    SelectedSach = SelectedSachDcThue.Sach;*/
+                    
                 }
             }
         }
         public ICommand DeleteSachCommand { get; set; }
         public ICommand UpdateSachCommand { get; set; }
+        public ICommand TurnEditableCbbCommand { get; set; }
 
         public LendingBookViewModel()
         {
             DocGia = new ObservableCollection<Model.DocGia>(DataProvider.Ins.DB.DocGias);
             PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons);
-            
-            LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches);
-            Sach = new ObservableCollection<Model.Sach>(DataProvider.Ins.DB.Saches);
-          
+
+           
+
             DeleteSachCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) =>
             {
                 if (p == null)
@@ -187,7 +191,7 @@ namespace QLTV_MVVM.ViewModel
                     {
                         LentBook lb = (LentBook)p.SelectedItem as LentBook;
 
-                        var chTietSach = DataProvider.Ins.DB.ChiTietPhieuMuons.Find(lb.IdPm, lb.SelectedSach.IDSach);
+                        var chTietSach = DataProvider.Ins.DB.ChiTietPhieuMuons.Find(lb.Id);
                         DataProvider.Ins.DB.ChiTietPhieuMuons.Remove(chTietSach);
                         DataProvider.Ins.DB.SaveChanges();
                         SachDcThue.Remove(lb);
@@ -199,7 +203,7 @@ namespace QLTV_MVVM.ViewModel
                     return;
                 LentBook lb = (LentBook)p.SelectedItem as LentBook;
 
-                var chTietSach = DataProvider.Ins.DB.ChiTietPhieuMuons.Find(lb.IdPm, lb.SelectedSach.IDSach);
+                var chTietSach = DataProvider.Ins.DB.ChiTietPhieuMuons.Find(lb.Id);
 
                 if (chTietSach == null)
                 {
@@ -207,15 +211,20 @@ namespace QLTV_MVVM.ViewModel
                     return;
                 }
 
-    
+
                 chTietSach.IDSach = lb.SelectedSach.IDSach;
+                SelectedSach = lb.SelectedSach;
                 chTietSach.SoLuong = lb.SoLuong;
-              
+
 
                 DataProvider.Ins.DB.SaveChanges();
 
             });
+            //TurnEditableCbbCommand = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
+            //{
+            //    p.IsEditable = true;
+            //});
         }
-        
+       
     }
 }

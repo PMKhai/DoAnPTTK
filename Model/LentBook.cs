@@ -5,15 +5,17 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace QLTV_MVVM.Model
 {
     public class LentBook : BaseViewModel
     {
-        public int IdPm { get; set; }
+        public int Id { get; set; }
         public int STT { get; set; }
         public string DonVi { get; set; }
         public int SoLuong { get; set; }
+
         private ObservableCollection<Model.LoaiSach> _LoaiSach;
         public ObservableCollection<Model.LoaiSach> LoaiSach { get => _LoaiSach; set { _LoaiSach = value; OnPropertyChanged(); } }
         private Model.LoaiSach _SelectedLoaiSach;
@@ -40,12 +42,16 @@ namespace QLTV_MVVM.Model
             {
                 _SelectedSach = value;
                 OnPropertyChanged();
-                //if (SelectedSach != null)
-                //{
-                //    TacGia = SelectedSach.TacGia;
-                //    NhaXB = SelectedSach.NhaXB;
-                //    NamXB = SelectedSach.NamXB;
-                //}
+                if (SelectedSach != null)
+                {
+                   
+                   
+                  
+                  
+                    //a.TacGia = SelectedSach.TacGia;
+                    //a.NhaXB = SelectedSach.NhaXB;
+                    //a.NamXB = SelectedSach.NamXB;
+                }
             }
         }
         //  public ObservableCollection<Model.LoaiSach> Sach { get; set; }

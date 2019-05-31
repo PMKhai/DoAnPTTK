@@ -17,8 +17,7 @@
         </EntityType>
         <EntityType Name="ChiTietPhieuMuon">
           <Key>
-            <PropertyRef Name="IDPm" />
-            <PropertyRef Name="IDSach" />
+            <PropertyRef Name="IDCht" />
           </Key>
           <Property Name="IDCht" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDPm" Type="int" Nullable="false" />
@@ -335,8 +334,7 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
         </EntityType>
         <EntityType Name="ChiTietPhieuMuon">
           <Key>
-            <PropertyRef Name="IDPm" />
-            <PropertyRef Name="IDSach" />
+            <PropertyRef Name="IDCht" />
           </Key>
           <Property Name="IDCht" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDPm" Type="Int32" Nullable="false" />
