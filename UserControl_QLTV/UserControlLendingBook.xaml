@@ -34,7 +34,7 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <materialDesign:Card Margin="5" Grid.Row="0" VerticalAlignment="Stretch">
+                <materialDesign:Card Margin="5" Grid.Row="1" VerticalAlignment="Stretch">
 
                     <WrapPanel Margin="0 0 0 15">
                         <materialDesign:PackIcon Kind="AccountCardDetails" RenderTransformOrigin="3.388,0.525" />
@@ -45,7 +45,7 @@
                         <DatePicker  SelectedDate="{Binding RegistrationDate, StringFormat='dd/MM/yyyy'}" Width="100" Margin="5 5 15 0" materialDesign:HintAssist.Hint="Ngày hợp tác" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" IsEnabled="False" />
                     </WrapPanel>
                 </materialDesign:Card>
-                <materialDesign:Card Grid.Row="1" Margin="5" VerticalAlignment="Stretch">
+                <!--<materialDesign:Card Grid.Row="1" Margin="5" VerticalAlignment="Stretch">
                     <WrapPanel>
                         <materialDesign:PackIcon Kind="BookOpenPageVariant" />
                         <ComboBox  Margin="5 15 15 5" DisplayMemberPath="TenLoai" ItemsSource="{Binding LoaiSach}" SelectedItem="{Binding SelectedLoaiSach, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Loại sách" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
@@ -56,7 +56,7 @@
                         <Button Command="{Binding AddCommand}" Content="Thêm" Margin="10 25 5 0" Width="90" BorderThickness="15"></Button>
                         <Button Command="{Binding DeleteCommand}" Content="Xóa" Margin="5 25 5 0" Width="90" BorderThickness="15"></Button>
                     </WrapPanel>
-                </materialDesign:Card>
+                </materialDesign:Card>-->
             </Grid>
             <Grid Grid.Column="1">
                 <materialDesign:Card Margin="5" Grid.Row="0" VerticalAlignment="Stretch">
@@ -79,34 +79,39 @@
                 <ColumnDefinition Width="0.25*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <materialDesign:Card Grid.Column="0" Margin="5" VerticalAlignment="Stretch">
-                <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" 
-                      CanUserAddRows="True" CanUserDeleteRows="True"  ItemsSource="{Binding SachDcThue}" SelectedItem="{Binding SelectedSachDcThue, Mode=OneWayToSource}">
+                <DataGrid x:Name="lentBookDatagrid" AutoGenerateColumns="False" CanUserAddRows="False"
+                      ItemsSource="{Binding SachDcThue}" CanUserDeleteRows="False">
                     <i:Interaction.Triggers>
                       
                         <i:EventTrigger EventName="LostFocus">
-                            <i:InvokeCommandAction Command="{Binding LostFocusCommand}" 
-                                   CommandParameter="{Binding ElementName=userDatagrid}"/>
+                            <i:InvokeCommandAction Command="{Binding UpdateSachCommand}" 
+                                   CommandParameter="{Binding ElementName=lentBookDatagrid}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <DataGrid.InputBindings>
-                        <KeyBinding Key="Delete" Command="{Binding DeleteSachCommand}" CommandParameter="{Binding ElementName=userDatagrid}"/>
+                        <KeyBinding Key="Delete" Command="{Binding DeleteSachCommand}" CommandParameter="{Binding ElementName=lentBookDatagrid}"/>
                     </DataGrid.InputBindings>
                     <DataGrid.Columns>
-                        <!--<DataGridTemplateColumn Header="queo" Width="2*">
+                       
+                        <DataGridTextColumn Header="STT" Width="*" Binding="{Binding STT}" IsReadOnly="True"></DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Loại sách" Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <ComboBox Name="userCombb" DisplayMemberPath="HoTen"  materialDesign:HintAssist.Hint="Tên độc giả" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                                        <i:EventTrigger EventName="Loaded">
-                            <i:InvokeCommandAction Command="{Binding LoadDBCommand}" 
-                                   CommandParameter="{Binding ElementName=userCombb}"/>
-                        </i:EventTrigger>
+                                    <ComboBox  DisplayMemberPath="TenLoai"  ItemsSource="{Binding LoaiSach}"  SelectedItem="{Binding SelectedLoaiSach, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên loại sách" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                     </ComboBox>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>-->
-                        <DataGridTextColumn Header="STT" Width="*" Binding="{Binding STT}" IsReadOnly="True"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Tên sách" Width="3*" Binding="{Binding Sach.TenSach}" IsReadOnly="True"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Đơn vị" Width="*" Binding="{Binding DonVi}" IsReadOnly="True"></DataGridTextColumn>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Tên Sách" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox  DisplayMemberPath="TenSach"  ItemsSource="{Binding Sach}"  SelectedItem="{Binding SelectedSach, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên loại sách" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    </ComboBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!--<DataGridTextColumn Header="Tên sách" Width="3*" Binding="{Binding Sach.TenSach}" IsReadOnly="True"></DataGridTextColumn>-->
+                        <DataGridTextColumn Header="Đơn vị" Width="*" Binding="{Binding DonVi}" IsReadOnly="True" ></DataGridTextColumn>
                         <DataGridTextColumn Header="Số lượng" Width="*" Binding="{Binding SoLuong}" ></DataGridTextColumn>
                         
                     </DataGrid.Columns>
@@ -119,7 +124,7 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <materialDesign:Card Grid.Row="0"  Margin="5" VerticalAlignment="Stretch">
-                    <DataGrid x:Name="Datagrid" AutoGenerateColumns="False" 
+                    <DataGrid x:Name="Datagrid" AutoGenerateColumns="False" CanUserDeleteRows="False"
                       CanUserAddRows="False" ItemsSource="{Binding PhieuMuon}" SelectedItem="{Binding SelectedPhieuMuon, Mode=OneWayToSource}" >
                        
 

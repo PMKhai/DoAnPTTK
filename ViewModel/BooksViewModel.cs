@@ -46,7 +46,7 @@ namespace QLTV_MVVM.ViewModel
                     var ls = DataProvider.Ins.DB.LoaiSaches.Find(s.IDLoai);
                     if (ls == null)
                         return;
-                    s.TenLoaiSach = ls.TenLoai;
+                   // s.TenLoaiSach = ls.TenLoai;
                 }
 
                 if (Sach == null)
@@ -66,7 +66,7 @@ namespace QLTV_MVVM.ViewModel
                     var ls = DataProvider.Ins.DB.LoaiSaches.Find(s.IDLoai);
                     if (ls == null)
                         return;
-                    s.TenLoaiSach = ls.TenLoai;
+                    //s.TenLoaiSach = ls.TenLoai;
                 }
 
                 if (Sach == null)
@@ -125,7 +125,7 @@ namespace QLTV_MVVM.ViewModel
                     var ls = DataProvider.Ins.DB.LoaiSaches.Find(s.IDLoai);
                     if (ls == null)
                         return;
-                    s.TenLoaiSach = ls.TenLoai;
+                   // s.TenLoaiSach = ls.TenLoai;
                 }
 
                 p.ItemsSource = query;
@@ -148,7 +148,7 @@ namespace QLTV_MVVM.ViewModel
                         var ls = DataProvider.Ins.DB.LoaiSaches.Find(s.IDLoai);
                         if (ls == null)
                             return;
-                        s.TenLoaiSach = ls.TenLoai;
+                       // s.TenLoaiSach = ls.TenLoai;
                     }
                     p.ItemsSource = result;
                 }
@@ -159,7 +159,7 @@ namespace QLTV_MVVM.ViewModel
                         var ls = DataProvider.Ins.DB.LoaiSaches.Find(s.IDLoai);
                         if (ls == null)
                             return;
-                        s.TenLoaiSach = ls.TenLoai;
+                       // s.TenLoaiSach = ls.TenLoai;
                     }
                     p.ItemsSource = query;
                 }

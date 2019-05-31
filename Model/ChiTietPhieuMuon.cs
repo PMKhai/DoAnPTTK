@@ -14,6 +14,7 @@ namespace QLTV_MVVM.Model
     
     public partial class ChiTietPhieuMuon
     {
+        public int IDCht { get; set; }
         public int IDPm { get; set; }
         public int IDSach { get; set; }
         public int SoLuong { get; set; }
