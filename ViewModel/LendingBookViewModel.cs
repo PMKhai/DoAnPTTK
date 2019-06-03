@@ -78,35 +78,42 @@ namespace QLTV_MVVM.ViewModel
                     LendingDay = SelectedPhieuMuon.NgayMuon;
                     ReturnDay = SelectedPhieuMuon.KyHanTra;
 
-
+                    loadDgrBook();
                     //////
-                    var bookList = SelectedPhieuMuon.ChiTietPhieuMuons;
-
-                    SachDcThue = new ObservableCollection<LentBook>();
-                  //  LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches);
-                    Sach = new ObservableCollection<Model.Sach>(DataProvider.Ins.DB.Saches);
-
-
-                    int i = 1;
-                    foreach (var item in bookList)
-                    {
-                        
-
-                        LentBook a = new LentBook();
-                        a.Id = item.IDCht;
-                        a.STT = i;
-                        a.DonVi = "Quyển";
-                        a.SoLuong = item.SoLuong;
-                        // a.LoaiSach = LoaiSach;
-                        SelectedSach = a.SelectedSach;
-                        a.SelectedLoaiSach = item.Sach.LoaiSach;
-                         a.Sach = Sach;
-                        a.SelectedSach = item.Sach;
-                        SachDcThue.Add(a);
-                        i++;
-                    }
+                    
                 }
             }
+        }
+        void loadDgrBook()
+        {
+            var bookList = SelectedPhieuMuon.ChiTietPhieuMuons;
+
+            SachDcThue = new ObservableCollection<LentBook>();
+            Sach = new ObservableCollection<Model.Sach>(DataProvider.Ins.DB.Saches);
+
+
+            int i = 1;
+            foreach (var item in bookList)
+            {
+                LentBook a = new LentBook();
+                a.Id = item.IDCht;
+                a.STT = i;
+                a.SoLuong = item.SoLuong;
+                SelectedSach = a.SelectedSach;
+                a.SelectedLoaiSach = item.Sach.LoaiSach;
+                a.Sach = Sach;
+                a.SelectedSach = item.Sach;
+                SachDcThue.Add(a);
+                i++;
+            }
+            addNewRow(i);
+        }
+        void addNewRow(int i)
+        {
+            LentBook b = new LentBook();
+            b.STT = i;
+            b.Sach = Sach;
+            SachDcThue.Add(b);
         }
         private string _TenLoai;
         public string TenLoai { get => _TenLoai; set { _TenLoai = value; OnPropertyChanged(); } }
@@ -192,9 +199,21 @@ namespace QLTV_MVVM.ViewModel
                         LentBook lb = (LentBook)p.SelectedItem as LentBook;
 
                         var chTietSach = DataProvider.Ins.DB.ChiTietPhieuMuons.Find(lb.Id);
-                        DataProvider.Ins.DB.ChiTietPhieuMuons.Remove(chTietSach);
-                        DataProvider.Ins.DB.SaveChanges();
-                        SachDcThue.Remove(lb);
+                        if (chTietSach == null)
+                        {
+                            MessageBox.Show("Không thể xóa dòng này!", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;            
+                        }
+                        else
+                        {
+                            DataProvider.Ins.DB.ChiTietPhieuMuons.Remove(chTietSach);
+                            DataProvider.Ins.DB.SaveChanges();
+
+                            loadDgrBook();
+                           
+                            
+                        }
+
                     }
                 }
             });
@@ -204,22 +223,26 @@ namespace QLTV_MVVM.ViewModel
                 LentBook lb = (LentBook)p.SelectedItem as LentBook;
                 if(p.SelectedItem == null)
                 {
-                    //var chTSach = new ChiTietPhieuMuon()
-                    //{
-                    //    IDPm = MaPhieu,
-                    //    IDSach = 2,
-                    //    SoLuong = 0,
-                         
-                    //};
-                    //DataProvider.Ins.DB.ChiTietPhieuMuons.Add(chTSach);
-                    //DataProvider.Ins.DB.SaveChanges();
                     return;
                 }
                 var chTietSach = DataProvider.Ins.DB.ChiTietPhieuMuons.Find(lb.Id);
 
                 if (chTietSach == null)
                 {
-                    MessageBox.Show("Không thể chỉnh sửa đọc giả!", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    var chTSach = new ChiTietPhieuMuon();
+
+                    chTSach.IDPm = MaPhieu;
+                    if (lb.SelectedSach == null) // dòng này là magic
+                    {
+
+                        return;
+                    }
+                    chTSach.IDSach = lb.SelectedSach.IDSach;
+                    chTSach.SoLuong = lb.SoLuong;
+                    DataProvider.Ins.DB.ChiTietPhieuMuons.Add(chTSach);
+                    DataProvider.Ins.DB.SaveChanges();
+                    SelectedSach = lb.SelectedSach;
+                    loadDgrBook();
                     return;
                 }
 
@@ -232,12 +255,7 @@ namespace QLTV_MVVM.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
 
             });
-            //TurnEditableCbbCommand = new RelayCommand<DataGridComboBoxColumn>((p) => { return true; }, (p) => {
-            //    if (p == null)
-            //        return;
-            //   // p.IsEditable = true;
-            //    MessageBox.Show("queo");
-            //});
+         
         }
        
     }

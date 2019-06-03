@@ -13,7 +13,7 @@ namespace QLTV_MVVM.Model
     {
         public int Id { get; set; }
         public int STT { get; set; }
-        public string DonVi { get; set; }
+        public string DonVi { get; set; } = "Quyển";
         public int SoLuong { get; set; }
 
         private ObservableCollection<Model.LoaiSach> _LoaiSach;
