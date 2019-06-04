@@ -80,6 +80,9 @@
     <Compile Include="AddingBookWindow.xaml.cs">
       <DependentUpon>AddingBookWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddingKindOfBookWindow.xaml.cs">
+      <DependentUpon>AddingKindOfBookWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddingReaderWindow.xaml.cs">
       <DependentUpon>AddingReaderWindow.xaml</DependentUpon>
     </Compile>
@@ -161,6 +164,7 @@
       <DependentUpon>UserControlLendingBook.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AddingBookViewModel.cs" />
+    <Compile Include="ViewModel\AddingKindOfBookViewModel.cs" />
     <Compile Include="ViewModel\AddingReaderViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BooksViewModel.cs" />
@@ -171,6 +175,10 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ReadersViewModel.cs" />
     <Page Include="AddingBookWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddingKindOfBookWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

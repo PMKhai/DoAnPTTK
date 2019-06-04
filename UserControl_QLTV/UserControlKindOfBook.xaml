@@ -41,8 +41,8 @@
                     </Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
-                            Margin="500 10 0 0">
-                    <Button x:Name="addReaderButton" Command="{Binding DisplayAddingBookCommand}"
+                            Margin="490 10 0 0">
+                    <Button x:Name="addReaderButton" Command="{Binding DisplayAddingKindOfBookCommand}"
                     CommandParameter="{Binding ElementName=userDatagrid}" 
                             Width="90" Content="Thêm" BorderThickness="15">
                     </Button>
@@ -69,8 +69,8 @@
                         <KeyBinding Key="Delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=userDatagrid}"/>
                     </DataGrid.InputBindings>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Mã loại sách" Width="100" Binding="{ Binding IDSach}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Loại sách" Width="150" Binding="{Binding LoaiSach.TenLoai}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Mã loại sách" Width="100" Binding="{ Binding IdLoai}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Loại sách" Width="150" Binding="{Binding TenLoai}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
