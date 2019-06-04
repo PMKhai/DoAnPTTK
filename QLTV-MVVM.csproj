@@ -142,6 +142,9 @@
     <Compile Include="UserControl_QLTV\UserControlBooks.xaml.cs">
       <DependentUpon>UserControlBooks.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl_QLTV\UserControlKindOfBook.xaml.cs">
+      <DependentUpon>UserControlKindOfBook.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl_QLTV\UserControlProcessOfBook.xaml.cs">
       <DependentUpon>UserControlProcessOfBook.xaml</DependentUpon>
     </Compile>
@@ -199,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl_QLTV\UserControlBooks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl_QLTV\UserControlKindOfBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -60,15 +60,23 @@ namespace QLTV_MVVM
                     break;
                 case 3:
                     GridWorking.Children.Clear();
-                    GridWorking.Children.Add(new UserControlStatistical());
+                    GridWorking.Children.Add(new UserControlKindOfBook());
                     break;
                 case 4:
                     GridWorking.Children.Clear();
-                    GridWorking.Children.Add(new UserControlSetting());
+                    GridWorking.Children.Add(new UserControlStatistical()); 
                     break;
                 case 5:
                     GridWorking.Children.Clear();
-                    GridWorking.Children.Add(new UserControlStatistical());
+                    GridWorking.Children.Add(new UserControlSetting());
+                    break;
+                case 6:
+                    GridWorking.Children.Clear();
+                    GridWorking.Children.Add(new UserControlSetting());
+                    break;
+                case 7:
+                    GridWorking.Children.Clear();
+                    GridWorking.Children.Add(new UserControlSetting());
                     break;
                 default:
                     break;

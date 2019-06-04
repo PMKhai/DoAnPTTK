@@ -114,12 +114,32 @@
                     </ListViewItem>
                     <ListViewItem Height="60">
                         <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Style"
+                                                 Margin="10 0 20 0" 
+                                                 Height="30" Width="30"
+                                                 Foreground="White"></materialDesign:PackIcon>
+                            <TextBlock Margin="0 10 0 0"
+                                       Foreground="White">Loại Sách</TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ChartLine"
                                                  Margin="10 0 20 0" 
                                                  Height="30" Width="30"
                                                  Foreground="White"></materialDesign:PackIcon>
                             <TextBlock Margin="0 10 0 0"
                                        Foreground="White">Thống kê</TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Key"
+                                                 Margin="10 0 20 0" 
+                                                 Height="30" Width="30"
+                                                 Foreground="White"></materialDesign:PackIcon>
+                            <TextBlock Margin="0 10 0 0"
+                                       Foreground="White">Tài khoản</TextBlock>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="60">
