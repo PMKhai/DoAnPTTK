@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QLTVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QLTVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChiTietNhapSach">
           <Key>
             <PropertyRef Name="ID" />
@@ -65,10 +65,10 @@
             <PropertyRef Name="IDPm" />
           </Key>
           <Property Name="IDPm" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="IDDg" Type="int" Nullable="false" />
-          <Property Name="NgayMuon" Type="datetime" Nullable="false" />
-          <Property Name="KyHanTra" Type="datetime" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDDg" Type="int" />
+          <Property Name="NgayMuon" Type="datetime" />
+          <Property Name="KyHanTra" Type="datetime" />
           <Property Name="TinhTrang" Type="int" />
         </EntityType>
         <EntityType Name="PhieuTra">
@@ -117,6 +117,13 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
           <Property Name="KieuDuLieu" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="GiaTri" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TinhTrang" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TinhTrangPM">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <Association Name="fk_ctnhapsach_npp">
           <End Role="NhaPhanPhoi" Type="Self.NhaPhanPhoi" Multiplicity="1" />
@@ -191,7 +198,7 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_phieumuon_docgia">
-          <End Role="DocGia" Type="Self.DocGia" Multiplicity="1" />
+          <End Role="DocGia" Type="Self.DocGia" Multiplicity="0..1" />
           <End Role="PhieuMuon" Type="Self.PhieuMuon" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DocGia">
@@ -203,7 +210,7 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_phieumuon_taikhoan">
-          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <End Role="PhieuMuon" Type="Self.PhieuMuon" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaiKhoan">
@@ -211,6 +218,18 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
             </Principal>
             <Dependent Role="PhieuMuon">
               <PropertyRef Name="UserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuMuon_TinhTrangPM">
+          <End Role="TinhTrangPM" Type="Self.TinhTrangPM" Multiplicity="0..1" />
+          <End Role="PhieuMuon" Type="Self.PhieuMuon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TinhTrangPM">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhieuMuon">
+              <PropertyRef Name="TinhTrang" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -261,6 +280,7 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
           <EntitySet Name="PhieuTra" EntityType="Self.PhieuTra" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sach" EntityType="Self.Sach" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TinhTrangPM" EntityType="Self.TinhTrangPM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThamSo" EntityType="Self.ThamSo" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [ThamSo].[IDTs] AS [IDTs], 
@@ -302,6 +322,10 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
             <End Role="PhieuMuon" EntitySet="PhieuMuon" />
           </AssociationSet>
+          <AssociationSet Name="FK_PhieuMuon_TinhTrangPM" Association="Self.FK_PhieuMuon_TinhTrangPM">
+            <End Role="TinhTrangPM" EntitySet="TinhTrangPM" />
+            <End Role="PhieuMuon" EntitySet="PhieuMuon" />
+          </AssociationSet>
           <AssociationSet Name="fk_phieutra_phieumuon" Association="Self.fk_phieutra_phieumuon">
             <End Role="PhieuMuon" EntitySet="PhieuMuon" />
             <End Role="PhieuTra" EntitySet="PhieuTra" />
@@ -315,7 +339,8 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
             <End Role="Sach" EntitySet="Sach" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLTVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -388,14 +413,15 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
             <PropertyRef Name="IDPm" />
           </Key>
           <Property Name="IDPm" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IDDg" Type="Int32" Nullable="false" />
-          <Property Name="NgayMuon" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="KyHanTra" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDDg" Type="Int32" />
+          <Property Name="NgayMuon" Type="DateTime" Precision="3" />
+          <Property Name="KyHanTra" Type="DateTime" Precision="3" />
           <Property Name="TinhTrang" Type="Int32" />
           <NavigationProperty Name="ChiTietPhieuMuons" Relationship="Self.fk_ctphieumuon_pm" FromRole="PhieuMuon" ToRole="ChiTietPhieuMuon" />
           <NavigationProperty Name="DocGia" Relationship="Self.fk_phieumuon_docgia" FromRole="PhieuMuon" ToRole="DocGia" />
           <NavigationProperty Name="TaiKhoan" Relationship="Self.fk_phieumuon_taikhoan" FromRole="PhieuMuon" ToRole="TaiKhoan" />
+          <NavigationProperty Name="TinhTrangPM" Relationship="Self.FK_PhieuMuon_TinhTrangPM" FromRole="PhieuMuon" ToRole="TinhTrangPM" />
           <NavigationProperty Name="PhieuTras" Relationship="Self.fk_phieutra_phieumuon" FromRole="PhieuMuon" ToRole="PhieuTra" />
         </EntityType>
         <EntityType Name="PhieuTra">
@@ -437,6 +463,14 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
           <Property Name="ChucVu" Type="Boolean" />
           <NavigationProperty Name="PhieuMuons" Relationship="Self.fk_phieumuon_taikhoan" FromRole="TaiKhoan" ToRole="PhieuMuon" />
           <NavigationProperty Name="PhieuTras" Relationship="Self.fk_phieutra_taikhoan" FromRole="TaiKhoan" ToRole="PhieuTra" />
+        </EntityType>
+        <EntityType Name="TinhTrangPM">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Ten" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PhieuMuons" Relationship="Self.FK_PhieuMuon_TinhTrangPM" FromRole="TinhTrangPM" ToRole="PhieuMuon" />
         </EntityType>
         <EntityType Name="ThamSo">
           <Key>
@@ -525,7 +559,7 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_phieumuon_docgia">
-          <End Role="DocGia" Type="Self.DocGia" Multiplicity="1" />
+          <End Role="DocGia" Type="Self.DocGia" Multiplicity="0..1" />
           <End Role="PhieuMuon" Type="Self.PhieuMuon" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DocGia">
@@ -549,7 +583,7 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_phieumuon_taikhoan">
-          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <End Role="PhieuMuon" Type="Self.PhieuMuon" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaiKhoan">
@@ -557,6 +591,18 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
             </Principal>
             <Dependent Role="PhieuMuon">
               <PropertyRef Name="UserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuMuon_TinhTrangPM">
+          <End Role="TinhTrangPM" Type="Self.TinhTrangPM" Multiplicity="0..1" />
+          <End Role="PhieuMuon" Type="Self.PhieuMuon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TinhTrangPM">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhieuMuon">
+              <PropertyRef Name="TinhTrang" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -595,6 +641,7 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
           <EntitySet Name="PhieuTras" EntityType="Self.PhieuTra" />
           <EntitySet Name="Saches" EntityType="Self.Sach" />
           <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
+          <EntitySet Name="TinhTrangPMs" EntityType="Self.TinhTrangPM" />
           <EntitySet Name="ThamSoes" EntityType="Self.ThamSo" />
           <AssociationSet Name="fk_ctnhapsach_npp" Association="Self.fk_ctnhapsach_npp">
             <End Role="NhaPhanPhoi" EntitySet="NhaPhanPhois" />
@@ -630,6 +677,10 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
           </AssociationSet>
           <AssociationSet Name="fk_phieumuon_taikhoan" Association="Self.fk_phieumuon_taikhoan">
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="PhieuMuon" EntitySet="PhieuMuons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuMuon_TinhTrangPM" Association="Self.FK_PhieuMuon_TinhTrangPM">
+            <End Role="TinhTrangPM" EntitySet="TinhTrangPMs" />
             <End Role="PhieuMuon" EntitySet="PhieuMuons" />
           </AssociationSet>
           <AssociationSet Name="fk_phieutra_phieumuon" Association="Self.fk_phieutra_phieumuon">
@@ -750,6 +801,14 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
                 <ScalarProperty Name="SDT" ColumnName="SDT" />
                 <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
                 <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TinhTrangPMs">
+            <EntityTypeMapping TypeName="QLTVModel.TinhTrangPM">
+              <MappingFragment StoreEntitySet="TinhTrangPM">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

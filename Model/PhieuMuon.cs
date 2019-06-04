@@ -23,15 +23,16 @@ namespace QLTV_MVVM.Model
     
         public int IDPm { get; set; }
         public string UserName { get; set; }
-        public int IDDg { get; set; }
-        public System.DateTime NgayMuon { get; set; }
-        public System.DateTime KyHanTra { get; set; }
+        public Nullable<int> IDDg { get; set; }
+        public Nullable<System.DateTime> NgayMuon { get; set; }
+        public Nullable<System.DateTime> KyHanTra { get; set; }
         public Nullable<int> TinhTrang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietPhieuMuon> ChiTietPhieuMuons { get; set; }
         public virtual DocGia DocGia { get; set; }
         public virtual TaiKhoan TaiKhoan { get; set; }
+        public virtual TinhTrangPM TinhTrangPM { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuTra> PhieuTras { get; set; }
     }

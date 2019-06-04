@@ -21,6 +21,10 @@ namespace QLTV_MVVM.ViewModel
         public ObservableCollection<Model.Sach> Sach { get => _Sach; set { _Sach = value; OnPropertyChanged(); } }
         private ObservableCollection<Model.PhieuMuon> _PhieuMuon;
         public ObservableCollection<Model.PhieuMuon> PhieuMuon { get => _PhieuMuon; set { _PhieuMuon = value; OnPropertyChanged(); } }
+        private ObservableCollection<Model.TinhTrangPM> _TinhTrangPM;
+        public ObservableCollection<Model.TinhTrangPM> TinhTrangPM { get => _TinhTrangPM; set { _TinhTrangPM = value; OnPropertyChanged(); } }
+
+
         private ObservableCollection<Model.LentBook> _SachDcThue;
         public ObservableCollection<Model.LentBook> SachDcThue { get => _SachDcThue; set { _SachDcThue = value; OnPropertyChanged(); } }
         private string _Name;
@@ -62,6 +66,7 @@ namespace QLTV_MVVM.ViewModel
         private DateTime? _ReturnDay;
         public DateTime? ReturnDay { get => _ReturnDay; set { _ReturnDay = value; OnPropertyChanged(); } }
         private Model.PhieuMuon _SelectedPhieuMuon;
+      
         public Model.PhieuMuon SelectedPhieuMuon
         {
             get => _SelectedPhieuMuon;
@@ -77,12 +82,31 @@ namespace QLTV_MVVM.ViewModel
                     // _Phone
                     LendingDay = SelectedPhieuMuon.NgayMuon;
                     ReturnDay = SelectedPhieuMuon.KyHanTra;
-
+                    SelectedTinhTrangPM = SelectedPhieuMuon.TinhTrangPM;
                     loadDgrBook();
                     //////
                     
                 }
             }
+        }
+        private Model.TinhTrangPM _SelectedTinhTrangPM;
+
+        public Model.TinhTrangPM SelectedTinhTrangPM
+        {
+            get => _SelectedTinhTrangPM;
+            set
+            {
+                _SelectedTinhTrangPM = value;
+                OnPropertyChanged();
+                if (SelectedTinhTrangPM != null)
+                {
+
+                }
+            }
+        }
+        void loaDgrPm()
+        {
+            PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons);
         }
         void loadDgrBook()
         {
@@ -171,12 +195,21 @@ namespace QLTV_MVVM.ViewModel
         }
         public ICommand DeleteSachCommand { get; set; }
         public ICommand UpdateSachCommand { get; set; }
+        public ICommand AddPhMuonCommand { get; set; }
+        public ICommand UpdatePhMuonCommand { get; set; }
+        public ICommand PrintPhMuonCommand { get; set; }
         //public ICommand TurnEditableCbbCommand { get; set; }
 
+        //
+        bool isBtnAddClick = false;
+        bool isBtnSaveClick = false;
+        bool isBtnPrintClick = false;
+        //
         public LendingBookViewModel()
         {
+            TinhTrangPM = new ObservableCollection<Model.TinhTrangPM>(DataProvider.Ins.DB.TinhTrangPMs);
             DocGia = new ObservableCollection<Model.DocGia>(DataProvider.Ins.DB.DocGias);
-            PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons);
+            loaDgrPm();
 
            
 
@@ -234,7 +267,6 @@ namespace QLTV_MVVM.ViewModel
                     chTSach.IDPm = MaPhieu;
                     if (lb.SelectedSach == null) // dòng này là magic
                     {
-
                         return;
                     }
                     chTSach.IDSach = lb.SelectedSach.IDSach;
@@ -245,17 +277,84 @@ namespace QLTV_MVVM.ViewModel
                     loadDgrBook();
                     return;
                 }
-
-
-                chTietSach.IDSach = lb.SelectedSach.IDSach;
-                SelectedSach = lb.SelectedSach;
-                chTietSach.SoLuong = lb.SoLuong;
-
-
-                DataProvider.Ins.DB.SaveChanges();
+                else
+                {
+                    chTietSach.IDSach = lb.SelectedSach.IDSach;
+                    SelectedSach = lb.SelectedSach;
+                    chTietSach.SoLuong = lb.SoLuong;
+                    DataProvider.Ins.DB.SaveChanges();
+                }
+             
+                
 
             });
-         
+            AddPhMuonCommand = new RelayCommand<Button>((p) =>
+            {
+                if (isBtnAddClick == true)
+                {
+                    p.IsEnabled = false;
+                }
+                else
+                {
+                    p.IsEnabled = true;
+                }
+                return true;
+
+            }, (p) =>
+            {
+                isBtnAddClick = true;
+                var PhMuon = new PhieuMuon(); ;
+
+
+                DataProvider.Ins.DB.PhieuMuons.Add(PhMuon);
+                DataProvider.Ins.DB.SaveChanges();
+                MaPhieu = PhMuon.IDPm;
+                SelectedTinhTrangPM = TinhTrangPM[0];
+                SelectedPhieuMuon = DataProvider.Ins.DB.PhieuMuons.Find(MaPhieu);
+
+            });
+            UpdatePhMuonCommand = new RelayCommand<Button>((p) => {
+                if (SelectedPhieuMuon != null || isBtnAddClick == true)
+                {
+                    p.IsEnabled = true;
+                }
+               else
+                { 
+                    p.IsEnabled = false;
+                }
+                return true;
+            }, (p) =>
+            {
+                SelectedPhieuMuon = null;
+                isBtnAddClick = false;
+
+
+                // Phần thông tin phiếu
+                var PhMuon = DataProvider.Ins.DB.PhieuMuons.Find(MaPhieu);
+                PhMuon.UserName = "admin";
+                PhMuon.IDDg = SelectedDocGia.IDDg;
+                PhMuon.NgayMuon = LendingDay ?? System.DateTime.Today;
+                PhMuon.KyHanTra = ReturnDay ?? System.DateTime.Today;
+                PhMuon.TinhTrang = SelectedTinhTrangPM.Id;
+                //
+
+                // Phần chi tiết sách
+
+                //
+
+                DataProvider.Ins.DB.SaveChanges();
+                loaDgrPm();
+            });
+            PrintPhMuonCommand = new RelayCommand<Button>((p) => {
+                if (SelectedPhieuMuon != null)
+                {
+                    p.IsEnabled = true;
+                }
+                return true;
+            }, (p) =>
+            {
+
+            });
         }
        
     }

@@ -20,7 +20,7 @@
     <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"></RowDefinition>
-            <RowDefinition Height="7*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
           
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -31,10 +31,49 @@
 
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <materialDesign:Card Margin="5" Grid.Row="0" VerticalAlignment="Stretch">
+
+                    <WrapPanel>
+                        <Button x:Name="btnAdd" 
+                            Command="{Binding AddPhMuonCommand}"   CommandParameter="{Binding ElementName=btnAdd}"
+                            Margin="0 0 5 0"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="100"
+                            Background="Gray"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                       IsEnabled="True"
+                               
+                                >
+
+                            _Tạo mới
+                            
+                        </Button>
+                        <Button  x:Name="btnSave"    Command="{Binding UpdatePhMuonCommand}"
+                                 CommandParameter="{Binding ElementName=btnSave}"
+                                     IsEnabled="False"
+                            Margin="0 0 5 0"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="100"
+                            Background="Gray"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                            _Lưu
+                        </Button>
+                        <Button       IsEnabled="False"   
+                            Command="{Binding PrintPhMuonCommand}"
+                            Margin="0 0 5 0"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="100"
+                            Background="Gray"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                            _In
+                        </Button>
+                    </WrapPanel>
+                </materialDesign:Card>
+                <materialDesign:Card Margin="5" Grid.Row="1" VerticalAlignment="Stretch">
 
                     <WrapPanel>
                         <materialDesign:PackIcon Kind="AccountCardDetails"  />
@@ -45,14 +84,14 @@
                         <DatePicker  SelectedDate="{Binding RegistrationDate, StringFormat='dd/MM/yyyy'}" Width="100" Margin="5 5 15 0" materialDesign:HintAssist.Hint="Ngày hợp tác" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" IsEnabled="False" />
                     </WrapPanel>
                 </materialDesign:Card>
-                <materialDesign:Card Grid.Row="1" Margin="5" VerticalAlignment="Stretch">
+                <materialDesign:Card Grid.Row="2" Margin="5" VerticalAlignment="Stretch">
                     <WrapPanel>
                         <materialDesign:PackIcon Kind="BookOpenPageVariant" />
-               
-                        <TextBox Text="{Binding TenLoai, UpdateSourceTrigger=PropertyChanged}" Margin="5 15 15 5" materialDesign:HintAssist.Hint="Loại Sách" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
-                        <TextBox Text="{Binding TacGia, UpdateSourceTrigger=PropertyChanged}" Margin="5 15 15 5" materialDesign:HintAssist.Hint="Tác giả" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
-                        <TextBox Text="{Binding NhaXB, UpdateSourceTrigger=PropertyChanged}" Margin="5 15 15 5" materialDesign:HintAssist.Hint="Nhà xuất bản" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"/>
-                        <DatePicker  SelectedDate="{Binding NamXB, StringFormat='dd/MM/yyyy'}" Width="100" Margin="5 5 15 0" materialDesign:HintAssist.Hint="Năm xuất bản" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" IsEnabled="False" />
+
+                        <TextBox Text="{Binding TenLoai, UpdateSourceTrigger=PropertyChanged}" Margin="5 10 15 10" materialDesign:HintAssist.Hint="Loại Sách" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
+                        <TextBox Text="{Binding TacGia, UpdateSourceTrigger=PropertyChanged}" Margin="5 10 15 10" materialDesign:HintAssist.Hint="Tác giả" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
+                        <TextBox Text="{Binding NhaXB, UpdateSourceTrigger=PropertyChanged}" Margin="5 10 15 10" materialDesign:HintAssist.Hint="Nhà xuất bản" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"/>
+                        <DatePicker  SelectedDate="{Binding NamXB, StringFormat='dd/MM/yyyy'}" Width="100" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Năm xuất bản" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" IsEnabled="False" />
                       
                     </WrapPanel>
                 </materialDesign:Card>
@@ -63,10 +102,12 @@
                     <StackPanel Margin="0 0 0 15">
                         <materialDesign:PackIcon Kind="AccountCardDetails"  />
 
-                        <TextBox Text="{Binding MaPhieu, UpdateSourceTrigger=PropertyChanged}" Margin="5 0 15 5" materialDesign:HintAssist.Hint="Mã Phiếu" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  />
+                        <TextBox Text="{Binding MaPhieu, UpdateSourceTrigger=PropertyChanged}" Margin="5 0 15 5" materialDesign:HintAssist.Hint="Mã Phiếu" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
                         <DatePicker  SelectedDate="{Binding LendingDay,UpdateSourceTrigger=PropertyChanged, StringFormat='dd/MM/yyyy'}"  Margin="5 0 15 5" materialDesign:HintAssist.Hint="Ngày mượn" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                         <DatePicker  SelectedDate="{Binding ReturnDay,UpdateSourceTrigger=PropertyChanged, StringFormat='dd/MM/yyyy'}"  Margin="5 0 15 5" materialDesign:HintAssist.Hint="Ngày trả" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"  />
-                       
+                        <ComboBox Margin="5 0 15 5" DisplayMemberPath="Ten" ItemsSource="{Binding TinhTrangPM}" SelectedItem="{Binding SelectedTinhTrangPM}" materialDesign:HintAssist.Hint="Tình trạng"  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                          
+                        </ComboBox>
                     </StackPanel>
                 </materialDesign:Card>
             </Grid>
@@ -129,7 +170,7 @@
 
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Mã số" Width="3*" Binding="{Binding IDPm}" IsReadOnly="True"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Tên độc giả" Width="7*" Binding="{Binding DocGia.HoTen}" IsReadOnly="True" ></DataGridTextColumn>
+                            <DataGridTextColumn Header="Tình trạng" Width="7*" Binding="{Binding TinhTrangPM.Ten}" IsReadOnly="True" ></DataGridTextColumn>
 
                         </DataGrid.Columns>
                     </DataGrid>

@@ -136,6 +136,9 @@
     <Compile Include="Model\ThamSo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\TinhTrangPM.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserControl_QLTV\ControllBarUC.xaml.cs">
       <DependentUpon>ControllBarUC.xaml</DependentUpon>
     </Compile>
