@@ -1,12 +1,11 @@
-﻿<UserControl x:Class="QLTV_MVVM.UserControl_QLTV.UserControlStatistical"
+﻿<UserControl x:Class="QLTV_MVVM.UserControl_QLTV.UserControlKindOfBook"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QLTV_MVVM.UserControl_QLTV"
-             mc:Ignorable="d" 
-             d:DesignHeight="570" d:DesignWidth="930"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" d:DesignHeight="570" d:DesignWidth="930"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
@@ -14,23 +13,18 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="{DynamicResource MaterialDesignFont}">
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             DataContext="{StaticResource KindOfBookVM}">
     <Grid Background="AliceBlue">
-        
-        <materialDesign:Card Margin=" 5 0 5 5" Height="100" >
-            <StackPanel Orientation="Horizontal">
-                <GroupBox Header="Sánh được mượn" Margin="5 5 5 5">
-                    <StackPanel Orientation="Horizontal" >
-                        <DatePicker materialDesign:HintAssist.Hint="Từ ngày..." 
-                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="140" Height="40"
-                        SelectedDate="{Binding TuNgay}" Margin="5 0 5 0"/>
-                        <DatePicker materialDesign:HintAssist.Hint="Đến ngày..." 
-                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="140" Height="40"
-                        SelectedDate="{Binding DenNgay}" Margin="5 0 5 0"/>
-                    </StackPanel>
-                </GroupBox>
-                <!--<StackPanel Orientation="Horizontal" Margin="5 0 0 0" >
-                    <TextBox x:Name="searchTextBox" materialDesign:HintAssist.Hint="Tìm kiếm" Text="{Binding InfoSearch}"
+        <materialDesign:Card Height="50" Margin="5 0 5 0">
+            <WrapPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
+                     Margin="5 0 0 0">
+                    
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10 0 0 0">
+                    <TextBox x:Name="searchTextBox" materialDesign:HintAssist.Hint="Tìm kiếm" 
+                             Text="{Binding Searching}" 
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" Height="40">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="TextChanged">
@@ -45,18 +39,22 @@
                         <materialDesign:PackIcon Kind="Search" Foreground="Gray" 
                                          Height="30" Width="30"></materialDesign:PackIcon>
                     </Button>
-                </StackPanel>-->
-            </StackPanel>
-            
-            
-
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
+                            Margin="490 10 0 0">
+                    <Button x:Name="addReaderButton" Command="{Binding DisplayAddingKindOfBookCommand}"
+                    CommandParameter="{Binding ElementName=userDatagrid}" 
+                            Width="90" Content="Thêm" BorderThickness="15">
+                    </Button>
+                </StackPanel>
+            </WrapPanel>
         </materialDesign:Card>
 
-        <materialDesign:Card Width="920" Height="450" VerticalAlignment="Bottom"
+        <materialDesign:Card Width="920" Height="490" VerticalAlignment="Bottom"
                   Margin="0 0 0 5">
-            <Grid>
+            <Grid >
                 <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" 
-                      CanUserAddRows="False" >
+                      CanUserAddRows="False" CanUserDeleteRows="False"  >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding LoadDBCommand}" 
@@ -66,18 +64,17 @@
                             <i:InvokeCommandAction Command="{Binding LostFocusCommand}" 
                                    CommandParameter="{Binding ElementName=userDatagrid}"/>
                         </i:EventTrigger>
-
                     </i:Interaction.Triggers>
-
+                    <DataGrid.InputBindings>
+                        <KeyBinding Key="Delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=userDatagrid}"/>
+                    </DataGrid.InputBindings>
                     <DataGrid.Columns>
-                        <DataGridTextColumn  Header="Mã sách" Width="100" Binding="{ Binding IDDg}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Tên sách" Width="200" Binding="{Binding HoTen}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Ngày nhập" Width="100" Binding="{Binding NgaySinh, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Ngày tạo thẻ" Width="100" Binding="{Binding NgayTaoThe, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Tình trạng" Width="*" Binding="{Binding DiaChi}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Mã loại sách" Width="100" Binding="{ Binding IdLoai}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Loại sách" Width="150" Binding="{Binding TenLoai}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
         </materialDesign:Card>
+
     </Grid>
 </UserControl>

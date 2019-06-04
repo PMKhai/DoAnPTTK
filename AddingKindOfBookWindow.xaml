@@ -1,0 +1,49 @@
+﻿<Window x:Class="QLTV_MVVM.AddingKindOfBookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLTV_MVVM"
+        xmlns:uc="clr-namespace:QLTV_MVVM.UserControll_QLTV"
+        mc:Ignorable="d" DataContext="{StaticResource AddingKindOfBookVM}"
+        Title="AddingKindOfBookWindow"  Height="250" Width="300"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        ResizeMode="NoResize" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        x:Name="AddingKindOfBook">
+    <Grid Background="AliceBlue">
+        <Grid Height="40" VerticalAlignment="Top">
+            <uc:ControllBarUC></uc:ControllBarUC>
+        </Grid>
+
+        <materialDesign:Card Margin="5 40 5 5" Height="200">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    
+                </Grid.RowDefinitions>
+                
+                <TextBox x:Name="bookNameTextBox" materialDesign:HintAssist.Hint="Tên loại sách" Grid.Row="0" Text="{Binding TenLoaiSach, Mode=TwoWay}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" Height="40"/>
+
+                
+
+                <Button Width="250" Height="40" Grid.Row="1" Background="#FF9ACDF5" 
+                    BorderBrush="#FF9ACDF5" Command="{Binding AddKindOfBookCommand}" CommandParameter="{Binding ElementName=AddingKindOfBook}">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Add" Foreground="White" Height="30" Width="30"/>
+                        <TextBlock Foreground="White" FontSize="20" Margin="0 4 0 0"> Thêm</TextBlock>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</Window>

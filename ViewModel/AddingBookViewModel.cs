@@ -52,7 +52,6 @@ namespace QLTV_MVVM.ViewModel
                 sach.NgayNhap = NgayNhap;
 
                 DataProvider.Ins.DB.Saches.Add(sach);
-                DataProvider.Ins.DB.SaveChanges();
                 if (DataProvider.Ins.DB.SaveChanges() == 1)
                 {
                     p.Close();
