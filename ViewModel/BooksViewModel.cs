@@ -14,7 +14,8 @@ namespace QLTV_MVVM.ViewModel
 {
     public class BooksViewModel: BaseViewModel
     {
-
+        private ObservableCollection<Model.Book> _Book;
+        public ObservableCollection<Model.Book> Book { get => _Book; set { _Book = value; OnPropertyChanged(); } }
         private ObservableCollection<Model.LoaiSach> _LoaiSach;
         public ObservableCollection<Model.LoaiSach> LoaiSach { get => _LoaiSach; set { _LoaiSach = value; OnPropertyChanged(); } }
         private ObservableCollection<Model.Sach> _Sach;
@@ -23,33 +24,72 @@ namespace QLTV_MVVM.ViewModel
         public LoaiSach LS { get => _LS; set { _LS = value; OnPropertyChanged(); } }
         private string _Searching;
         public string Searching { get => _Searching; set { _Searching = value; OnPropertyChanged(); } }
-        public ICommand LoadDBCommand { get; set; }
+        //public ICommand LoadDBCommand { get; set; }
         public ICommand DisplayAddingBookCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand FilterCommand { get; set; }
         public ICommand SearchCommand { get; set; }
         public ICommand TextChangedCommand { get; set; }
+        private Model.LoaiSach _SelectedLoaiSach;
+        public Model.LoaiSach SelectedLoaiSach
+        {
+            get => _SelectedLoaiSach;
+            set
+            {
+                _SelectedLoaiSach = value;
+                OnPropertyChanged();
+                //if (SelectedLoaiSach != null)
+                //{
+                //    Sach = new ObservableCollection<Model.Sach>(SelectedLoaiSach.Saches);
+                //}
+            }
+        }
+        void loadDgrBook()
+        {
+            Book = new ObservableCollection<Book>();
+            Sach = new ObservableCollection<Model.Sach>(DataProvider.Ins.DB.Saches);
 
+
+            int i = 1;
+            foreach (var item in Sach)
+            {
+                Book a = new Book
+                {
+                    IDSach = item.IDSach,
+                    TenSach = item.TenSach,
+                    TacGia = item.TacGia,
+                    NamXB = item.NamXB,
+                    NhaXB = item.NhaXB,
+                    SelectedLoaiSach = item.LoaiSach,
+                    LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches),
+                     
+            };
+                Book.Add(a);
+                i++;
+            }
+            
+        }
 
         public BooksViewModel()
         {
-            LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches);
-            
 
-            LoadDBCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
-                if (p == null)
-                    return;
-               // var db = DataProvider.Ins.DB.Saches.ToList();
-                Sach = new ObservableCollection<Sach>(DataProvider.Ins.DB.Saches);
+            loadDgrBook();
+
+            //LoadDBCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
+            //    if (p == null)
+            //        return;
+            //    // var db = DataProvider.Ins.DB.Saches.ToList();
+            //    LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches);
+            //    Sach = new ObservableCollection<Sach>(DataProvider.Ins.DB.Saches);
                 
 
-                if (Sach == null)
-                {
-                    MessageBox.Show("Không thể hiển thị danh sách sách!", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                p.ItemsSource = Sach;
-            });
+            //    if (Sach == null)
+            //    {
+            //        MessageBox.Show("Không thể hiển thị danh sách sách!", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            //        return;
+            //    }
+            //    p.ItemsSource = Sach;
+            //});
 
             DisplayAddingBookCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
                 AddingBookWindow wd = new AddingBookWindow();

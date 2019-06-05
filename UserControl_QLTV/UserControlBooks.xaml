@@ -64,12 +64,12 @@
                   Margin="0 0 0 5">
             <Grid >
                 <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" 
-                      CanUserAddRows="False" CanUserDeleteRows="False"  >
+                      CanUserAddRows="False" CanUserDeleteRows="False"  ItemsSource="{Binding Book}" >
                     <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Loaded">
+                        <!--<i:EventTrigger EventName="Loaded">
                             <i:InvokeCommandAction Command="{Binding LoadDBCommand}" 
                                    CommandParameter="{Binding ElementName=userDatagrid}"/>
-                        </i:EventTrigger>
+                        </i:EventTrigger>-->
                         <i:EventTrigger EventName="LostFocus">
                             <i:InvokeCommandAction Command="{Binding LostFocusCommand}" 
                                    CommandParameter="{Binding ElementName=userDatagrid}"/>
@@ -80,7 +80,14 @@
                     </DataGrid.InputBindings>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Mã sách" Width="100" Binding="{ Binding IDSach}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Loại sách" Width="150" Binding="{Binding LoaiSach.TenLoai}"></DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Loại Sách" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox Name="loaisachCbb" DisplayMemberPath="TenLoai"   ItemsSource="{Binding LoaiSach}"  SelectedItem="{Binding SelectedLoaiSach, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    </ComboBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn Header="Tên sách" Width="150" Binding="{Binding TenSach}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Tác giả" Width="150" Binding="{Binding TacGia}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Năm XB" Width="*" Binding="{Binding NamXB, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>

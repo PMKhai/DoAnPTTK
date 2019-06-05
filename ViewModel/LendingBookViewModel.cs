@@ -198,8 +198,10 @@ namespace QLTV_MVVM.ViewModel
         public ICommand AddPhMuonCommand { get; set; }
         public ICommand UpdatePhMuonCommand { get; set; }
         public ICommand PrintPhMuonCommand { get; set; }
-        //public ICommand TurnEditableCbbCommand { get; set; }
+        public ICommand SearchCommand { get; set; }
 
+        private string _InfoSearch;
+        public string InfoSearch { get => _InfoSearch; set { _InfoSearch = value; OnPropertyChanged(); } }
         //
         bool isBtnAddClick = false;
         bool isBtnSaveClick = false;
@@ -377,6 +379,16 @@ namespace QLTV_MVVM.ViewModel
             }, (p) =>
             {
 
+            });
+
+            SearchCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
+                if (p == null)
+                    return;
+                var stringSearch = Int32.Parse(InfoSearch);
+            //   PhieuMuon = DataProvider.Ins.DB.PhieuMuons.Where(x=> x.IDPm == stringSearch).FirstOrDefault;
+
+                
+             
             });
         }
        

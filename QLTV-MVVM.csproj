@@ -89,6 +89,7 @@
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Book.cs" />
     <Compile Include="Model\ChiTietNhapSach.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

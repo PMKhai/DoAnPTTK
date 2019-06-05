@@ -184,14 +184,14 @@
                             </Grid.ColumnDefinitions>
                             <Button Style="{DynamicResource MaterialDesignToolButton}" 
                                 Command="{Binding SearchCommand}" x:Name="SearchButton"
-                                CommandParameter="{Binding ElementName=SearchBox, Path=Text}"
+                                CommandParameter="{Binding ElementName=Datagrid}"
                                 Height="24" Width="24">
                                 <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
                             </Button>
                             <TextBox Grid.Column="1" Margin="5 0 0 0" 
                              materialDesign:HintAssist.Hint="Search" x:Name="SearchBox"
                              materialDesign:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0"
-                             MinWidth="200" VerticalAlignment="Center" />
+                             MinWidth="200" VerticalAlignment="Center" Text="{Binding InfoSearch}" />
                         </Grid>
                     </Border>
                 </Grid>
