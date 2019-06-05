@@ -207,6 +207,13 @@ namespace QLTV_MVVM.ViewModel
         //
         public LendingBookViewModel()
         {
+            TenLoai = null;
+            TacGia = null;
+            NhaXB = null;
+            NamXB = null;
+            ReturnDay = null;
+            LendingDay = null;
+            
             TinhTrangPM = new ObservableCollection<Model.TinhTrangPM>(DataProvider.Ins.DB.TinhTrangPMs);
             DocGia = new ObservableCollection<Model.DocGia>(DataProvider.Ins.DB.DocGias);
             loaDgrPm();
@@ -298,20 +305,26 @@ namespace QLTV_MVVM.ViewModel
                 {
                     p.IsEnabled = true;
                 }
+              
                 return true;
 
             }, (p) =>
             {
                 isBtnAddClick = true;
-                var PhMuon = new PhieuMuon(); ;
+                var PhMuon = new PhieuMuon();
 
-
+                
+                PhMuon.TinhTrang = DataProvider.Ins.DB.TinhTrangPMs.Find(1).Id;
+                PhMuon.NgayMuon = System.DateTime.Today;
+                PhMuon.KyHanTra = System.DateTime.Today;
                 DataProvider.Ins.DB.PhieuMuons.Add(PhMuon);
                 DataProvider.Ins.DB.SaveChanges();
                 MaPhieu = PhMuon.IDPm;
-                SelectedTinhTrangPM = TinhTrangPM[0];
                 SelectedPhieuMuon = DataProvider.Ins.DB.PhieuMuons.Find(MaPhieu);
-
+                TenLoai = null;
+                TacGia = null;
+                NhaXB = null;
+                NamXB = null;
             });
             UpdatePhMuonCommand = new RelayCommand<Button>((p) => {
                 if (SelectedPhieuMuon != null || isBtnAddClick == true)
@@ -322,10 +335,20 @@ namespace QLTV_MVVM.ViewModel
                 { 
                     p.IsEnabled = false;
                 }
+               
                 return true;
             }, (p) =>
             {
-                SelectedPhieuMuon = null;
+                if (SelectedDocGia == null)
+                {
+                    MessageBox.Show("Chưa nhập thông tin độc giả !", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                if (SachDcThue.Count < 2)
+                {
+                    MessageBox.Show("Chưa chọn sách !", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 isBtnAddClick = false;
 
 
