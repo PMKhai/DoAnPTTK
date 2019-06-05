@@ -14,7 +14,7 @@ namespace QLTV_MVVM.Model
         public int Id { get; set; }
         public int STT { get; set; }
         public string DonVi { get; set; } = "Quyển";
-        public int SoLuong { get; set; }
+        public int SoLuong { get; set; } = 1;
 
         private ObservableCollection<Model.LoaiSach> _LoaiSach;
         public ObservableCollection<Model.LoaiSach> LoaiSach { get => _LoaiSach; set { _LoaiSach = value; OnPropertyChanged(); } }
