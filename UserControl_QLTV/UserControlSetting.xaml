@@ -15,8 +15,41 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid Background="AliceBlue">
-        <materialDesign:Card Padding="32" Margin="16">
-            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Setting...</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <materialDesign:Card Padding="20" Margin="16" Grid.Row="0" Grid.Column="0">
+            <GroupBox Header="Giớ hạn độ tuổi đọc giả">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox  materialDesign:HintAssist.Hint="Từ..." Text="{Binding TacGia, Mode=TwoWay}" Margin="5 0 5 0"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Height="40" Grid.Column="0"/>
+                    <TextBox  materialDesign:HintAssist.Hint="Đến..." Text="{Binding TacGia, Mode=TwoWay}" Margin="5 0 5 0"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Height="40" Grid.Column="1"/>
+                </Grid>
+                
+            </GroupBox>
+        </materialDesign:Card>
+        <materialDesign:Card Padding="20" Margin="16" Grid.Row="0" Grid.Column="1">
+            <GroupBox Header="Giớ hạn số lượng sách">
+                <TextBox  materialDesign:HintAssist.Hint="Số lượng" Text="{Binding TacGia, Mode=TwoWay}" Margin="5 0 5 0"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Height="40" Grid.Column="1"/>
+            </GroupBox>
+        </materialDesign:Card>
+        <materialDesign:Card Padding="20" Margin="16" Grid.Row="1" Grid.Column="0">
+            <GroupBox Header="Chỉ nhập sách kể từ nằm">
+                <TextBox x:Name="authorTextBox" materialDesign:HintAssist.Hint="Năm" Grid.Row="2" Text="{Binding TacGia, Mode=TwoWay}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Height="40"/>
+
+            </GroupBox>
         </materialDesign:Card>
     </Grid>
 </UserControl>

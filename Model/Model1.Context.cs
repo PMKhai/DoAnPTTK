@@ -37,5 +37,6 @@ namespace QLTV_MVVM.Model
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<TinhTrangPM> TinhTrangPMs { get; set; }
         public virtual DbSet<ThamSo> ThamSoes { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

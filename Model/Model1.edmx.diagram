@@ -29,6 +29,7 @@
         <AssociationConnector Association="QLTVModel.FK_PhieuMuon_TinhTrangPM" ManuallyRouted="false" />
         <AssociationConnector Association="QLTVModel.fk_phieutra_phieumuon" ManuallyRouted="false" />
         <AssociationConnector Association="QLTVModel.fk_phieutra_taikhoan" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLTVModel.sysdiagram" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

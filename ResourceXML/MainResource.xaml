@@ -13,6 +13,6 @@
     <viewmodel:AddingBookViewModel x:Key="AddingBookVM"></viewmodel:AddingBookViewModel>
     <viewmodel:KindOfBookViewModel x:Key="KindOfBookVM"></viewmodel:KindOfBookViewModel>
     <viewmodel:AddingKindOfBookViewModel x:Key="AddingKindOfBookVM"></viewmodel:AddingKindOfBookViewModel>
-
+    <viewmodel:AccountViewModel x:Key="AccountVM"></viewmodel:AccountViewModel>
 
 </ResourceDictionary>

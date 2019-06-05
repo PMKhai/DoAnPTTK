@@ -68,7 +68,7 @@ namespace QLTV_MVVM
                     break;
                 case 5:
                     GridWorking.Children.Clear();
-                    GridWorking.Children.Add(new UserControlSetting());
+                    GridWorking.Children.Add(new UserControlAccount());
                     break;
                 case 6:
                     GridWorking.Children.Clear();
