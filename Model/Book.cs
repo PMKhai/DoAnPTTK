@@ -10,13 +10,7 @@ namespace QLTV_MVVM.Model
 {
     public class Book : BaseViewModel
     {
-        public int IDSach { get; set; }
-        public string TenSach { get; set; }
-        public string TacGia { get; set; }
-        public string NhaXB { get; set; } 
-        public DateTime? NamXB { get; set; }
-     
-       
+       public Sach Sach { get; set; }
         private ObservableCollection<Model.LoaiSach> _LoaiSach;
         public ObservableCollection<Model.LoaiSach> LoaiSach { get => _LoaiSach; set { _LoaiSach = value; OnPropertyChanged(); } }
         private Model.LoaiSach _SelectedLoaiSach;
