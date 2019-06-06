@@ -53,17 +53,11 @@ namespace QLTV_MVVM.ViewModel
             int i = 1;
             foreach (var item in Sach)
             {
-                Book a = new Book
-                {
-                    IDSach = item.IDSach,
-                    TenSach = item.TenSach,
-                    TacGia = item.TacGia,
-                    NamXB = item.NamXB,
-                    NhaXB = item.NhaXB,
-                    SelectedLoaiSach = item.LoaiSach,
-                    LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches),
-                     
-            };
+                Book a = new Book();
+          
+                a.Sach = item;
+                a.LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches);
+                a.SelectedLoaiSach = item.LoaiSach;
                 Book.Add(a);
                 i++;
             }

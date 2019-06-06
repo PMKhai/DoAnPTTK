@@ -169,8 +169,8 @@
                        
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã số" Width="3*" Binding="{Binding IDPm}" IsReadOnly="True"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Tình trạng" Width="7*" Binding="{Binding TinhTrangPM.Ten}" IsReadOnly="True" ></DataGridTextColumn>
+                            <DataGridTextColumn Header="Mã số" Width="*" Binding="{Binding IDPm}" IsReadOnly="True"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Tình trạng" Width="2*" Binding="{Binding TinhTrangPM.Ten}" IsReadOnly="True" ></DataGridTextColumn>
 
                         </DataGrid.Columns>
                     </DataGrid>
@@ -185,13 +185,20 @@
                             <Button Style="{DynamicResource MaterialDesignToolButton}" 
                                 Command="{Binding SearchCommand}" x:Name="SearchButton"
                                 CommandParameter="{Binding ElementName=Datagrid}"
-                                Height="24" Width="24">
+                                Height="24" Width="24" IsDefault="True">
                                 <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
                             </Button>
                             <TextBox Grid.Column="1" Margin="5 0 0 0" 
-                             materialDesign:HintAssist.Hint="Search" x:Name="SearchBox"
+                             materialDesign:HintAssist.Hint="Nhập vào mã số phiếu" x:Name="searchTextBox"
                              materialDesign:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0"
-                             MinWidth="200" VerticalAlignment="Center" Text="{Binding InfoSearch}" />
+                             MinWidth="200" VerticalAlignment="Center" Text="{Binding InfoSearch}" >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <i:InvokeCommandAction Command="{Binding SearchChangedCommand}" 
+                                   CommandParameter="{Binding ElementName=searchTextBox}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
                         </Grid>
                     </Border>
                 </Grid>

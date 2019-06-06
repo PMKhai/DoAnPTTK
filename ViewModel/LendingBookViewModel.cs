@@ -199,6 +199,7 @@ namespace QLTV_MVVM.ViewModel
         public ICommand UpdatePhMuonCommand { get; set; }
         public ICommand PrintPhMuonCommand { get; set; }
         public ICommand SearchCommand { get; set; }
+        public ICommand SearchChangedCommand { get; set; }
 
         private string _InfoSearch;
         public string InfoSearch { get => _InfoSearch; set { _InfoSearch = value; OnPropertyChanged(); } }
@@ -218,6 +219,7 @@ namespace QLTV_MVVM.ViewModel
             
             TinhTrangPM = new ObservableCollection<Model.TinhTrangPM>(DataProvider.Ins.DB.TinhTrangPMs);
             DocGia = new ObservableCollection<Model.DocGia>(DataProvider.Ins.DB.DocGias);
+            SearchChangedCommand = new RelayCommand<TextBox>((p) => { return true; }, (p) => { InfoSearch = p.Text; });
             loaDgrPm();
 
            
@@ -384,11 +386,18 @@ namespace QLTV_MVVM.ViewModel
             SearchCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
                 if (p == null)
                     return;
-                var stringSearch = Int32.Parse(InfoSearch);
-            //   PhieuMuon = DataProvider.Ins.DB.PhieuMuons.Where(x=> x.IDPm == stringSearch).FirstOrDefault;
-
+                if(InfoSearch == null || InfoSearch == "")
+                {
+                    PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons);
+                    return;
+                }
                 
-             
+                var stringSearch = Int32.Parse(InfoSearch);
+            var result = DataProvider.Ins.DB.PhieuMuons.Find(stringSearch);
+                PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons.Where(w => w.IDPm == stringSearch));
+                // PhieuMuon.Add(result);
+
+
             });
         }
        
