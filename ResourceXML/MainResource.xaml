@@ -15,5 +15,6 @@
     <viewmodel:KindOfBookViewModel x:Key="KindOfBookVM"></viewmodel:KindOfBookViewModel>
     <viewmodel:AddingKindOfBookViewModel x:Key="AddingKindOfBookVM"></viewmodel:AddingKindOfBookViewModel>
     <viewmodel:AccountViewModel x:Key="AccountVM"></viewmodel:AccountViewModel>
+    <viewmodel:StatisticalViewModel x:Key="statisticalVM"></viewmodel:StatisticalViewModel>
 
 </ResourceDictionary>

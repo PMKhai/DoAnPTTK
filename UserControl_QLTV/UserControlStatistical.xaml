@@ -14,7 +14,8 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="{DynamicResource MaterialDesignFont}">
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             DataContext="{StaticResource statisticalVM}">
     <Grid Background="AliceBlue">
         
         <materialDesign:Card Margin=" 5 0 5 5" Height="100" >
@@ -70,11 +71,14 @@
                     </i:Interaction.Triggers>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn  Header="Mã sách" Width="100" Binding="{ Binding IDDg}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Tên sách" Width="200" Binding="{Binding HoTen}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Ngày nhập" Width="100" Binding="{Binding NgaySinh, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Ngày tạo thẻ" Width="100" Binding="{Binding NgayTaoThe, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Tình trạng" Width="*" Binding="{Binding DiaChi}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Mã PM" Width="70" Binding="{ Binding IDPm}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Đọc giả mượn" Width="150" Binding="{Binding PhieuMuon.DocGia.HoTen}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Tên sách" Width="200" Binding="{Binding Sach.TenSach}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Ngày mượn" Width="100" Binding="{Binding PhieuMuon.NgayMuon, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Ngày trả" Width="100" Binding="{Binding PhieuMuon.KyHanTra, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Người lập phiếu mượn" Width="*" Binding="{Binding PhieuMuon.TaiKhoan.HoTen}"></DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Tình trạng" Width="100" Binding="{Binding PhieuMuon.TinhTrangPM.Ten}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
