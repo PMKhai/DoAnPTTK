@@ -104,9 +104,29 @@ namespace QLTV_MVVM.ViewModel
                 }
             }
         }
+       
+        string getCurrUserName()
+        {
+            LoginWindow loginWindow = new LoginWindow();
+
+
+            if (loginWindow.DataContext == null)
+                return null;
+            var loginMV = loginWindow.DataContext as LoginViewModel;
+            return loginMV.UserName;
+        }
         void loaDgrPm()
         {
-            PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons);
+            var userName = getCurrUserName();
+            var user = DataProvider.Ins.DB.TaiKhoans.Find(userName);
+            if(user.ChucVu == true)
+            {
+                PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons);
+            }
+            else
+            {
+                PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons.Where(w => w.UserName == userName));
+            }
         }
         void loadDgrBook()
         {
@@ -210,6 +230,7 @@ namespace QLTV_MVVM.ViewModel
         //
         public LendingBookViewModel()
         {
+           
             TenLoai = null;
             TacGia = null;
             NhaXB = null;
@@ -317,7 +338,10 @@ namespace QLTV_MVVM.ViewModel
                 isBtnAddClick = true;
                 var PhMuon = new PhieuMuon();
 
-                
+
+
+
+                PhMuon.UserName = getCurrUserName();
                 PhMuon.TinhTrang = DataProvider.Ins.DB.TinhTrangPMs.Find(1).Id;
                 PhMuon.NgayMuon = System.DateTime.Today;
                 PhMuon.KyHanTra = System.DateTime.Today;
@@ -358,7 +382,6 @@ namespace QLTV_MVVM.ViewModel
 
                 // Phần thông tin phiếu
                 var PhMuon = DataProvider.Ins.DB.PhieuMuons.Find(MaPhieu);
-                PhMuon.UserName = "admin";
                 PhMuon.IDDg = SelectedDocGia.IDDg;
                 PhMuon.NgayMuon = LendingDay ?? System.DateTime.Today;
                 PhMuon.KyHanTra = ReturnDay ?? System.DateTime.Today;
@@ -371,6 +394,7 @@ namespace QLTV_MVVM.ViewModel
 
                 DataProvider.Ins.DB.SaveChanges();
                 loaDgrPm();
+                MessageBox.Show("Thông tin phiếu mượn được lưu thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             });
             PrintPhMuonCommand = new RelayCommand<Button>((p) => {
                 if (SelectedPhieuMuon != null)
@@ -388,14 +412,14 @@ namespace QLTV_MVVM.ViewModel
                     return;
                 if(InfoSearch == null || InfoSearch == "")
                 {
-                    PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons);
+                    loaDgrPm();
                     return;
                 }
-                
-                var stringSearch = Int32.Parse(InfoSearch);
-            var result = DataProvider.Ins.DB.PhieuMuons.Find(stringSearch);
-                PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons.Where(w => w.IDPm == stringSearch));
-                // PhieuMuon.Add(result);
+                int searchID = 0;
+                Int32.TryParse(InfoSearch, out searchID);
+                var userName = getCurrUserName();
+                PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons.Where(w => w.IDPm == searchID && w.UserName == userName));
+               
 
 
             });
