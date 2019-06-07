@@ -16,23 +16,25 @@ namespace QLTV_MVVM.ViewModel
         public MainViewModel()
         {
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) => {
-                IsLoaded = true;
+                //IsLoaded = true;
 
                 if (p == null)
                     return;
 
-                p.Hide();
+             //   p.Hide();
                 LoginWindow loginWindow = new LoginWindow();
-                loginWindow.ShowDialog();
+                
 
                 if (loginWindow.DataContext == null)
                     return;
                 var loginMV = loginWindow.DataContext as LoginViewModel;
+                loginWindow.Close();
+                //if (loginMV.IsLogin == true)
+                //{
 
-                if (loginMV.IsLogin == true)
-                    p.Show();
-                else
-                    p.Close();
+                    
+                //}
+               
             });
         }
 

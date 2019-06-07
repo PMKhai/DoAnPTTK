@@ -1,0 +1,71 @@
+﻿<Window x:Class="QLTV_MVVM.PrintDoc"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLTV_MVVM"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        
+        Title="PrintDoc" Height="800" Width="800"
+         DataContext="{StaticResource LendingBookVM}"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="86" Stroke="Black" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="347" FontSize="14" Text="Số 72 - Đường 66 - Phường Tân Phú - Quận 7 -TP HCM"/>
+        <TextBlock  HorizontalAlignment="Left" Margin="666,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20"  FontSize="14" Text="Mã phiếu :" RenderTransformOrigin="0.75,0.633"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="120" FontSize="14" Text="ĐT: (08) 123454321"/>
+        <TextBlock  HorizontalAlignment="Left" Margin="666,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="37" FontSize="14" Text="Ngày: " RenderTransformOrigin="0.141,0.6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="167" FontSize="14" Text="THƯ VIỆN XYZ" FontWeight="Bold" FontStyle="Italic"/>
+        <TextBlock HorizontalAlignment="Left" Margin="316,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30"  FontSize="20" Text="PHIẾU MƯỢN SÁCH" RenderTransformOrigin="0.543,-0.045" FontWeight="Bold" TextDecorations="Underline"/>
+        <TextBlock HorizontalAlignment="Left" Margin="28,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="27" Width="139" FontSize="18" Text="Tên độc giả :" RenderTransformOrigin="-1.091,1.615"/>
+        <TextBlock Name="SupplierName" HorizontalAlignment="Left" Margin="138,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="555" FontSize="18" Text="Tập Đoàn Vinfast " RenderTransformOrigin="0.543,-0.045" FontWeight="Bold"/>
+        <TextBlock Name="Address" HorizontalAlignment="Left" Margin="138,218,-12.4,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="668" FontSize="18" Text="Cầu Giầầầy" RenderTransformOrigin="0.543,-0.045"/>
+        <TextBlock Name="SDT" HorizontalAlignment="Left" Margin="138,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="161" FontSize="18" Text="012345678989" RenderTransformOrigin="0.543,-0.045"/>
+        <TextBlock Name="KindOfPay" HorizontalAlignment="Left" Margin="138,309,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="78" FontSize="18" Text="Công Nợ" RenderTransformOrigin="0.543,-0.045"/>
+        <TextBlock HorizontalAlignment="Left" Margin="28,309,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="64" FontSize="18" Text="Hạn trả:" RenderTransformOrigin="0.543,-0.045"/>
+        <TextBlock HorizontalAlignment="Left" Margin="28,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="97" FontSize="18" Text="Điện thoại:" RenderTransformOrigin="0.543,-0.045"/>
+        <TextBlock HorizontalAlignment="Left" Margin="28,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="64" FontSize="18" Text="Địa chỉ:" RenderTransformOrigin="0.543,-0.045"/>
+        <TextBlock HorizontalAlignment="Left" Margin="576,243.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="101" FontSize="18" Text="Tổng cộng:" RenderTransformOrigin="0.543,-0.045" FontWeight="Bold" TextDecorations="Underline" Grid.Row="1"/>
+        <TextBlock Name="TotalMoney" HorizontalAlignment="Left" Margin="683,241.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30"  FontSize="18" Text="5 (Quyển)" RenderTransformOrigin="0.543,-0.045" FontWeight="Bold" Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="138,287.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="102" FontSize="18" Text="Độc giả" RenderTransformOrigin="0.543,-0.045" FontWeight="Bold" Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="535,287.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="144" FontSize="18" Text="Thủ thư" RenderTransformOrigin="0.543,-0.045" FontWeight="Bold" Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="138,315.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="129" FontSize="18" Text="Ký,ghi rõ họ tên" RenderTransformOrigin="0.543,-0.045" Grid.Row="1" FontStyle="Italic"/>
+        <TextBlock HorizontalAlignment="Left" Margin="535,315.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="129" FontSize="18" Text="Ký,ghi rõ họ tên" RenderTransformOrigin="0.543,-0.045" Grid.Row="1" FontStyle="Italic"/>
+
+        <DataGrid x:Name="lentBookDatagrid" AutoGenerateColumns="False" CanUserAddRows="False"
+                      ItemsSource="{Binding SachDcThue}"  CanUserDeleteRows="False" Margin="0,342,-0.4,165.4" Grid.RowSpan="2">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="STT" Width="*" Binding="{Binding STT}" IsReadOnly="True"></DataGridTextColumn>
+
+                <DataGridTextColumn Header="Loại sách" Width="3*" Binding="{Binding Sach.TenSach}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tên sách" Width="3*" Binding="{Binding Sach.TenSach}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Đơn vị" Width="2*" Binding="{Binding DonVi}" IsReadOnly="True" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Số lượng" Width="2*" Binding="{Binding SoLuong}" IsReadOnly="True"></DataGridTextColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock x:Name="DayBuy" HorizontalAlignment="Left" Margin="708,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="76" FontSize="14" Text="16/11/2018" RenderTransformOrigin="0.141,0.6"/>
+        <TextBlock x:Name="ReceiptID" HorizontalAlignment="Left" Margin="735,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="18" FontSize="14" RenderTransformOrigin="6.522,0.673" Text="15"/>
+        <Button x:Name="searchButton" Height="40" IsDefault="True"
+                    Background="{x:Null}" BorderBrush="{x:Null}" Command="{Binding SearchCommand}"
+                    CommandParameter="{Binding ElementName=userDatagrid}" Margin="733,86,-0.4,259.6">
+            <materialDesign:PackIcon Kind="PrinterSettings" Foreground="Gray" 
+                                         Height="30" Width="30"></materialDesign:PackIcon>
+           
+        </Button>
+    </Grid>
+</Window>

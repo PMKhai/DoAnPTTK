@@ -40,13 +40,17 @@ namespace QLTV_MVVM.ViewModel
         
             if (p == null)
             {
-                return;
+                return; 
             }
             string passEncode = MD5Hash(Base64Encode(Password));
             var count = DataProvider.Ins.DB.TaiKhoans.Where(x => x.UserName == UserName && x.MatKhau == passEncode).Count();
             if(count > 0 )
             {
+                
                 IsLogin = true;
+                MainWindow mainWindow = new MainWindow();
+                p.Hide();
+                mainWindow.ShowDialog();
                 p.Close();
             }
             else

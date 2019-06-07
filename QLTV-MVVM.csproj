@@ -134,9 +134,6 @@
     <Compile Include="Model\Sach.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\sysdiagram.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\TaiKhoan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -145,6 +142,9 @@
     </Compile>
     <Compile Include="Model\TinhTrangPM.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PrintDoc.xaml.cs">
+      <DependentUpon>PrintDoc.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControl_QLTV\ControllBarUC.xaml.cs">
       <DependentUpon>ControllBarUC.xaml</DependentUpon>
@@ -214,6 +214,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PrintDoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ResourceXML\MainResource.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
