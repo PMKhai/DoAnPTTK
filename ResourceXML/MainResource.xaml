@@ -7,14 +7,12 @@
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
     <viewmodel:ReadersViewModel x:Key="ReaderVM"></viewmodel:ReadersViewModel>
     <viewmodel:AddingReaderViewModel x:Key="AddingReaderVM"></viewmodel:AddingReaderViewModel>
-
     <viewmodel:LendingBookViewModel x:Key="LendingBookVM"></viewmodel:LendingBookViewModel>
-
     <viewmodel:BooksViewModel x:Key="BookVM"></viewmodel:BooksViewModel>
     <viewmodel:AddingBookViewModel x:Key="AddingBookVM"></viewmodel:AddingBookViewModel>
     <viewmodel:KindOfBookViewModel x:Key="KindOfBookVM"></viewmodel:KindOfBookViewModel>
     <viewmodel:AddingKindOfBookViewModel x:Key="AddingKindOfBookVM"></viewmodel:AddingKindOfBookViewModel>
     <viewmodel:AccountViewModel x:Key="AccountVM"></viewmodel:AccountViewModel>
     <viewmodel:StatisticalViewModel x:Key="statisticalVM"></viewmodel:StatisticalViewModel>
-
+    <viewmodel:PrintDocViewModel x:Key="PrintDocVM"></viewmodel:PrintDocViewModel>
 </ResourceDictionary>

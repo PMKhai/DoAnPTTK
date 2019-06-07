@@ -62,8 +62,9 @@
                                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
                             _Lưu
                         </Button>
-                        <Button       IsEnabled="False"   
+                        <Button  x:Name="btnPrint"    IsEnabled="False"   
                             Command="{Binding PrintPhMuonCommand}"
+                              CommandParameter="{Binding ElementName=btnPrint}"         
                             Margin="0 0 5 0"
                                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                     Width="100"

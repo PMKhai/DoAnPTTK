@@ -51,7 +51,7 @@ namespace QLTV_MVVM.ViewModel
                 if (SelectedDocGia != null)
                 {
                    Name = SelectedDocGia.HoTen;
-                   // _Phone
+                    Phone = SelectedDocGia.SDT;
                     Address = SelectedDocGia.DiaChi;
                     DayOfbirth = SelectedDocGia.NgaySinh;
                     RegistrationDate = SelectedDocGia.NgayTaoThe;
@@ -404,6 +404,19 @@ namespace QLTV_MVVM.ViewModel
                 return true;
             }, (p) =>
             {
+                var printDocVM = new PrintDocViewModel();
+                printDocVM.PhieuMuon = SelectedPhieuMuon;
+                
+                var s = SachDcThue.LastOrDefault();
+                SachDcThue.Remove(s);
+                printDocVM.SachDcThue = SachDcThue;
+                printDocVM.TongCong = SachDcThue.Sum(w => w.SoLuong).ToString() + " (Quyển)";
+                PrintDoc printDocwd = new PrintDoc();
+                printDocwd.DataContext = printDocVM;
+                printDocwd.ShowDialog();
+                SachDcThue.Add(s);
+             
+
 
             });
 

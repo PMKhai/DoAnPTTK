@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ca9e0d36541a45e3a011e80a5f5d9d7d" Name="Diagram1">
+      <Diagram DiagramId="c05ee8ec4b5346a488cc2959f851447d" Name="Diagram1">
         <EntityTypeShape EntityType="QLTVModel.ChiTietNhapSach" Width="1.5" PointX="7.5" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTVModel.ChiTietPhieuMuon" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTVModel.ChiTietTraSach" Width="1.5" PointX="7.5" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLTVModel.DocGia" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTVModel.DocGia" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTVModel.LoaiSach" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTVModel.NhaPhanPhoi" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLTVModel.PhieuMuon" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTVModel.PhieuMuon" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTVModel.PhieuTra" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTVModel.Sach" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTVModel.TaiKhoan" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLTVModel.TinhTrangPM" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLTVModel.ThamSo" Width="1.5" PointX="7.75" PointY="4.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="QLTVModel.TinhTrangPM" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTVModel.ThamSo" Width="1.5" PointX="7.75" PointY="4.125" IsExpanded="true" />
         <AssociationConnector Association="QLTVModel.fk_ctnhapsach_npp" ManuallyRouted="false" />
         <AssociationConnector Association="QLTVModel.fk_ctnhapsach_sach" ManuallyRouted="false" />
         <AssociationConnector Association="QLTVModel.fk_ctphieumuon_pm" ManuallyRouted="false" />

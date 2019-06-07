@@ -66,11 +66,13 @@
                     </i:Interaction.Triggers>
                     
                     <DataGrid.Columns>
-                        <DataGridTextColumn  Header="Mã ĐG" Width="70" Binding="{ Binding IDDg}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Họ tên" Width="200" Binding="{Binding HoTen}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Ngày sinh" Width="100" Binding="{Binding NgaySinh, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Ngày tạo thẻ" Width="100" Binding="{Binding NgayTaoThe, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Địa chỉ" Width="*" Binding="{Binding DiaChi}"></DataGridTextColumn>
+                        <DataGridTextColumn  Header="Mã ĐG" Width="*" Binding="{ Binding IDDg}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Họ tên" Width="3*" Binding="{Binding HoTen}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Địa chỉ" Width="3*" Binding="{Binding DiaChi}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="SDT" Width="1.5*" Binding="{Binding SDT}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Ngày sinh" Width="1.5*" Binding="{Binding NgaySinh, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Ngày tạo thẻ" Width="1.5*" Binding="{Binding NgayTaoThe, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
+                       
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

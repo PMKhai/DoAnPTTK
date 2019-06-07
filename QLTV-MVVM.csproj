@@ -184,6 +184,7 @@
     <Compile Include="ViewModel\LendingBookViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\PrintDocViewModel.cs" />
     <Compile Include="ViewModel\ReadersViewModel.cs" />
     <Compile Include="ViewModel\StatisticalViewModel.cs" />
     <Page Include="AddingBookWindow.xaml">

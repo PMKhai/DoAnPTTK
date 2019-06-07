@@ -41,6 +41,7 @@
           <Property Name="IDDg" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HoTen" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NgaySinh" Type="datetime" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="15" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
           <Property Name="NgayTaoThe" Type="datetime" />
         </EntityType>
@@ -386,6 +387,7 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
           <Property Name="IDDg" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NgaySinh" Type="DateTime" Precision="3" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NgayTaoThe" Type="DateTime" Precision="3" />
           <NavigationProperty Name="PhieuMuons" Relationship="Self.fk_phieumuon_docgia" FromRole="DocGia" ToRole="PhieuMuon" />
@@ -735,6 +737,7 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
                 <ScalarProperty Name="IDDg" ColumnName="IDDg" />
                 <ScalarProperty Name="HoTen" ColumnName="HoTen" />
                 <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
                 <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
                 <ScalarProperty Name="NgayTaoThe" ColumnName="NgayTaoThe" />
               </MappingFragment>

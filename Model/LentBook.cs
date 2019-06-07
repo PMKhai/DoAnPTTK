@@ -29,6 +29,7 @@ namespace QLTV_MVVM.Model
                 if (SelectedLoaiSach != null)
                 {
                     Sach = new ObservableCollection<Model.Sach>(SelectedLoaiSach.Saches);
+                    
                 }
             }
         }
@@ -54,6 +55,7 @@ namespace QLTV_MVVM.Model
                 }
             }
         }
+        
         //  public ObservableCollection<Model.LoaiSach> Sach { get; set; }
     }
 }

@@ -23,6 +23,7 @@ namespace QLTV_MVVM.Model
         public int IDDg { get; set; }
         public string HoTen { get; set; }
         public Nullable<System.DateTime> NgaySinh { get; set; }
+        public string SDT { get; set; }
         public string DiaChi { get; set; }
         public Nullable<System.DateTime> NgayTaoThe { get; set; }
     
