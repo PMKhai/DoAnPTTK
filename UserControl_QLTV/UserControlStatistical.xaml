@@ -24,10 +24,24 @@
                     <StackPanel Orientation="Horizontal" >
                         <DatePicker materialDesign:HintAssist.Hint="Từ ngày..." 
                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="140" Height="40"
-                        SelectedDate="{Binding TuNgay}" Margin="5 0 5 0"/>
+                        SelectedDate="{Binding NgayBatDau, Mode=TwoWay}" Margin="5 0 5 0">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectedDateChanged">
+                                    <i:InvokeCommandAction Command="{Binding SelectedDateChangedCommand}" 
+                                   CommandParameter="{Binding ElementName=userDatagrid}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </DatePicker>
                         <DatePicker materialDesign:HintAssist.Hint="Đến ngày..." 
                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="140" Height="40"
-                        SelectedDate="{Binding DenNgay}" Margin="5 0 5 0"/>
+                        SelectedDate="{Binding NgayKetThuc}" Margin="5 0 5 0">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectedDateChanged">
+                                    <i:InvokeCommandAction Command="{Binding SelectedDateChangedCommand}" 
+                                   CommandParameter="{Binding ElementName=userDatagrid}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </DatePicker>
                     </StackPanel>
                 </GroupBox>
                 <!--<StackPanel Orientation="Horizontal" Margin="5 0 0 0" >
