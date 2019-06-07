@@ -40,7 +40,17 @@ namespace QLTV_MVVM.ViewModel
                 p.ItemsSource = db;
             });
             SelectedDateChangedCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
-                MessageBox.Show("");
+                if (NgayBatDau > NgayKetThuc)
+                    return;
+                List<ChiTietPhieuMuon> db = new List<ChiTietPhieuMuon>();
+                var chiTiepPhieuMuon = DataProvider.Ins.DB.ChiTietPhieuMuons.ToList();
+                foreach ( var element in chiTiepPhieuMuon)
+                {
+                    if (DateTime.Compare(NgayBatDau, (DateTime)element.PhieuMuon.NgayMuon) <= 0 
+                        && DateTime.Compare((DateTime)element.PhieuMuon.NgayMuon, NgayKetThuc) <= 0)
+                        db.Add(element);
+                }
+                p.ItemsSource = db;
             });
         }
     }
