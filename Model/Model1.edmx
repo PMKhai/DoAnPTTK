@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLTVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QLTVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChiTietNhapSach">
           <Key>
             <PropertyRef Name="ID" />
@@ -92,6 +92,16 @@
           <Property Name="NhaXB" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NgayNhap" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
             <PropertyRef Name="UserName" />
@@ -103,15 +113,9 @@
           <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
           <Property Name="ChucVu" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ThamSo">
           <Key>
             <PropertyRef Name="IDTs" />
-            <PropertyRef Name="TenThamSo" />
-            <PropertyRef Name="KieuDuLieu" />
-            <PropertyRef Name="GiaTri" />
-            <PropertyRef Name="TinhTrang" />
           </Key>
           <Property Name="IDTs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenThamSo" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -280,17 +284,10 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
           <EntitySet Name="PhieuMuon" EntityType="Self.PhieuMuon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhieuTra" EntityType="Self.PhieuTra" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sach" EntityType="Self.Sach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThamSo" EntityType="Self.ThamSo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinhTrangPM" EntityType="Self.TinhTrangPM" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ThamSo" EntityType="Self.ThamSo" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ThamSo].[IDTs] AS [IDTs], 
-    [ThamSo].[TenThamSo] AS [TenThamSo], 
-    [ThamSo].[KieuDuLieu] AS [KieuDuLieu], 
-    [ThamSo].[GiaTri] AS [GiaTri], 
-    [ThamSo].[TinhTrang] AS [TinhTrang]
-    FROM [dbo].[ThamSo] AS [ThamSo]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="fk_ctnhapsach_npp" Association="Self.fk_ctnhapsach_npp">
             <End Role="NhaPhanPhoi" EntitySet="NhaPhanPhoi" />
             <End Role="ChiTietNhapSach" EntitySet="ChiTietNhapSach" />
@@ -340,8 +337,7 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
             <End Role="Sach" EntitySet="Sach" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLTVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -473,20 +469,6 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Ten" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PhieuMuons" Relationship="Self.FK_PhieuMuon_TinhTrangPM" FromRole="TinhTrangPM" ToRole="PhieuMuon" />
-        </EntityType>
-        <EntityType Name="ThamSo">
-          <Key>
-            <PropertyRef Name="IDTs" />
-            <PropertyRef Name="TenThamSo" />
-            <PropertyRef Name="KieuDuLieu" />
-            <PropertyRef Name="GiaTri" />
-            <PropertyRef Name="TinhTrang" />
-          </Key>
-          <Property Name="IDTs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenThamSo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="KieuDuLieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="GiaTri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TinhTrang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <Association Name="fk_ctnhapsach_npp">
           <End Role="NhaPhanPhoi" Type="Self.NhaPhanPhoi" Multiplicity="1" />
@@ -644,7 +626,6 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
           <EntitySet Name="Saches" EntityType="Self.Sach" />
           <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
           <EntitySet Name="TinhTrangPMs" EntityType="Self.TinhTrangPM" />
-          <EntitySet Name="ThamSoes" EntityType="Self.ThamSo" />
           <AssociationSet Name="fk_ctnhapsach_npp" Association="Self.fk_ctnhapsach_npp">
             <End Role="NhaPhanPhoi" EntitySet="NhaPhanPhois" />
             <End Role="ChiTietNhapSach" EntitySet="ChiTietNhapSaches" />
@@ -693,7 +674,29 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
             <End Role="PhieuTra" EntitySet="PhieuTras" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="QLTVModel.sysdiagram" />
+          <EntitySet Name="ThamSoes" EntityType="QLTVModel.ThamSo" />
         </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ThamSo">
+          <Key>
+            <PropertyRef Name="IDTs" />
+          </Key>
+          <Property Name="IDTs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenThamSo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KieuDuLieu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GiaTri" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TinhTrang" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -815,14 +818,25 @@ warning 6002: The table/view 'QLTV.dbo.ThamSo' does not have a primary key defin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QLTVModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ThamSoes">
             <EntityTypeMapping TypeName="QLTVModel.ThamSo">
               <MappingFragment StoreEntitySet="ThamSo">
-                <ScalarProperty Name="IDTs" ColumnName="IDTs" />
-                <ScalarProperty Name="TenThamSo" ColumnName="TenThamSo" />
-                <ScalarProperty Name="KieuDuLieu" ColumnName="KieuDuLieu" />
-                <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
                 <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+                <ScalarProperty Name="KieuDuLieu" ColumnName="KieuDuLieu" />
+                <ScalarProperty Name="TenThamSo" ColumnName="TenThamSo" />
+                <ScalarProperty Name="IDTs" ColumnName="IDTs" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

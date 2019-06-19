@@ -15,4 +15,5 @@
     <viewmodel:AccountViewModel x:Key="AccountVM"></viewmodel:AccountViewModel>
     <viewmodel:StatisticalViewModel x:Key="statisticalVM"></viewmodel:StatisticalViewModel>
     <viewmodel:PrintDocViewModel x:Key="PrintDocVM"></viewmodel:PrintDocViewModel>
+    <viewmodel:SettingViewModel x:Key="SettingVM"></viewmodel:SettingViewModel>
 </ResourceDictionary>

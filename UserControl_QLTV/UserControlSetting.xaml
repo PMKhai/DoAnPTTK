@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QLTV_MVVM.UserControl_QLTV"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" DataContext="{StaticResource SettingVM}"
              d:DesignHeight="570" d:DesignWidth="930"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
@@ -30,24 +31,68 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBox  materialDesign:HintAssist.Hint="Từ..." Text="{Binding TacGia, Mode=TwoWay}" Margin="5 0 5 0"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Height="40" Grid.Column="0"/>
-                    <TextBox  materialDesign:HintAssist.Hint="Đến..." Text="{Binding TacGia, Mode=TwoWay}" Margin="5 0 5 0"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Height="40" Grid.Column="1"/>
+                    <TextBox x:Name="from" materialDesign:HintAssist.Hint="Từ..." Text="{Binding TacGia, Mode=TwoWay}" Margin="5 0 5 0"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Height="40" Grid.Column="0">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Loaded">
+                                <i:InvokeCommandAction Command="{Binding LoadDBCommand1}" 
+                                                       CommandParameter="{Binding ElementName=from}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="LostFocus">
+                                <i:InvokeCommandAction Command="{Binding LostFocusCommand1}" 
+                                                       CommandParameter="{Binding ElementName=from}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
+                    <TextBox x:Name="to"  materialDesign:HintAssist.Hint="Đến..." Text="{Binding TacGia, Mode=TwoWay}" Margin="5 0 5 0"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Height="40" Grid.Column="1">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Loaded">
+                                <i:InvokeCommandAction Command="{Binding LoadDBCommand2}" 
+                                                       CommandParameter="{Binding ElementName=to}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="LostFocus">
+                                <i:InvokeCommandAction Command="{Binding LostFocusCommand2}" 
+                                                       CommandParameter="{Binding ElementName=to}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
                 </Grid>
                 
             </GroupBox>
         </materialDesign:Card>
         <materialDesign:Card Padding="20" Margin="16" Grid.Row="0" Grid.Column="1">
             <GroupBox Header="Giớ hạn số lượng sách">
-                <TextBox  materialDesign:HintAssist.Hint="Số lượng" Text="{Binding TacGia, Mode=TwoWay}" Margin="5 0 5 0"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Height="40" Grid.Column="1"/>
+                <TextBox x:Name="LimitOfBook"  materialDesign:HintAssist.Hint="Số lượng" Text="{Binding TacGia, Mode=TwoWay}" Margin="5 0 5 0"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Height="40" Grid.Column="1">
+                    <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Loaded">
+                                <i:InvokeCommandAction Command="{Binding LoadDBCommand3}" 
+                                                       CommandParameter="{Binding ElementName=LimitOfBook}"/>
+                            </i:EventTrigger>
+                        <i:EventTrigger EventName="LostFocus">
+                            <i:InvokeCommandAction Command="{Binding LostFocusCommand3}" 
+                                                       CommandParameter="{Binding ElementName=LimitOfBook}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
             </GroupBox>
         </materialDesign:Card>
         <materialDesign:Card Padding="20" Margin="16" Grid.Row="1" Grid.Column="0">
             <GroupBox Header="Chỉ nhập sách kể từ nằm">
                 <TextBox x:Name="authorTextBox" materialDesign:HintAssist.Hint="Năm" Grid.Row="2" Text="{Binding TacGia, Mode=TwoWay}"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Height="40"/>
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Height="40">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Loaded">
+                            <i:InvokeCommandAction Command="{Binding LoadDBCommand4}" 
+                                                       CommandParameter="{Binding ElementName=authorTextBox}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="LostFocus">
+                            <i:InvokeCommandAction Command="{Binding LostFocusCommand4}" 
+                                                       CommandParameter="{Binding ElementName=authorTextBox}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
 
             </GroupBox>
         </materialDesign:Card>

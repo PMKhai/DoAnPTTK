@@ -16,7 +16,6 @@
         <EntityTypeShape EntityType="QLTVModel.Sach" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTVModel.TaiKhoan" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTVModel.TinhTrangPM" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLTVModel.ThamSo" Width="1.5" PointX="7.75" PointY="4.125" IsExpanded="true" />
         <AssociationConnector Association="QLTVModel.fk_ctnhapsach_npp" ManuallyRouted="false" />
         <AssociationConnector Association="QLTVModel.fk_ctnhapsach_sach" ManuallyRouted="false" />
         <AssociationConnector Association="QLTVModel.fk_ctphieumuon_pm" ManuallyRouted="false" />
@@ -29,6 +28,8 @@
         <AssociationConnector Association="QLTVModel.FK_PhieuMuon_TinhTrangPM" ManuallyRouted="false" />
         <AssociationConnector Association="QLTVModel.fk_phieutra_phieumuon" ManuallyRouted="false" />
         <AssociationConnector Association="QLTVModel.fk_phieutra_taikhoan" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLTVModel.sysdiagram" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="QLTVModel.ThamSo" Width="1.5" PointX="7.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
