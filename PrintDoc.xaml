@@ -7,7 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Name="PrintDocWD"
-        Title="PrintDoc" Height="800" Width="800"
+        Title="PrintDoc" Height="850" Width="830"
          DataContext="{StaticResource PrintDocVM}"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -20,52 +20,108 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="86" Stroke="Black" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="347" FontSize="14" Text="Số 72 - Đường 66 - Phường Tân Phú - Quận 7 -TP HCM"/>
-        <TextBlock  HorizontalAlignment="Left" Margin="666,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20"  FontSize="14" Text="Mã phiếu :" RenderTransformOrigin="0.75,0.633"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="120" FontSize="14" Text="ĐT: (08) 123454321"/>
-        <TextBlock  HorizontalAlignment="Left" Margin="666,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="37" FontSize="14" Text="Ngày: " RenderTransformOrigin="0.141,0.6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="167" FontSize="14" Text="THƯ VIỆN XYZ" FontWeight="Bold" FontStyle="Italic"/>
-        <TextBlock HorizontalAlignment="Left" Margin="316,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30"  FontSize="20" Text="PHIẾU MƯỢN SÁCH" RenderTransformOrigin="0.543,-0.045" FontWeight="Bold" TextDecorations="Underline"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="27" Width="139" FontSize="18" Text="Tên độc giả :" RenderTransformOrigin="-1.091,1.615"/>
-        <TextBlock Name="SupplierName" HorizontalAlignment="Left" Margin="120,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="555" FontSize="18" Text="{Binding PhieuMuon.DocGia.HoTen}" RenderTransformOrigin="0.543,-0.045" FontWeight="Bold"/>
-        <TextBlock Name="Address" HorizontalAlignment="Left" Margin="120,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="668" FontSize="18" Text="{Binding PhieuMuon.DocGia.DiaChi}" RenderTransformOrigin="0.543,-0.045"/>
-        <TextBlock Name="SDT" HorizontalAlignment="Left" Margin="120,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="161" FontSize="18" Text="{Binding PhieuMuon.DocGia.SDT}" RenderTransformOrigin="0.543,-0.045"/>
-        <TextBlock Name="KindOfPay" HorizontalAlignment="Left" Margin="120,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="147" FontSize="18" Text="{Binding PhieuMuon.KyHanTra}" RenderTransformOrigin="0.543,-0.045"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="64" FontSize="18" Text="Hạn trả:" RenderTransformOrigin="0.543,-0.045"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="97" FontSize="18" Text="Điện thoại:" RenderTransformOrigin="0.543,-0.045"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="64" FontSize="18" Text="Địa chỉ:" RenderTransformOrigin="0.543,-0.045"/>
-        <TextBlock HorizontalAlignment="Left" Margin="582,225.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="101" FontSize="18" Text="Tổng cộng:" RenderTransformOrigin="0.543,-0.045" FontWeight="Bold" TextDecorations="Underline" Grid.Row="1"/>
-        <TextBlock Name="TotalMoney" HorizontalAlignment="Left" Margin="685,225.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30"  FontSize="18" Text="{Binding TongCong}" RenderTransformOrigin="0.543,-0.045" FontWeight="Bold" Grid.Row="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="138,287.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="102" FontSize="18" Text="Độc giả" RenderTransformOrigin="0.543,-0.045" FontWeight="Bold" Grid.Row="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="535,287.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="144" FontSize="18" Text="Thủ thư" RenderTransformOrigin="0.543,-0.045" FontWeight="Bold" Grid.Row="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="138,315.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="129" FontSize="18" Text="Ký,ghi rõ họ tên" RenderTransformOrigin="0.543,-0.045" Grid.Row="1" FontStyle="Italic"/>
-        <TextBlock HorizontalAlignment="Left" Margin="535,315.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="129" FontSize="18" Text="Ký,ghi rõ họ tên" RenderTransformOrigin="0.543,-0.045" Grid.Row="1" FontStyle="Italic"/>
+        <materialDesign:Card Margin="5" Grid.Row="0" VerticalAlignment="Stretch" Background="LightSlateGray">
 
-        <DataGrid x:Name="lentBookDatagrid" AutoGenerateColumns="False" CanUserAddRows="False"
-                      ItemsSource="{Binding SachDcThue}"  CanUserDeleteRows="False" Margin="0,364,-0.4,164.4" Grid.RowSpan="2">
 
-            <DataGrid.Columns>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
 
-                <DataGridTextColumn Header="STT" Width="*" Binding="{Binding STT}" IsReadOnly="True"></DataGridTextColumn>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="5" Grid.Row="0" Grid.Column="0"  TextWrapping="Wrap"  FontSize="14" Text="THƯ VIỆN XYZ" FontWeight="Bold" FontStyle="Italic"/>
+                <TextBlock Margin="5" Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="14" Text="Số 72 - Đường 66 - Phường Tân Phú - Quận 7 -TP HCM"/>
+                <TextBlock  Margin="5" Grid.Row="2" Grid.Column="0"  HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="14" Text="ĐT: (08) 123454321"/>
+                <TextBlock Margin="5" Grid.Row="0" Grid.Column="1"   HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="14" Text="{Binding MaSo}" />
 
-                <DataGridTextColumn Header="Loại sách" Width="3*" Binding="{Binding SelectedSach.LoaiSach.TenLoai}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Header="Tên sách" Width="3*" Binding="{Binding SelectedSach.TenSach}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Header="Đơn vị" Width="2*" Binding="{Binding DonVi}" IsReadOnly="True" ></DataGridTextColumn>
-                <DataGridTextColumn Header="Số lượng" Width="2*" Binding="{Binding SoLuong}" IsReadOnly="True"></DataGridTextColumn>
+                <TextBlock Margin="5" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Right"  TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Text="{Binding NgayMuon}" />
 
-            </DataGrid.Columns>
-        </DataGrid>
-        <TextBlock x:Name="DayBuy" HorizontalAlignment="Left" Margin="708,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="76" FontSize="14" Text="{Binding PhieuMuon.NgayMuon}" RenderTransformOrigin="0.141,0.6"/>
-        <TextBlock x:Name="ReceiptID" HorizontalAlignment="Left" Margin="735,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="18" FontSize="14" RenderTransformOrigin="6.522,0.673" Text="{Binding PhieuMuon.IDPm}"/>
-        <Button x:Name="btnPrint"  Height="40" IsDefault="True"
-                    Background="{x:Null}" BorderBrush="{x:Null}" Command="{Binding PrintCommand}"
-                    CommandParameter="{Binding ElementName=PrintDocWD}" Margin="723,91,9.6,254.6">
-            <materialDesign:PackIcon Kind="PrinterSettings" Foreground="Gray" 
-                                         Height="30" Width="30" RenderTransformOrigin="-0.167,1.24"></materialDesign:PackIcon>
+            </Grid>
 
-        </Button>
+        </materialDesign:Card>
+        <materialDesign:Card Margin="5" Grid.Row="1" VerticalAlignment="Stretch">
+
+            <WrapPanel Orientation="Vertical">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Center"  TextWrapping="Wrap" VerticalAlignment="Top" Height="30"  FontSize="20" Text="PHIẾU MƯỢN SÁCH" RenderTransformOrigin="0.543,-0.045" FontWeight="Bold" TextDecorations="Underline"/>
+                    <Button x:Name="btnPrint"  Height="50" IsDefault="True"
+                    Background="{x:Null}" BorderBrush="{x:Null}" Command="{Binding PrintCommand}" HorizontalAlignment="Right"
+                    CommandParameter="{Binding ElementName=PrintDocWD}" >
+                        <materialDesign:PackIcon Kind="PrinterSettings" Foreground="Gray" 
+                                         Height="30" Width="30" />
+
+                    </Button>
+
+                </Grid>
+                <Grid Margin="0 30 0 20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 0 0 15" TextWrapping="Wrap"   FontSize="18" Text="Tên độc giả: " />
+                    <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" x:Name="SupplierName" TextWrapping="Wrap"  FontSize="18" Text="{Binding PhieuMuon.DocGia.HoTen}" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="0 0 0 15" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Text="Địa chỉ:" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" x:Name="Address"  TextWrapping="Wrap" FontSize="18" Text="{Binding PhieuMuon.DocGia.DiaChi}" />
+                    <TextBlock Grid.Row="2" Grid.Column="0" Margin="0 0 0 15" HorizontalAlignment="Left" TextWrapping="Wrap"  FontSize="18" Text="Điện thoại:" />
+                    <TextBlock Grid.Row="2" Grid.Column="1" x:Name="SDT"  TextWrapping="Wrap"  FontSize="18" Text="{Binding PhieuMuon.DocGia.SDT}" />
+                    <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left"  TextWrapping="Wrap"  FontSize="18" Text="Hạn trả:" />
+                    <TextBlock Grid.Row="3" Grid.Column="1" x:Name="KindOfPay"   TextWrapping="Wrap"   FontSize="18" Text="{Binding PhieuMuon.KyHanTra}" />
+
+                </Grid>
+                <DataGrid x:Name="lentBookDatagrid" AutoGenerateColumns="False" CanUserAddRows="False"
+                      ItemsSource="{Binding SachDcThue}"  CanUserDeleteRows="False">
+
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn Header="STT" Width="*" Binding="{Binding STT}" IsReadOnly="True"/>
+
+                        <DataGridTextColumn Header="Loại sách" Width="3*" Binding="{Binding SelectedSach.LoaiSach.TenLoai}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Tên sách" Width="3*" Binding="{Binding SelectedSach.TenSach}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Đơn vị" Width="2*" Binding="{Binding DonVi}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Số lượng" Width="2*" Binding="{Binding SoLuong}" IsReadOnly="True"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Grid Margin="0 20 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Right"  TextWrapping="Wrap"  FontSize="18" Text="Tổng cộng: " FontWeight="Bold" TextDecorations="Underline" Grid.Row="1"/>
+                    <TextBlock x:Name="Total" HorizontalAlignment="Left" TextWrapping="Wrap"   FontSize="18" Text="{Binding TongCong}" FontWeight="Bold" Grid.Column="1"/>
+
+                </Grid>
+                <Grid Margin="0 30 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" TextWrapping="Wrap"  FontSize="18" Text="Độc giả" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap"  FontSize="18" Text="Thủ thư" FontWeight="Bold" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" TextWrapping="Wrap"  FontSize="18" Text="Ký,ghi rõ họ tên"   FontStyle="Italic"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap"  FontSize="18" Text="Ký,ghi rõ họ tên"  FontStyle="Italic"/>
+                </Grid>
+               
+            </WrapPanel>
+        </materialDesign:Card>
+
     </Grid>
 </Window>
