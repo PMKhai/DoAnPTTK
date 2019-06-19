@@ -18,6 +18,9 @@ namespace QLTV_MVVM.ViewModel
         public PhieuMuon PhieuMuon { get; set; }
         public ObservableCollection<Model.LentBook> SachDcThue { get; set; }
         public string TongCong { get; set; }
+        public string NgayMuon { get; set; }
+        public string NgayTra { get; set; }
+        public string MaSo { get; set; }
         public ICommand PrintCommand { get; set; }
         public PrintDocViewModel()
         {

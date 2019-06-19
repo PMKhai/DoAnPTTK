@@ -410,6 +410,11 @@ namespace QLTV_MVVM.ViewModel
                 var s = SachDcThue.LastOrDefault();
                 SachDcThue.Remove(s);
                 printDocVM.SachDcThue = SachDcThue;
+                printDocVM.MaSo = "Mã số: " + SelectedPhieuMuon.IDPm;
+                printDocVM.NgayMuon = "Ngày: " + SelectedPhieuMuon.NgayMuon;
+               // printDocVM.NgayMuon = printDocVM.NgayMuon.Substring(0,14);
+               // printDocVM.NgayTra = SelectedPhieuMuon.KyHanTra.ToString();
+               // printDocVM.NgayTra = printDocVM.NgayTra.Substring(0, 10);
                 printDocVM.TongCong = SachDcThue.Sum(w => w.SoLuong).ToString() + " (Quyển)";
                 PrintDoc printDocwd = new PrintDoc();
                 printDocwd.DataContext = printDocVM;
