@@ -133,16 +133,8 @@
                         <KeyBinding Key="Delete" Command="{Binding DeleteSachCommand}" CommandParameter="{Binding ElementName=lentBookDatagrid}"/>
                     </DataGrid.InputBindings>
                     <DataGrid.Columns>
-                       
+
                         <DataGridTextColumn Header="STT" Width="*" Binding="{Binding STT}" IsReadOnly="True"></DataGridTextColumn>
-                        <!--<DataGridTemplateColumn Header="Loại sách" Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <ComboBox  DisplayMemberPath="TenLoai"  ItemsSource="{Binding LoaiSach}"  SelectedItem="{Binding SelectedLoaiSach, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên loại sách" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                                    </ComboBox>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>-->
                         <DataGridTemplateColumn Header="Tên Sách" Width="5*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

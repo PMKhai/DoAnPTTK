@@ -16,11 +16,12 @@ namespace QLTV_MVVM.ViewModel
 
         private string _InfoSearch;
         public string InfoSearch { get => _InfoSearch; set { _InfoSearch = value; OnPropertyChanged(); } }
+        public ICommand SearchCommand { get; set; }
 
         public ICommand LoadDBCommand { get; set; }
         public ICommand LostFocusCommand { get; set; }
         public ICommand DisplayAddingReeaderCommand { get; set; }
-        public ICommand SearchCommand { get; set; }
+        
         public ICommand DeleteCommand { get; set; }
         public ICommand TextChangedCommand { get; set; }
         public ReadersViewModel()

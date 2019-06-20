@@ -50,27 +50,35 @@
         <materialDesign:Card Width="920" Height="490" VerticalAlignment="Bottom"
                   Margin="0 0 0 5">
             <Grid>
-                <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" 
-                      CanUserAddRows="False" >
+                <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" CanUserAddRows="False"
+                      ItemsSource="{Binding TaiKhoan}" SelectedItem="{Binding SelectedTaiKhoan , Mode=OneWay}" CanUserDeleteRows="False" >
                     <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Loaded">
-                            <i:InvokeCommandAction Command="{Binding LoadDBCommand}" 
-                                   CommandParameter="{Binding ElementName=userDatagrid}"/>
-                        </i:EventTrigger>
                         <i:EventTrigger EventName="LostFocus">
-                            <i:InvokeCommandAction Command="{Binding LostFocusCommand}" 
+                            <i:InvokeCommandAction Command="{Binding UpdateAccountCommand}" 
                                    CommandParameter="{Binding ElementName=userDatagrid}"/>
                         </i:EventTrigger>
 
                     </i:Interaction.Triggers>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn  Header="ID" Width="70" Binding="{ Binding IDDg}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Tên đăng nhập" Width="*" Binding="{Binding HoTen}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Họ tên" Width="200" Binding="{Binding HoTen}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="SĐT" Width="100" Binding="{Binding NgaySinh, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Địa chỉ" Width="100" Binding="{Binding NgayTaoThe, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Chức vụ" Width="*" Binding="{Binding DiaChi}"></DataGridTextColumn>
+                       
+                        <DataGridTextColumn Header="Tên đăng nhập" Width="*" Binding="{Binding UserName}" IsReadOnly="True"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Họ tên" Width="2*" Binding="{Binding HoTen}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="SĐT" Width="*" Binding="{Binding SDT}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Địa chỉ" Width="2*" Binding="{Binding DiaChi}"></DataGridTextColumn>
+
+                        <DataGridTemplateColumn Header="Toàn quyền"  Width="0.8*" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+
+                                    <CheckBox VerticalAlignment="Center" x:Name="accCheck" IsChecked="{Binding ChucVu, UpdateSourceTrigger=PropertyChanged ,Mode=TwoWay}"
+                                                 Style="{StaticResource MaterialDesignCheckBox}" >
+                                       
+                                    </CheckBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

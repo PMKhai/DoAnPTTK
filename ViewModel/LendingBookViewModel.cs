@@ -225,8 +225,7 @@ namespace QLTV_MVVM.ViewModel
         public string InfoSearch { get => _InfoSearch; set { _InfoSearch = value; OnPropertyChanged(); } }
         //
         bool isBtnAddClick = false;
-        bool isBtnSaveClick = false;
-        bool isBtnPrintClick = false;
+        
         //
         public LendingBookViewModel()
         {
