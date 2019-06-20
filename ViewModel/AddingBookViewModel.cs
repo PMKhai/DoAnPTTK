@@ -35,11 +35,20 @@ namespace QLTV_MVVM.ViewModel
             LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches);
 
             AddBookCommand = new RelayCommand<AddingBookWindow>((p) => { return true; }, (p) => {
+
+                kiemTra(NamXuatBan);
                 if ( TenSach == null || LoaiSach == null
                     || TacGia == null || NamXuatBan == null
                     || NhaXuatBan == null || NgayNhap == null)
                 {
                     MessageBox.Show("Không thể thêm sách!", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (!kiemTra(NamXuatBan))
+                {
+                    var str = "Chỉ nhập sách từ năm " + DataProvider.Ins.DB.ThamSoes.ToArray()[3].GiaTri + " về sau!";
+                    MessageBox.Show(str, "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
@@ -54,6 +63,10 @@ namespace QLTV_MVVM.ViewModel
                 DataProvider.Ins.DB.Saches.Add(sach);
                 if (DataProvider.Ins.DB.SaveChanges() == 1)
                 {
+                    TenSach = null;
+                    LoaiSach = null;
+                    TacGia = null;
+                    NhaXuatBan = null;
                     p.Close();
                 }
                 else
@@ -63,9 +76,16 @@ namespace QLTV_MVVM.ViewModel
                 }
 
             });
+        }
 
+        Boolean kiemTra(DateTime NXB)
+        {
+            var a = "1/1/" + DataProvider.Ins.DB.ThamSoes.ToArray()[3].GiaTri;
+            var date = DateTime.Parse(a);
 
-
+            if(DateTime.Compare(NXB, date) >= 0)
+                return true;
+            return false;
         }
     }
 }
