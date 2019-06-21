@@ -38,19 +38,20 @@ namespace QLTV_MVVM.ViewModel
             {
                 new ColumnSeries
                 {
-                    Title = "",
+                    Title = "Số lượng",
                     Values = new ChartValues<double> {0,0,0,0,0}
                 }
             };
 
             Labels = new[] { "", "", "", "", "" };
+            LoadData();
             SelectedDateChangedCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
                 if (NgayBatDau > NgayKetThuc)
                 {
                     MessageBox.Show("Chọn mốc thời gian sai!", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-
+              
                 LoadData();
             });
             void LoadData()
@@ -58,47 +59,46 @@ namespace QLTV_MVVM.ViewModel
                 
                 ListTopBook = new List<topBook>();
                 var bookList = DataProvider.Ins.DB.Saches.ToList();
+               
                 foreach (var book in bookList)
                 {
                     
                     var exportList = DataProvider.Ins.DB.ChiTietPhieuMuons.Where(w => w.IDSach == book.IDSach && w.PhieuMuon.NgayMuon >= NgayBatDau && w.PhieuMuon.NgayMuon <= NgayKetThuc).ToList();
-                    int quantity = 0;
-                    topBook topBook = new topBook();
-                    topBook.Name = "";
-                    topBook.Quantity = quantity;
-                    if (exportList != null)
+                    if (exportList.Count > 0)
                     {
-                        quantity = exportList.Sum(w => w.SoLuong);
-                        
-                        if (quantity > 0)
-                        {
-                            
-                            topBook.Name = book.TenSach;
-                            topBook.Quantity = quantity;
-                            
-                        }
-                        else
-                        {
-
-                        }
-                        
+                        int quantity = exportList.Sum(w => w.SoLuong);
+                        topBook topBook = new topBook();
+                        topBook.Name = book.TenSach;
+                        topBook.Quantity = quantity;
+                        ListTopBook.Add(topBook);
                     }
-                    ListTopBook.Add(topBook);
+                  
                 }
-                List<topBook> SortedList = ListTopBook.OrderByDescending(w => w.Quantity).ToList();
                 ChartValues<double> quan = new ChartValues<double>();
-
-                int n = 5 ;
-                if(SortedList.Count < n)
+                var n = ListTopBook.Count;
+                if(n > 5)
                 {
-                    n = SortedList.Count;
+                    n = 5;
                 }
-                for (int i = 0; i < n; i++)
+                else if (n < 1)
                 {
-                    Labels[i] = SortedList[i].Name;
-                    quan.Add(SortedList[i].Quantity);
-                }
 
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Labels[i] = "";
+                        quan.Add(0);
+                    }
+                }
+                else
+                {
+                    List<topBook> SortedList = ListTopBook.OrderByDescending(w => w.Quantity).ToList();
+
+                    for (int i = 0; i < n; i++)
+                    {
+                        Labels[i] = SortedList[i].Name;
+                        quan.Add(SortedList[i].Quantity);
+                    }
+                }
                 ColumnValue[0].Values = quan;
                 Formatter = value => value.ToString("N");
                 
