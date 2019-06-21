@@ -76,7 +76,7 @@ namespace QLTV_MVVM
                     break;
                 case 7:
                     GridWorking.Children.Clear();
-                    GridWorking.Children.Add(new UserControlSetting());
+                    GridWorking.Children.Add(new UserControlProcessOfBook());
                     break;
                 default:
                     break;

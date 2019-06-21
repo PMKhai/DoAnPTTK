@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:QLTV_MVVM"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None"
         ResizeMode="NoResize"
-        Title="WindowAddingReader" Height="450" Width="300"
+        Title="WindowAddingReader" Height="350" Width="300"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
           xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -23,24 +23,24 @@
         <Grid Height="40" VerticalAlignment="Top">
             <uc:ControllBarUC></uc:ControllBarUC>
         </Grid>
-        <materialDesign:Card Margin="5 40 5 5" Height="410">
+        <materialDesign:Card Margin="5 40 5 5" Height="300">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                   
+               
                 </Grid.RowDefinitions>
-                <TextBox x:Name="usernameTextBox" materialDesign:HintAssist.Hint="Tên tài khoản" Grid.Row="0" Text="{Binding Name, Mode=TwoWay}"
+                <TextBox x:Name="usernameTextBox" materialDesign:HintAssist.Hint="Tên tài khoản" Grid.Row="0" Text="{Binding UserName, Mode=TwoWay}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250" Height="40"/>
 
 
                 <PasswordBox Width="250"  Height="40" Grid.Row="1"
                  x:Name="FloatingPasswordBox"
                 materialDesign:HintAssist.Hint="Mật khẩu"
-                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" CaretBrush="#FF3AACB7" Grid.ColumnSpan="2" Margin="0,0,-0.4,-0.4" >
+                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" CaretBrush="#FF3AACB7" Grid.ColumnSpan="2"  >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PasswordChanged">
                             <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" 
@@ -48,11 +48,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </PasswordBox>
-
-                <CheckBox VerticalAlignment="Center" x:Name="accCheck" IsChecked="{Binding ChucVu, UpdateSourceTrigger=PropertyChanged ,Mode=TwoWay}"
-                                                 Style="{StaticResource MaterialDesignCheckBox}" >
-
-                </CheckBox>
+                <ComboBox Grid.Row="2" Width="250"  Height="40" DisplayMemberPath="HoTen"  materialDesign:HintAssist.Hint="Chức vụ" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
 
 
                 <Button Width="250" Height="40" Grid.Row="5" Background="#FF9ACDF5" 

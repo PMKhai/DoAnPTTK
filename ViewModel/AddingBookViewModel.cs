@@ -33,6 +33,8 @@ namespace QLTV_MVVM.ViewModel
         public AddingBookViewModel()
         {
             LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches);
+            NgayNhap = System.DateTime.Today;
+            NamXuatBan = System.DateTime.Today;
 
             AddBookCommand = new RelayCommand<AddingBookWindow>((p) => { return true; }, (p) => {
 

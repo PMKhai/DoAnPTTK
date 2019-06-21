@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLTV_MVVM"
         mc:Ignorable="d"
-          xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        
         Title="LoginWindow" Height="450" Width="300"
         xmlns:uc="clr-namespace:QLTV_MVVM.UserControll_QLTV"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
