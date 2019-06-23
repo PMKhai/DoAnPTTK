@@ -134,14 +134,15 @@ namespace QLTV_MVVM.ViewModel
            
             var userName = getCurrUserName();
             var user = DataProvider.Ins.DB.TaiKhoans.Find(userName);
-            if(user.ChucVu == true)
+            if(user.ChucVu == false)
             {
-                PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons);
+                 PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons.Where(w => w.UserName == userName));
             }
             else
             {
-                PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons.Where(w => w.UserName == userName));
+                PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons);
             }
+           
         }
         void loadDgrBook()
         {
@@ -417,7 +418,7 @@ namespace QLTV_MVVM.ViewModel
                 //
 
                 DataProvider.Ins.DB.SaveChanges();
-                loaDgrPm();
+                
                 MessageBox.Show("Thông tin phiếu mượn được lưu thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 TenLoai = null;
                 MaPhieu = 0;
@@ -434,6 +435,8 @@ namespace QLTV_MVVM.ViewModel
                 SelectedPhieuMuon = null;
                 SelectedDocGia = null;
                 SachDcThue = null;
+                
+                loaDgrPm();
                 p.IsEnabled = false;
             });
             PrintPhMuonCommand = new RelayCommand<Button>((p) => {
