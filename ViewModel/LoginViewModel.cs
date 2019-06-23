@@ -56,7 +56,8 @@ namespace QLTV_MVVM.ViewModel
             else
             {
                 IsLogin = false;
-                MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu !");           }
+                MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu !");
+            }
         }
         public static string Base64Encode(string plainText)
         {

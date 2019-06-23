@@ -60,8 +60,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -173,6 +175,9 @@
     <Compile Include="UserControl_QLTV\UserControlReders.xaml.cs">
       <DependentUpon>UserControlReders.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl_QLTV\UserControlResetPassword.xaml.cs">
+      <DependentUpon>UserControlResetPassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl_QLTV\UserControlSetting.xaml.cs">
       <DependentUpon>UserControlSetting.xaml</DependentUpon>
     </Compile>
@@ -196,6 +201,7 @@
     <Compile Include="ViewModel\PrintDocViewModel.cs" />
     <Compile Include="ViewModel\ProcessOfBookViewModel.cs" />
     <Compile Include="ViewModel\ReadersViewModel.cs" />
+    <Compile Include="ViewModel\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModel\SettingViewModel.cs" />
     <Compile Include="ViewModel\StatisticalViewModel.cs" />
     <Page Include="AddingAccountWindow.xaml">
@@ -259,6 +265,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl_QLTV\UserControlReders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl_QLTV\UserControlResetPassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

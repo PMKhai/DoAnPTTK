@@ -96,6 +96,10 @@ namespace QLTV_MVVM
                     GridWorking.Children.Clear();
                     GridWorking.Children.Add(new UserControlProcessOfBook());
                     break;
+                case 8:
+                    GridWorking.Children.Clear();
+                    GridWorking.Children.Add(new UserControlResetPassword());
+                    break;
                 default:
                     break;
             }

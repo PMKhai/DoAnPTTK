@@ -79,20 +79,20 @@
                     <WrapPanel>
                         <materialDesign:PackIcon Kind="AccountCardDetails"  />
                         <ComboBox Margin="5 5 15 5" DisplayMemberPath="HoTen" ItemsSource="{Binding DocGia}" SelectedItem="{Binding SelectedDocGia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên độc giả" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
-                        <TextBox Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Địa chỉ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
-                        <TextBox Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Điện thoại" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"/>
-                        <DatePicker  SelectedDate="{Binding DayOfbirth, StringFormat='dd/MM/yyyy'}" Width="100" Margin="5 5 15 0" materialDesign:HintAssist.Hint="Ngày sinh" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" IsEnabled="False" />
-                        <DatePicker  SelectedDate="{Binding RegistrationDate, StringFormat='dd/MM/yyyy'}" Width="100" Margin="5 5 15 0" materialDesign:HintAssist.Hint="Ngày hợp tác" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" IsEnabled="False" />
+                        <TextBox FontWeight="Bold" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Địa chỉ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
+                        <TextBox FontWeight="Bold" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Điện thoại" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"/>
+                        <DatePicker FontWeight="Bold" SelectedDate="{Binding DayOfbirth, StringFormat='dd/MM/yyyy'}" Width="100" Margin="5 5 15 0" materialDesign:HintAssist.Hint="Ngày sinh" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" IsEnabled="False" />
+                        <DatePicker FontWeight="Bold" SelectedDate="{Binding RegistrationDate, StringFormat='dd/MM/yyyy'}" Width="100" Margin="5 5 15 0" materialDesign:HintAssist.Hint="Ngày hợp tác" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" IsEnabled="False" />
                     </WrapPanel>
                 </materialDesign:Card>
                 <materialDesign:Card Grid.Row="2" Margin="5" VerticalAlignment="Stretch">
                     <WrapPanel>
                         <materialDesign:PackIcon Kind="BookOpenPageVariant" />
 
-                        <TextBox Text="{Binding TenLoai, UpdateSourceTrigger=PropertyChanged}" Margin="5 10 15 10" materialDesign:HintAssist.Hint="Loại Sách" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
-                        <TextBox Text="{Binding TacGia, UpdateSourceTrigger=PropertyChanged}" Margin="5 10 15 10" materialDesign:HintAssist.Hint="Tác giả" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
-                        <TextBox Text="{Binding NhaXB, UpdateSourceTrigger=PropertyChanged}" Margin="5 10 15 10" materialDesign:HintAssist.Hint="Nhà xuất bản" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"/>
-                        <DatePicker  SelectedDate="{Binding NamXB, StringFormat='dd/MM/yyyy'}" Width="100" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Năm xuất bản" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" IsEnabled="False" />
+                        <TextBox FontWeight="Bold" Text="{Binding TenLoai, UpdateSourceTrigger=PropertyChanged}" Margin="5 10 15 10" materialDesign:HintAssist.Hint="Loại Sách" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
+                        <TextBox FontWeight="Bold" Text="{Binding TacGia, UpdateSourceTrigger=PropertyChanged}" Margin="5 10 15 10" materialDesign:HintAssist.Hint="Tác giả" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
+                        <TextBox FontWeight="Bold" Text="{Binding NhaXB, UpdateSourceTrigger=PropertyChanged}" Margin="5 10 15 10" materialDesign:HintAssist.Hint="Nhà xuất bản" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"/>
+                        <DatePicker FontWeight="Bold"  SelectedDate="{Binding NamXB, StringFormat='dd/MM/yyyy'}" Width="100" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Năm xuất bản" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" IsEnabled="False" />
                       
                     </WrapPanel>
                 </materialDesign:Card>
@@ -103,7 +103,7 @@
                     <StackPanel Margin="0 0 0 15">
                         <materialDesign:PackIcon Kind="AccountCardDetails"  />
 
-                        <TextBox Text="{Binding MaPhieu, UpdateSourceTrigger=PropertyChanged}" Margin="5 0 15 5" materialDesign:HintAssist.Hint="Mã Phiếu" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
+                        <TextBox FontWeight="Bold" Text="{Binding MaPhieu, UpdateSourceTrigger=PropertyChanged}" Margin="5 0 15 5" materialDesign:HintAssist.Hint="Mã Phiếu" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" />
                         <DatePicker  SelectedDate="{Binding LendingDay,UpdateSourceTrigger=PropertyChanged, StringFormat='dd/MM/yyyy'}"  Margin="5 0 15 5" materialDesign:HintAssist.Hint="Ngày mượn" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                         <DatePicker  SelectedDate="{Binding ReturnDay,UpdateSourceTrigger=PropertyChanged, StringFormat='dd/MM/yyyy'}"  Margin="5 0 15 5" materialDesign:HintAssist.Hint="Ngày trả" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"  />
                         <ComboBox Margin="5 0 15 5" DisplayMemberPath="Ten" ItemsSource="{Binding TinhTrangPM}" SelectedItem="{Binding SelectedTinhTrangPM}" materialDesign:HintAssist.Hint="Tình trạng"  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
