@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using QLTV_MVVM.UserControl_QLTV;
+using QLTV_MVVM.Model;
 
 namespace QLTV_MVVM
 {
@@ -38,9 +39,26 @@ namespace QLTV_MVVM
             ButtonCloseMenu.Visibility = Visibility.Visible;
         }
 
+        LoginWindow loginWD = new LoginWindow();
+
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int index = ListViewMenu.SelectedIndex;
+
+            var db = loginWD.DataContext;
+
+            System.Reflection.PropertyInfo pi = db.GetType().GetProperty("UserName");
+            String username = (String)(pi.GetValue(db, null));
+
+            var acc = DataProvider.Ins.DB.TaiKhoans.Find(username);
+
+            if(acc.ChucVu == false)
+            {
+                statisical.Visibility = Visibility.Collapsed;
+                setting.Visibility = Visibility.Collapsed;
+                account.Visibility = Visibility.Collapsed;
+                top.Visibility = Visibility.Collapsed;
+            }
 
             switch (index)
             {

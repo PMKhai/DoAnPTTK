@@ -122,9 +122,9 @@
                                        Foreground="White">Loại Sách</TextBlock>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="statisical" Height="60">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ChartLine"
+                            <materialDesign:PackIcon Kind="Stackexchange"
                                                  Margin="10 0 20 0" 
                                                  Height="30" Width="30"
                                                  Foreground="White"></materialDesign:PackIcon>
@@ -132,7 +132,7 @@
                                        Foreground="White">Thống kê</TextBlock>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="account" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Key"
                                                  Margin="10 0 20 0" 
@@ -142,7 +142,7 @@
                                        Foreground="White">Tài khoản</TextBlock>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="setting" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Settings"
                                                  Margin="10 0 20 0" 
@@ -152,9 +152,9 @@
                                        Foreground="White">Thay Đổi quy định</TextBlock>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="top" Height="60">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Help"
+                            <materialDesign:PackIcon Kind="ChartLine"
                                                  Margin="10 0 20 0" 
                                                  Height="30" Width="30"
                                                  Foreground="White"></materialDesign:PackIcon>
