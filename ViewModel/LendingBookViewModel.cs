@@ -115,8 +115,23 @@ namespace QLTV_MVVM.ViewModel
             var loginMV = loginWindow.DataContext as LoginViewModel;
             return loginMV.UserName;
         }
+        void updatePM()
+        {
+            PhieuMuon = new ObservableCollection<Model.PhieuMuon>(DataProvider.Ins.DB.PhieuMuons);
+            var today = System.DateTime.Today;
+            foreach (var item in PhieuMuon)
+            {
+                if (item.KyHanTra < today && item.TinhTrang == 1)
+                {
+                    item.TinhTrang = 2;
+                }
+                
+            }
+            DataProvider.Ins.DB.SaveChanges();
+        }
         void loaDgrPm()
         {
+           
             var userName = getCurrUserName();
             var user = DataProvider.Ins.DB.TaiKhoans.Find(userName);
             if(user.ChucVu == true)
@@ -229,7 +244,7 @@ namespace QLTV_MVVM.ViewModel
         //
         public LendingBookViewModel()
         {
-           
+            updatePM();
             TenLoai = null;
             TacGia = null;
             NhaXB = null;
@@ -353,6 +368,10 @@ namespace QLTV_MVVM.ViewModel
                 TacGia = null;
                 NhaXB = null;
                 NamXB = null;
+                Address = null;
+                Phone = null;
+                DayOfbirth = null;
+                RegistrationDate = null;
             });
             UpdatePhMuonCommand = new RelayCommand<Button>((p) => {
                 if (SelectedPhieuMuon != null || isBtnAddClick == true)
@@ -367,6 +386,11 @@ namespace QLTV_MVVM.ViewModel
                 return true;
             }, (p) =>
             {
+                if(LendingDay > ReturnDay)
+                {
+                    MessageBox.Show("Mốc thời gian mượn trả không hợp lệ !", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 if (SelectedDocGia == null)
                 {
                     MessageBox.Show("Chưa nhập thông tin độc giả !", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -395,6 +419,22 @@ namespace QLTV_MVVM.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
                 loaDgrPm();
                 MessageBox.Show("Thông tin phiếu mượn được lưu thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                TenLoai = null;
+                MaPhieu = 0;
+                TacGia = null;
+                NhaXB = null;
+                NamXB = null;
+                Address = null;
+                Phone = null;
+                DayOfbirth = null;
+                RegistrationDate = null;
+                ReturnDay = null;
+                LendingDay = null;
+                SelectedTinhTrangPM = null;
+                SelectedPhieuMuon = null;
+                SelectedDocGia = null;
+                SachDcThue = null;
+                p.IsEnabled = false;
             });
             PrintPhMuonCommand = new RelayCommand<Button>((p) => {
                 if (SelectedPhieuMuon != null)

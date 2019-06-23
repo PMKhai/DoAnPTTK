@@ -66,7 +66,7 @@ namespace QLTV_MVVM.ViewModel
                 if (DataProvider.Ins.DB.SaveChanges() == 1)
                 {
                     TenSach = null;
-                    LoaiSach = null;
+                    LS = null;
                     TacGia = null;
                     NhaXuatBan = null;
                     p.Close();
