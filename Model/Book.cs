@@ -21,10 +21,10 @@ namespace QLTV_MVVM.Model
             {
                 _SelectedLoaiSach = value;
                 OnPropertyChanged();
-                //if (SelectedLoaiSach != null)
-                //{
-                //    Sach = new ObservableCollection<Model.Sach>(SelectedLoaiSach.Saches);
-                //}
+                if (_SelectedLoaiSach != null)
+                {
+                    Sach.IDLoai = SelectedLoaiSach.IdLoai;
+                }
             }
         }
     }

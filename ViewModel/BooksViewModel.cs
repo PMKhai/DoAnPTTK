@@ -21,15 +21,33 @@ namespace QLTV_MVVM.ViewModel
         private ObservableCollection<Model.Sach> _Sach;
         public ObservableCollection<Model.Sach> Sach { get => _Sach; set { _Sach = value; OnPropertyChanged(); } }
         private LoaiSach _LS;
-        public LoaiSach LS { get => _LS; set { _LS = value; OnPropertyChanged(); } }
+        public LoaiSach LS
+        { get => _LS;
+            set
+            {
+                _LS = value;
+                if(_LS != null)
+                {
+                    Sach = new ObservableCollection<Model.Sach>(DataProvider.Ins.DB.Saches.Where(k => k.IDLoai == _LS.IdLoai));
+                    
+                }
+                else
+                {
+                    Sach = new ObservableCollection<Model.Sach>(DataProvider.Ins.DB.Saches);
+
+                }
+                loadDgrBook();
+                OnPropertyChanged();
+            }
+        }
         private string _Searching;
         public string Searching { get => _Searching; set { _Searching = value; OnPropertyChanged(); } }
         //public ICommand LoadDBCommand { get; set; }
         public ICommand DisplayAddingBookCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
-        public ICommand FilterCommand { get; set; }
         public ICommand SearchCommand { get; set; }
         public ICommand TextChangedCommand { get; set; }
+        public ICommand LostFocusCommand { get; set; }
         private Model.LoaiSach _SelectedLoaiSach;
         public Model.LoaiSach SelectedLoaiSach
         {
@@ -47,9 +65,15 @@ namespace QLTV_MVVM.ViewModel
         void loadDgrBook()
         {
             Book = new ObservableCollection<Book>();
-            Sach = new ObservableCollection<Model.Sach>(DataProvider.Ins.DB.Saches);
-
-
+           
+            if(Sach == null)
+            {
+                Sach = new ObservableCollection<Model.Sach>(DataProvider.Ins.DB.Saches);
+            }
+            if(LoaiSach == null)
+            {
+                LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches);
+            }
             int i = 1;
             foreach (var item in Sach)
             {
@@ -66,24 +90,11 @@ namespace QLTV_MVVM.ViewModel
 
         public BooksViewModel()
         {
-
+           
+            
             loadDgrBook();
 
-            //LoadDBCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
-            //    if (p == null)
-            //        return;
-            //    // var db = DataProvider.Ins.DB.Saches.ToList();
-            //    LoaiSach = new ObservableCollection<Model.LoaiSach>(DataProvider.Ins.DB.LoaiSaches);
-            //    Sach = new ObservableCollection<Sach>(DataProvider.Ins.DB.Saches);
-                
-
-            //    if (Sach == null)
-            //    {
-            //        MessageBox.Show("Không thể hiển thị danh sách sách!", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-            //        return;
-            //    }
-            //    p.ItemsSource = Sach;
-            //});
+        
 
             DisplayAddingBookCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
                 AddingBookWindow wd = new AddingBookWindow();
@@ -96,7 +107,7 @@ namespace QLTV_MVVM.ViewModel
                     MessageBox.Show("Không thể hiển thị danh sách sách!", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                p.ItemsSource = Sach;
+                loadDgrBook();
             });
             DeleteCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) =>
             {
@@ -123,50 +134,74 @@ namespace QLTV_MVVM.ViewModel
                             var book = DataProvider.Ins.DB.Saches.Find(rd.IDSach);
                             DataProvider.Ins.DB.Saches.Remove(book);
                             DataProvider.Ins.DB.SaveChanges();
-                        Sach.Remove(book);
+                             Sach.Remove(book);
                         }
 
                      
 
                     }
                 
-
+                    
                
 
             });
-            FilterCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) =>
-            {
-                if (p == null)
-                    return;
-                if (LS == null)
-                    return;
-
-                var query = (from k in DataProvider.Ins.DB.Saches.ToList() where k.IDLoai == LS.IdLoai select k).ToList();
-                
-
-                p.ItemsSource = query;
-            });
+           
             TextChangedCommand = new RelayCommand<TextBox>((p) => { return true; }, (p) =>{Searching = p.Text; });
             SearchCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) =>
             {
                 if (p == null)
                     return;
-                if (Searching == null)
-                    return;
-
-                var query = (from k in DataProvider.Ins.DB.Saches.ToList() where k.TenSach.Contains(Searching.ToLower()) select k).ToList();
-
-                if (LS != null)
+                if (Searching == null || Searching == "")
                 {
-                    var result = (from k in query where k.IDLoai == LS.IdLoai select k).ToList();
-                    
-                    p.ItemsSource = result;
+                    if(LS == null)
+                    {
+                        Sach = new ObservableCollection<Model.Sach>(DataProvider.Ins.DB.Saches);
+
+                    }
+                    else
+                    {
+                        Sach = new ObservableCollection<Model.Sach>(DataProvider.Ins.DB.Saches.Where(k => k.IDLoai == LS.IdLoai));
+                    }
+                    loadDgrBook();
+                    return;
+                }
+                if(LS == null)
+                {
+                    Sach = new ObservableCollection<Model.Sach>(DataProvider.Ins.DB.Saches.Where(k => k.TenSach.Contains(Searching.ToLower())));
                 }
                 else
                 {
-                    
-                    p.ItemsSource = query;
+                    Sach = new ObservableCollection<Model.Sach>(DataProvider.Ins.DB.Saches.Where(k => k.IDLoai == LS.IdLoai && k.TenSach.Contains(Searching.ToLower())));
+
                 }
+                loadDgrBook();
+             
+            });
+            LostFocusCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
+                if (p == null)
+                    return;
+                if (p.SelectedItem == null)
+                {
+                    return;
+                }
+                Book sa = (Book)p.SelectedItem as Book;
+                
+                var bk = DataProvider.Ins.DB.Saches.Find(sa.Sach.IDSach);
+
+                if (bk == null)
+                {
+                    MessageBox.Show("Không thể chỉnh sửa đọc giả!", "Thông báo lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                bk.TenSach = sa.Sach.TenSach;
+                bk.TacGia = sa.Sach.TacGia;
+                bk.NhaXB = sa.Sach.NhaXB;
+                bk.NgayNhap = sa.Sach.NgayNhap;
+                bk.NamXB = sa.Sach.NamXB;
+                bk.IDLoai = sa.SelectedLoaiSach.IdLoai;
+
+                DataProvider.Ins.DB.SaveChanges();
+
             });
         }
 

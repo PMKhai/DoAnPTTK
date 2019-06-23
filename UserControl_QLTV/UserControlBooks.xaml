@@ -22,14 +22,8 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
                      Margin="5 0 0 0">
                     <ComboBox materialDesign:HintAssist.Hint="Loại sách" Width="150"
-                      Height="40" VerticalContentAlignment="Center" DisplayMemberPath="TenLoai"
-                              ItemsSource="{Binding LoaiSach}" SelectedValue="{Binding LS}" >
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="DropDownClosed">
-                                <i:InvokeCommandAction Command="{Binding FilterCommand}" 
-                                   CommandParameter="{Binding ElementName=userDatagrid}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                      Height="40" VerticalContentAlignment="Center" DisplayMemberPath="TenLoai" IsEditable="True"
+                              ItemsSource="{Binding LoaiSach,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding LS}" >
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10 0 0 0">
@@ -66,10 +60,7 @@
                 <DataGrid x:Name="userDatagrid" AutoGenerateColumns="False" 
                       CanUserAddRows="False" CanUserDeleteRows="False"  ItemsSource="{Binding Book}" >
                     <i:Interaction.Triggers>
-                        <!--<i:EventTrigger EventName="Loaded">
-                            <i:InvokeCommandAction Command="{Binding LoadDBCommand}" 
-                                   CommandParameter="{Binding ElementName=userDatagrid}"/>
-                        </i:EventTrigger>-->
+             
                         <i:EventTrigger EventName="LostFocus">
                             <i:InvokeCommandAction Command="{Binding LostFocusCommand}" 
                                    CommandParameter="{Binding ElementName=userDatagrid}"/>
@@ -79,7 +70,7 @@
                         <KeyBinding Key="Delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=userDatagrid}"/>
                     </DataGrid.InputBindings>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Mã sách" Width="100" Binding="{ Binding Sach.IDSach}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Mã sách" IsReadOnly="True" Width="100" Binding="{ Binding Sach.IDSach}"></DataGridTextColumn>
                         <DataGridTemplateColumn Header="Loại Sách" Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -88,10 +79,12 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Tên sách" Width="150" Binding="{Binding Sach.TenSach}"></DataGridTextColumn>
+                        <DataGridTextColumn  Header="Tên sách" Width="150" Binding="{Binding Sach.TenSach}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Tác giả" Width="150" Binding="{Binding Sach.TacGia}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Năm XB" Width="*" Binding="{Binding Sach.NamXB, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Nhà XB" Width="*" Binding="{Binding Sach.NhaXB}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Năm XB" Width="*" Binding="{Binding Sach.NgayNhap, StringFormat='MM/dd/yyyy'}"></DataGridTextColumn>
+
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

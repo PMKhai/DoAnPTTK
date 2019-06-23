@@ -284,11 +284,12 @@ namespace QLTV_MVVM.ViewModel
             UpdateSachCommand = new RelayCommand<DataGrid>((p) => { return true; }, (p) => {
                 if (p == null)
                     return;
-                LentBook lb = (LentBook)p.SelectedItem as LentBook;
-                if(p.SelectedItem == null)
+                if (p.SelectedItem == null)
                 {
                     return;
                 }
+                LentBook lb = (LentBook)p.SelectedItem as LentBook;
+               
                 var chTietSach = DataProvider.Ins.DB.ChiTietPhieuMuons.Find(lb.Id);
 
                 if (chTietSach == null)
@@ -296,7 +297,7 @@ namespace QLTV_MVVM.ViewModel
                     var chTSach = new ChiTietPhieuMuon();
 
                     chTSach.IDPm = MaPhieu;
-                    if (lb.SelectedSach == null) // dòng này là magic
+                    if (lb.SelectedSach == null) 
                     {
                         return;
                     }
@@ -411,9 +412,9 @@ namespace QLTV_MVVM.ViewModel
                 printDocVM.SachDcThue = SachDcThue;
                 printDocVM.MaSo = "Mã số: " + SelectedPhieuMuon.IDPm;
                 printDocVM.NgayMuon = "Ngày: " + SelectedPhieuMuon.NgayMuon;
-               // printDocVM.NgayMuon = printDocVM.NgayMuon.Substring(0,14);
-               // printDocVM.NgayTra = SelectedPhieuMuon.KyHanTra.ToString();
-               // printDocVM.NgayTra = printDocVM.NgayTra.Substring(0, 10);
+                printDocVM.NgayMuon = printDocVM.NgayMuon.Substring(0, 15);
+                printDocVM.NgayTra = SelectedPhieuMuon.KyHanTra.ToString();
+                printDocVM.NgayTra = printDocVM.NgayTra.Substring(0, 9);
                 printDocVM.TongCong = SachDcThue.Sum(w => w.SoLuong).ToString() + " (Quyển)";
                 PrintDoc printDocwd = new PrintDoc();
                 printDocwd.DataContext = printDocVM;

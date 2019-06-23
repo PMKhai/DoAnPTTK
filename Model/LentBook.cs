@@ -49,13 +49,11 @@ namespace QLTV_MVVM.Model
                    
                   
                   
-                    //a.TacGia = SelectedSach.TacGia;
-                    //a.NhaXB = SelectedSach.NhaXB;
-                    //a.NamXB = SelectedSach.NamXB;
+                   
                 }
             }
         }
         
-        //  public ObservableCollection<Model.LoaiSach> Sach { get; set; }
+       
     }
 }
